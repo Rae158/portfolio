@@ -13,643 +13,441 @@
         }
 
         :root {
-            --primary-purple: #6a4c93;
-            --light-purple: #8d6bbf;
-            --pale-purple: #f8f5ff;
-            --dark-purple: #4b2e83;
-            --accent-pink: #e63946;
-            --white: #ffffff;
-            --light-gray: #f5f5f5;
-            --gray: #666666;
-            --dark-gray: #333333;
-            --shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-            --shadow-hover: 0 4px 16px rgba(0, 0, 0, 0.12);
-            --portfolio-gap: 25px;
-            --portfolio-min-width: 350px;
-            --masonry-columns: 3;
-            --carousel-item-width: 400px;
+            --primary-color: #3a86ff;
+            --secondary-color: #8338ec;
+            --accent-color: #ff006e;
+            --dark-color: #2b2d42;
+            --light-color: #f8f9fa;
+            --gray-color: #6c757d;
+            --light-gray: #e9ecef;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-hover: 0 10px 20px rgba(0, 0, 0, 0.15);
+            --transition: all 0.3s ease;
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background: linear-gradient(135deg, #6a4c93 0%, #8d6bbf 50%, #c5a3ff 100%);
-            min-height: 100vh;
-            color: var(--dark-gray);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             line-height: 1.6;
-            transition: background 0.3s;
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-        }
-
-        .hero-section {
-            background: linear-gradient(135deg, rgba(106, 76, 147, 0.9) 0%, rgba(141, 107, 191, 0.8) 100%), url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800"%3E%3Cdefs%3E%3ClinearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%"%3E%3Cstop offset="0%" style="stop-color:%236a4c93;stop-opacity:0.8" /%3E%3Cstop offset="100%" style="stop-color:%238d6bbf;stop-opacity:0.6" /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width="100%" height="100%" fill="url(%23grad1)"/%3E%3Cg fill="%23ffffff" fill-opacity="0.1"%3E%3Ccircle cx="100" cy="100" r="10"/%3E%3Ccircle cx="300" cy="200" r="15"/%3E%3Ccircle cx="500" cy="150" r="12"/%3E%3Ccircle cx="700" cy="250" r="18"/%3E%3Ccircle cx="900" cy="180" r="14"/%3E%3Ccircle cx="1100" cy="120" r="10"/%3E%3Ccircle cx="200" cy="400" r="16"/%3E%3Ccircle cx="400" cy="450" r="13"/%3E%3Ccircle cx="600" cy="420" r="17"/%3E%3Ccircle cx="800" cy="480" r="11"/%3E%3Ccircle cx="1000" cy="430" r="15"/%3E%3Ccircle cx="100" cy="600" r="14"/%3E%3Ccircle cx="300" cy="650" r="12"/%3E%3Ccircle cx="500" cy="620" r="16"/%3E%3Ccircle cx="700" cy="680" r="13"/%3E%3Ccircle cx="900" cy="640" r="15"/%3E%3Ccircle cx="1100" cy="610" r="11"/%3E%3C/g%3E%3C/svg%3E');
-            background-size: cover;
-            background-position: center;
-            padding: 100px 0;
-            text-align: center;
-            color: white;
-            margin-bottom: 50px;
-            transition: background 0.3s;
-        }
-
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .hero-title {
-            font-size: 3em;
-            font-weight: 700;
-            margin-bottom: 20px;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-        }
-
-        .hero-subtitle {
-            font-size: 1.2em;
-            margin-bottom: 30px;
-            opacity: 0.9;
-        }
-
-        .hero-cta {
-            background: var(--accent-pink);
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            border-radius: 30px;
-            font-size: 1.1em;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .hero-cta:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(230, 57, 70, 0.4);
+            color: var(--dark-color);
+            background-color: var(--light-color);
+            transition: background 0.3s ease;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
-            transition: max-width 0.3s;
+            padding: 0 20px;
         }
 
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 0;
-            margin-bottom: 30px;
-        }
-
-        .header h1 {
-            font-size: 2em;
-            font-weight: 300;
-            color: var(--dark-green);
-            transition: font-size 0.3s;
-        }
-
-        .edit-mode-btn {
-            background: linear-gradient(135deg, var(--primary-purple) 0%, var(--dark-purple) 100%);
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 25px;
-            cursor: pointer;
-            font-size: 0.9em;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .edit-mode-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(106, 76, 147, 0.4);
-        }
-
-        .edit-mode-btn.active {
-            background: linear-gradient(135deg, var(--accent-pink) 0%, #c1121f 100%);
-        }
-
-        .section {
-            background: var(--white);
-            border-radius: 16px;
-            padding: 30px;
-            margin-bottom: 30px;
-            box-shadow: var(--shadow);
-            transition: all 0.3s;
-            background-size: cover;
-            background-position: center;
-        }
-
-        .section:hover {
-            box-shadow: var(--shadow-hover);
-        }
-
-        .section.has-bg {
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-        }
-
-        .section-title {
-            font-size: 1.8em;
-            color: var(--dark-purple);
-            margin-bottom: 25px;
-            font-weight: 300;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            transition: font-size 0.3s;
-        }
-
-        .section-title::before {
-            content: '';
-            width: 4px;
-            height: 30px;
-            background: var(--primary-purple);
-            border-radius: 2px;
-        }
-
-        .portfolio-subsection {
-            margin-top: 40px;
-            padding-top: 30px;
-            border-top: 2px solid rgba(120, 76, 202, 0.1);
-        }
-
-        .portfolio-subsection:first-of-type {
-            margin-top: 0;
-            padding-top: 0;
-            border-top: none;
-        }
-
-        .subsection-title {
-            font-size: 1.4em;
-            color: var(--dark-purple);
-            margin-bottom: 20px;
-            font-weight: 400;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .subsection-title::before {
-            content: '';
-            width: 3px;
-            height: 24px;
-            background: var(--light-purple);
-            border-radius: 2px;
-        }
-
-        .profile-section {
-            display: flex;
-            gap: 40px;
-            align-items: flex-start;
-        }
-
-        .profile-image-container {
-            flex: 0 0 300px;
-            position: relative;
-        }
-
-        .profile-image {
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid var(--white);
-            box-shadow: var(--shadow-hover);
-            background: var(--light-gray);
-            transition: all 0.3s;
-        }
-
-        .profile-info {
-            flex: 1;
-        }
-
-        .profile-name {
-            font-size: 2.5em;
-            color: var(--dark-purple);
-            margin-bottom: 10px;
-            font-weight: 300;
-            transition: font-size 0.3s;
-        }
-
-        .profile-title {
-            color: var(--primary-purple);
-            font-size: 1.2em;
-            margin-bottom: 20px;
-            font-weight: 500;
-            transition: font-size 0.3s;
-        }
-
-        .profile-content {
-            color: var(--gray);
-            font-size: 1.1em;
-            line-height: 1.8;
-            margin-bottom: 20px;
-            transition: font-size 0.3s;
-        }
-
-        .skills-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .skill-tag {
-            background: var(--pale-purple);
-            color: var(--dark-purple);
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 0.9em;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.3s;
-        }
-
-        .skill-tag:hover {
-            background: var(--primary-purple);
-            color: white;
-            transform: translateY(-2px);
-        }
-
-        .personal-info-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 12px;
-            margin-top: 20px;
-            padding: 15px;
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .personal-info-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 14px;
-        }
-
-        .info-label {
-            font-weight: 600;
-            color: var(--primary-purple);
-            white-space: nowrap;
-        }
-
-        .info-value {
-            color: var(--text-color);
-            flex: 1;
-        }
-
-        .experience-item {
-            border-left: 3px solid var(--primary-purple);
-            padding-left: 25px;
-            margin-bottom: 30px;
-            position: relative;
-            transition: all 0.3s;
-        }
-
-        .experience-item::before {
-            content: '';
-            position: absolute;
-            left: -8px;
-            top: 0;
-            width: 13px;
-            height: 13px;
-            background: var(--primary-purple);
-            border-radius: 50%;
-        }
-
-        .experience-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 10px;
-        }
-
-        .experience-company {
-            font-size: 1.3em;
-            color: var(--dark-purple);
-            font-weight: 500;
-            transition: font-size 0.3s;
-        }
-
-        .experience-time {
-            color: var(--gray);
-            font-size: 0.9em;
-            transition: font-size 0.3s;
-        }
-
-        .experience-position {
-            color: var(--primary-purple);
-            font-size: 1.1em;
-            margin-bottom: 10px;
-            transition: font-size 0.3s;
-        }
-
-        .experience-content {
-            color: var(--gray);
-            line-height: 1.8;
-            transition: font-size 0.3s;
-        }
-
-        .skills-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin-top: 30px;
-        }
-
-        .skill-card {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 15px;
-            padding: 25px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s;
-            border: 1px solid rgba(120, 76, 202, 0.1);
-        }
-
-        .skill-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 24px rgba(120, 76, 202, 0.2);
-            border-color: rgba(120, 76, 202, 0.3);
-        }
-
-        .skill-header {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-
-        .skill-icon {
-            font-size: 32px;
-            line-height: 1;
-        }
-
-        .skill-name {
-            font-size: 1.3em;
-            color: var(--dark-purple);
-            font-weight: 600;
-            margin: 0;
-        }
-
-        .skill-level {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 15px;
-        }
-
-        .skill-level-bar {
-            flex: 1;
-            height: 12px;
-            background: rgba(120, 76, 202, 0.1);
-            border-radius: 6px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .skill-level-fill {
-            height: 100%;
-            background: linear-gradient(90deg, var(--primary-purple), var(--light-purple));
-            border-radius: 6px;
-            transition: width 0.8s ease-in-out;
-            position: relative;
-        }
-
-        .skill-level-fill::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            animation: shimmer 2s infinite;
-        }
-
-        @keyframes shimmer {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
-        }
-
-        .skill-level-text {
-            font-weight: 600;
-            color: var(--primary-purple);
-            min-width: 50px;
-            text-align: right;
-        }
-
-        .skill-description {
-            color: var(--gray);
-            font-size: 14px;
-            line-height: 1.6;
-            margin: 0;
-        }
-
-        .evaluation-content {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            border-left: 4px solid var(--primary-purple);
-            margin-top: 20px;
-        }
-
-        .evaluation-content div {
-            color: var(--gray);
-            font-size: 16px;
-            line-height: 1.8;
-        }
-
-        .portfolio-grid {
-            display: grid;
-            gap: var(--portfolio-gap);
-            grid-template-columns: repeat(auto-fill, minmax(var(--portfolio-min-width), 1fr));
-            transition: all 0.3s;
-        }
-
-        .portfolio-item {
-            background: var(--white);
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: all 0.3s;
-            position: relative;
-        }
-
-        .portfolio-item:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-hover);
-        }
-
-        .portfolio-images {
-            position: relative;
-            height: 250px;
-            background: var(--light-gray);
-            cursor: pointer;
-        }
-
-        .portfolio-main-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .portfolio-thumbnails {
-            position: absolute;
-            bottom: 10px;
-            right: 10px;
-            display: flex;
-            gap: 5px;
-        }
-
-        .thumbnail {
-            width: 40px;
-            height: 40px;
-            border-radius: 5px;
-            object-fit: cover;
-            border: 2px solid var(--white);
-        }
-
-        .portfolio-video {
-            position: relative;
-            height: 250px;
-            background: var(--light-gray);
-        }
-
-        .portfolio-video video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .portfolio-info {
-            padding: 20px;
-        }
-
-        .portfolio-category {
-            color: var(--primary-green);
-            font-size: 0.8em;
-            margin-bottom: 8px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: font-size 0.3s;
-        }
-
-        .portfolio-title {
-            font-size: 1.3em;
-            color: var(--dark-green);
-            margin-bottom: 10px;
-            font-weight: 500;
-            transition: font-size 0.3s;
-        }
-
-        .portfolio-description {
-            color: var(--gray);
-            font-size: 0.95em;
-            line-height: 1.6;
-            transition: font-size 0.3s;
-        }
-
-        .portfolio-actions {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            display: flex;
-            gap: 8px;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .portfolio-item:hover .portfolio-actions {
-            opacity: 1;
-        }
-
-        .action-btn {
-            background: rgba(255, 255, 255, 0.95);
-            border: none;
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 16px;
-            transition: all 0.2s;
+        /* Hero Section */
+        .hero-section {
+            height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-        }
-
-        .action-btn:hover {
-            transform: scale(1.1);
-        }
-
-        .action-btn.edit {
-            color: var(--primary-green);
-        }
-
-        .action-btn.delete {
-            color: #ef5350;
-        }
-
-        .add-btn {
-            background: linear-gradient(135deg, var(--light-green) 0%, var(--primary-green) 100%);
+            text-align: center;
             color: white;
-            border: none;
-            padding: 15px 30px;
-            border-radius: 25px;
-            cursor: pointer;
-            font-size: 1em;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+            transition: background 0.3s ease;
         }
 
-        .add-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102, 187, 106, 0.4);
-        }
-
-        .modal {
-            position: fixed;
+        .hero-section::before {
+            content: '';
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             background: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+            transition: background 0.3s ease;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .hero-cta {
+            display: inline-block;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: var(--transition);
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        .hero-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow);
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        .navbar.scrolled {
+            box-shadow: var(--shadow-hover);
+        }
+
+        .navbar-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-link {
+            color: var(--dark-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Sections */
+        .section {
+            padding: 100px 0;
+            position: relative;
+            transition: background 0.3s ease;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 50px;
+            color: var(--dark-color);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            border-radius: 2px;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: var(--shadow-hover);
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--gray-color);
+        }
+
+        .about-text h3 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--dark-color);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .skill-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .skill-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .skill-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--dark-color);
+        }
+
+        .skill-level {
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+
+        /* Portfolio Section */
+        .portfolio-filters {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 10px 20px;
+            background: white;
+            border: 2px solid var(--light-gray);
+            border-radius: 50px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--dark-color);
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .portfolio-item {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .portfolio-item-image {
+            position: relative;
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .portfolio-item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .portfolio-item:hover .portfolio-item-image img {
+            transform: scale(1.1);
+        }
+
+        .portfolio-item-content {
+            padding: 25px;
+        }
+
+        .portfolio-item-category {
+            display: inline-block;
+            padding: 5px 15px;
+            background: rgba(58, 134, 255, 0.1);
+            color: var(--primary-color);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+
+        .portfolio-item-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--dark-color);
+        }
+
+        .portfolio-item-description {
+            color: var(--gray-color);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .portfolio-item-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .portfolio-item-tag {
+            padding: 3px 12px;
+            background: var(--light-gray);
+            color: var(--gray-color);
+            border-radius: 15px;
+            font-size: 0.8rem;
+        }
+
+        .portfolio-item-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: var(--primary-color);
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .portfolio-item-link:hover {
+            transform: translateX(5px);
+        }
+
+        /* Contact Section */
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+
+        .contact-info {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+        }
+
+        .contact-info h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 30px;
+            color: var(--dark-color);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .contact-item-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(58, 134, 255, 0.1);
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            z-index: 1000;
+            color: var(--primary-color);
+            font-size: 1.2rem;
         }
 
-        .modal-content {
-            background: var(--white);
+        .contact-item-text h4 {
+            font-weight: 600;
+            color: var(--dark-color);
+            margin-bottom: 5px;
+        }
+
+        .contact-item-text p {
+            color: var(--gray-color);
+            margin: 0;
+        }
+
+        .contact-form {
+            background: white;
             padding: 40px;
-            border-radius: 20px;
-            max-width: 600px;
-            width: 90%;
-            max-height: 90vh;
-            overflow-y: auto;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
         }
 
-        .modal-title {
-            font-size: 1.5em;
-            color: var(--dark-green);
+        .contact-form h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
             margin-bottom: 30px;
-            font-weight: 500;
+            color: var(--dark-color);
         }
 
         .form-group {
@@ -659,430 +457,182 @@
         .form-group label {
             display: block;
             margin-bottom: 8px;
-            color: var(--gray);
             font-weight: 500;
+            color: var(--dark-color);
         }
 
         .form-group input,
         .form-group textarea {
             width: 100%;
-            padding: 12px;
+            padding: 15px;
             border: 2px solid var(--light-gray);
             border-radius: 10px;
-            font-size: 1em;
-            transition: border-color 0.3s;
+            font-size: 1rem;
+            transition: var(--transition);
         }
 
         .form-group input:focus,
         .form-group textarea:focus {
             outline: none;
-            border-color: var(--primary-green);
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(58, 134, 255, 0.1);
         }
 
         .form-group textarea {
             resize: vertical;
-            min-height: 100px;
+            min-height: 150px;
         }
 
-        .form-actions {
-            display: flex;
-            gap: 15px;
-            margin-top: 30px;
-        }
-
-        .btn {
-            flex: 1;
-            padding: 12px;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            font-size: 1em;
-            transition: all 0.2s;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary-green) 0%, var(--dark-green) 100%);
-            color: white;
-        }
-
-        .btn-secondary {
-            background: var(--light-gray);
-            color: var(--dark-gray);
-        }
-
-        .file-input-wrapper {
-            position: relative;
-            overflow: hidden;
-            display: inline-block;
-        }
-
-        .file-input-wrapper input[type=file] {
-            position: absolute;
-            left: 0;
-            top: 0;
-            opacity: 0;
+        .submit-btn {
             width: 100%;
-            height: 100%;
-            cursor: pointer;
-        }
-
-        .file-input-btn {
-            background: linear-gradient(135deg, var(--light-green) 0%, var(--primary-green) 100%);
-            color: white;
-            padding: 12px 20px;
-            border-radius: 10px;
-            cursor: pointer;
-            display: inline-block;
-            transition: all 0.2s;
-        }
-
-        .image-preview {
-            max-width: 100%;
-            max-height: 200px;
-            margin-top: 15px;
-            border-radius: 10px;
-            display: none;
-        }
-
-        .image-preview.active {
-            display: block;
-        }
-
-        .form-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin: 20px 0;
-        }
-
-        .form-grid .form-group {
-            margin-bottom: 0;
-        }
-
-        .image-gallery {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 15px;
-        }
-
-        .gallery-item {
-            width: 80px;
-            height: 80px;
-            border-radius: 8px;
-            object-fit: cover;
-            cursor: pointer;
-            position: relative;
-        }
-
-        .gallery-item:hover {
-            transform: scale(1.05);
-        }
-
-        .gallery-item-remove {
-            position: absolute;
-            top: -8px;
-            right: -8px;
-            background: #ef5350;
+            padding: 15px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: white;
             border: none;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
             cursor: pointer;
-            font-size: 12px;
+            transition: var(--transition);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--dark-color);
+            color: white;
+            padding: 50px 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .footer-column p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
+            color: white;
+            transition: var(--transition);
+            text-decoration: none;
         }
 
-        .image-viewer {
+        .social-link:hover {
+            background: var(--primary-color);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 30px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Modal */
+        .modal {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.9);
+            background: rgba(0, 0, 0, 0.8);
             display: flex;
             align-items: center;
             justify-content: center;
             z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
         }
 
-        .image-viewer-content {
-            max-width: 90%;
-            max-height: 90%;
-            position: relative;
+        .modal.active {
+            opacity: 1;
+            visibility: visible;
         }
 
-        .image-viewer img {
-            max-width: 100%;
-            max-height: 90vh;
-            border-radius: 10px;
-        }
-
-        .image-viewer-close {
-            position: absolute;
-            top: -40px;
-            right: -40px;
+        .modal-content {
             background: white;
-            border: none;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--dark-gray);
-        }
-
-        .toast {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: var(--primary-green);
-            color: white;
-            padding: 15px 25px;
-            border-radius: 10px;
-            box-shadow: var(--shadow-hover);
-            z-index: 3000;
-            animation: slideIn 0.3s ease;
-        }
-
-        @keyframes slideIn {
-            from {
-                transform: translateX(100%);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
-
-        .login-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 4000;
-        }
-
-        .login-content {
-            background: var(--white);
-            padding: 40px;
             border-radius: 20px;
-            max-width: 400px;
+            padding: 40px;
+            max-width: 600px;
             width: 90%;
-            text-align: center;
+            max-height: 90vh;
+            overflow-y: auto;
+            transform: scale(0.9);
+            transition: var(--transition);
         }
 
-        .login-title {
-            font-size: 1.5em;
-            color: var(--dark-green);
-            margin-bottom: 30px;
-            font-weight: 500;
+        .modal.active .modal-content {
+            transform: scale(1);
         }
 
-        .login-icon {
-            font-size: 60px;
-            margin-bottom: 20px;
-        }
-
-        .login-input {
-            width: 100%;
-            padding: 15px;
-            border: 2px solid var(--light-gray);
-            border-radius: 10px;
-            font-size: 1em;
-            margin-bottom: 15px;
-            outline: none;
-            transition: border-color 0.3s;
-        }
-
-        .login-input:focus {
-            border-color: var(--primary-green);
-        }
-
-        .login-btn {
-            width: 100%;
-            padding: 15px;
-            background: linear-gradient(135deg, var(--primary-green) 0%, var(--dark-green) 100%);
-            color: white;
-            border: none;
-            border-radius: 10px;
-            font-size: 1em;
-            cursor: pointer;
-            transition: all 0.3s;
-            margin-top: 10px;
-        }
-
-        .login-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102, 187, 106, 0.4);
-        }
-
-        .login-error {
-            color: #ef5350;
-            margin-top: 15px;
-            font-size: 0.9em;
-        }
-
-        .login-hint {
-            color: var(--gray);
-            margin-top: 20px;
-            font-size: 0.85em;
-        }
-
-        .bg-preview {
-            max-width: 100%;
-            max-height: 150px;
-            margin-top: 10px;
-            border-radius: 8px;
-            object-fit: cover;
-            border: 2px solid var(--light-gray);
-        }
-
-        .remove-bg-btn {
-            background: #ef5350;
-            color: white;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 0.85em;
-            margin-top: 8px;
-            transition: all 0.3s;
-        }
-
-        .remove-bg-btn:hover {
-            background: #c62828;
-            transform: translateY(-1px);
-        }
-
-        .module-order-item {
+        .modal-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 12px;
-            background: rgba(255,255, 255, 0.9);
-            border-radius: 8px;
-            margin-bottom: 10px;
-            border: 1px solid rgba(120, 76, 202, 0.1);
+            margin-bottom: 30px;
         }
 
-        .module-name {
-            font-weight: 500;
-            color: var(--dark-purple);
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--dark-color);
         }
 
-        .module-order-buttons {
-            display: flex;
-            gap: 5px;
-        }
-
-        .order-btn {
-            background: var(--primary-purple);
-            color: white;
+        .modal-close {
+            background: none;
             border: none;
-            padding: 5px 10px;
-            border-radius: 4px;
+            font-size: 1.5rem;
             cursor: pointer;
-            font-size: 14px;
-            transition: all 0.3s;
+            color: var(--gray-color);
+            transition: var(--transition);
         }
 
-        .order-btn:hover:not(:disabled) {
-            background: var(--dark-purple);
-            transform: scale(1.1);
+        .modal-close:hover {
+            color: var(--accent-color);
         }
 
-        .order-btn:disabled {
-            opacity: 0.3;
-            cursor: not-allowed;
-        }
-
-        .category-filter {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 25px;
-            flex-wrap: wrap;
-        }
-
-        .category-btn {
-            background: var(--white);
-            border: 2px solid var(--light-gray);
-            padding: 8px 16px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 0.9em;
-            transition: all 0.3s;
-        }
-
-        .category-btn:hover,
-        .category-btn.active {
-            background: var(--primary-green);
-            border-color: var(--primary-green);
-            color: white;
-        }
-
-        .rich-text-editor {
-            border: 2px solid var(--light-gray);
-            border-radius: 10px;
-            overflow: hidden;
-        }
-
-        .rich-text-toolbar {
-            background: var(--light-gray);
-            padding: 10px;
-            display: flex;
-            gap: 5px;
-            flex-wrap: wrap;
-        }
-
-        .toolbar-btn {
-            background: var(--white);
-            border: 1px solid #ddd;
-            padding: 5px 10px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 0.9em;
-            transition: all 0.2s;
-        }
-
-        .toolbar-btn:hover {
-            background: var(--primary-green);
-            color: white;
-            border-color: var(--primary-green);
-        }
-
-        .rich-text-content {
-            padding: 15px;
-            min-height: 150px;
-            outline: none;
-        }
-
-        .rich-text-content:focus {
-            background: var(--pale-green);
-        }
-
+        /* Settings Panel */
         .settings-panel {
             position: fixed;
             top: 0;
             right: -400px;
             width: 380px;
             height: 100vh;
-            background: var(--white);
-            box-shadow: -5px 0 20px rgba(0, 0, 0, 0.15);
+            background: white;
+            box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
             z-index: 1500;
-            transition: right 0.3s ease;
+            transition: var(--transition);
             overflow-y: auto;
         }
 
@@ -1090,66 +640,23 @@
             right: 0;
         }
 
-        .settings-toggle {
-            position: fixed;
-            top: 50%;
-            right: 0;
-            transform: translateY(-50%);
-            background: var(--primary-green);
-            color: white;
-            border: none;
-            width: 50px;
-            height: 50px;
-            border-radius: 10px 0 0 10px;
-            cursor: pointer;
-            font-size: 24px;
-            z-index: 1400;
-            transition: all 0.3s;
-        }
-
-        .settings-toggle:hover {
-            background: var(--dark-green);
-        }
-
         .settings-header {
-            padding: 20px;
-            background: linear-gradient(135deg, var(--primary-purple) 0%, var(--dark-purple) 100%);
+            padding: 30px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: white;
             position: sticky;
             top: 0;
             z-index: 10;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
         }
 
         .settings-header h3 {
             margin: 0;
-            font-size: 1.3em;
-        }
-
-        .settings-close-btn {
-            background: rgba(255, 255, 255, 0.2);
-            border: none;
-            color: white;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s;
-        }
-
-        .settings-close-btn:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: scale(1.1);
+            font-size: 1.3rem;
+            font-weight: 600;
         }
 
         .settings-content {
-            padding: 20px;
+            padding: 30px;
         }
 
         .settings-section {
@@ -1163,20 +670,21 @@
         }
 
         .settings-section h4 {
-            color: var(--dark-green);
-            margin-bottom: 15px;
-            font-size: 1.1em;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--dark-color);
         }
 
         .setting-item {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
 
         .setting-item label {
             display: block;
-            margin-bottom: 8px;
-            color: var(--gray);
+            margin-bottom: 10px;
             font-weight: 500;
+            color: var(--dark-color);
         }
 
         .setting-item input[type="range"] {
@@ -1190,1821 +698,761 @@
 
         .setting-item input[type="range"]::-webkit-slider-thumb {
             -webkit-appearance: none;
-            width: 18px;
-            height: 18px;
+            width: 20px;
+            height: 20px;
             border-radius: 50%;
-            background: var(--primary-green);
+            background: var(--primary-color);
             cursor: pointer;
+            transition: var(--transition);
         }
 
-        .setting-item input[type="color"] {
-            width: 50px;
-            height: 35px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
+        .setting-item input[type="range"]::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+            box-shadow: 0 0 10px rgba(58, 134, 255, 0.5);
         }
 
-        .setting-item select {
-            width: 100%;
-            padding: 10px;
-            border: 2px solid var(--light-gray);
-            border-radius: 8px;
-            font-size: 0.95em;
-            outline: none;
-        }
-
-        .setting-item select:focus {
-            border-color: var(--primary-green);
+        .setting-item input[type="file"] {
+            margin-top: 10px;
         }
 
         .setting-value {
             display: inline-block;
             margin-left: 10px;
-            color: var(--primary-green);
+            color: var(--primary-color);
             font-weight: 500;
         }
 
-        .grid-layout {
-            display: grid;
-            gap: var(--portfolio-gap);
-            grid-template-columns: repeat(auto-fill, minmax(var(--portfolio-min-width), 1fr));
+        .settings-toggle {
+            position: fixed;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            z-index: 1400;
         }
 
-        .masonry-layout {
-            column-count: var(--masonry-columns);
-            column-gap: var(--portfolio-gap);
+        .settings-toggle:hover {
+            background: var(--secondary-color);
+            transform: translateY(-50%) scale(1.1);
         }
 
-        .masonry-item {
-            break-inside: avoid;
-            margin-bottom: var(--portfolio-gap);
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        .carousel-layout {
-            display: flex;
-            overflow-x: auto;
-            gap: var(--portfolio-gap);
-            padding: 20px 0;
-            scroll-snap-type: x mandatory;
-        }
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero-title {
+                font-size: 3rem;
+            }
 
-        .carousel-item {
-            flex: 0 0 var(--carousel-item-width);
-            scroll-snap-align: start;
-        }
+            .about-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
 
-        .staggered-layout {
-            display: grid;
-            gap: var(--portfolio-gap);
-            grid-template-columns: repeat(auto-fill, minmax(var(--portfolio-min-width), 1fr));
-        }
+            .about-image {
+                order: 2;
+            }
 
-        .staggered-item:nth-child(2n) {
-            transform: translateY(30px);
-        }
-
-        .staggered-item:nth-child(3n) {
-            transform: translateY(-30px);
+            .about-text {
+                order: 1;
+            }
         }
 
         @media (max-width: 768px) {
-            .profile-section {
-                flex-direction: column;
-                text-align: center;
+            .hero-title {
+                font-size: 2.5rem;
             }
 
-            .profile-image-container {
-                flex: 0 0 auto;
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .section {
+                padding: 80px 0;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .section {
+                padding: 60px 0;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .modal-content {
+                padding: 30px;
             }
 
             .settings-panel {
                 width: 100%;
                 right: -100%;
             }
-
-            .masonry-layout {
-                column-count: 1;
-            }
-
-            .carousel-item {
-                flex: 0 0 300px;
-            }
-
-            .header {
-                flex-direction: column;
-                gap: 15px;
-                text-align: center;
-            }
         }
     </style>
 </head>
 <body>
-    <div id="app">
-        <div class="hero-section" :style="settings.heroBackground ? { backgroundImage: 'url(' + settings.heroBackground + ')' } : {}">
-            <div class="hero-content">
-                <h1 class="hero-title">个人作品集</h1>
-                <p class="hero-subtitle">展示我的项目、技能和经验</p>
-                <a href="#portfolio" class="hero-cta">查看作品集</a>
-            </div>
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="container navbar-container">
+            <a href="#" class="logo">Portfolio</a>
+            <ul class="nav-links">
+                <li><a href="#about" class="nav-link">关于我</a></li>
+                <li><a href="#skills" class="nav-link">技能</a></li>
+                <li><a href="#portfolio" class="nav-link">作品</a></li>
+                <li><a href="#contact" class="nav-link">联系我</a></li>
+            </ul>
         </div>
+    </nav>
 
+    <!-- Hero Section -->
+    <section class="hero-section" id="hero" :style="heroBackgroundStyle">
+        <div class="hero-content">
+            <h1 class="hero-title">{{ settings.heroTitle }}</h1>
+            <p class="hero-subtitle">{{ settings.heroSubtitle }}</p>
+            <a href="#portfolio" class="hero-cta">{{ settings.heroCtaText }}</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section about-section" id="about" :style="aboutBackgroundStyle">
         <div class="container">
-            <header class="header">
-                <h1>管理中心</h1>
-                <div style="display: flex; gap: 10px;">
-                    <button v-if="isLoggedIn" class="edit-mode-btn" :class="{ active: editMode }" @click="toggleEditMode">
-                        <span v-if="!editMode">✎ 编辑模式</span>
-                        <span v-else>✓ 完成编辑</span>
-                    </button>
-                    <button v-if="isLoggedIn" class="edit-mode-btn" @click="handleLogout" style="background: linear-gradient(135deg, #78909c 0%, #546e7a 100%);">
-                        <span>🚪 退出</span>
-                    </button>
-                    <button v-if="!isLoggedIn" class="edit-mode-btn" @click="toggleEditMode">
-                        <span>🔐 管理员登录</span>
-                    </button>
-                </div>
-            </header>
-
-            <section class="section" :style="settings.profileSectionBackground ? { backgroundImage: 'url(' + settings.profileSectionBackground + ')' } : {}">
-                <h2 class="section-title">个人介绍</h2>
-                <div class="profile-section">
-                    <div class="profile-image-container">
-                        <img :src="profile.image || 'data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27300%27 height=%27300%27 viewBox=%270 0 300 300%27%3E%3Crect fill=%23f5f5f5%27 width=%27300%27 height=%27300%27/%3E%3Ccircle cx=%27150%27 cy=%27120%27 r=%2750%27 fill=%23ccc%27/%3E%3Cellipse cx=%27150%27 cy=%27220%27 rx=%2770%27 ry=%2750%27 fill=%23ccc%27/%3E%3C/svg%3E'" 
-                                 class="profile-image" alt="个人头像">
-                    </div>
-                    <div class="profile-info">
-                        <h3 class="profile-name">{{ profile.name }}</h3>
-                        <p class="profile-title">{{ profile.title }}</p>
-                        <div class="profile-content" v-html="profile.bio"></div>
-                        <div class="skills-grid">
-                            <div class="skill-tag" v-for="skill in profile.skills" :key="skill">
-                                <span>⚡</span> {{ skill }}
-                            </div>
-                        </div>
-                        <div class="personal-info-grid" v-if="profile.age || profile.education || profile.phone || profile.major || profile.email || profile.wechat || profile.location || profile.educationalBackground">
-                            <div class="personal-info-item" v-if="profile.age">
-                                <span class="info-label">年龄：</span>
-                                <span class="info-value">{{ profile.age }}</span>
-                            </div>
-                            <div class="personal-info-item" v-if="profile.education">
-                                <span class="info-label">学历：</span>
-                                <span class="info-value">{{ profile.education }}</span>
-                            </div>
-                            <div class="personal-info-item" v-if="profile.phone">
-                                <span class="info-label">电话：</span>
-                                <span class="info-value">{{ profile.phone }}</span>
-                            </div>
-                            <div class="personal-info-item" v-if="profile.major">
-                                <span class="info-label">专业：</span>
-                                <span class="info-value">{{ profile.major }}</span>
-                            </div>
-                            <div class="personal-info-item" v-if="profile.email">
-                                <span class="info-label">邮箱：</span>
-                                <span class="info-value">{{ profile.email }}</span>
-                            </div>
-                            <div class="personal-info-item" v-if="profile.wechat">
-                                <span class="info-label">微信：</span>
-                                <span class="info-value">{{ profile.wechat }}</span>
-                            </div>
-                            <div class="personal-info-item" v-if="profile.location">
-                                <span class="info-label">居住地：</span>
-                                <span class="info-value">{{ profile.location }}</span>
-                            </div>
-                            <div class="personal-info-item" v-if="profile.educationalBackground">
-                                <span class="info-label">教育背景：</span>
-                                <span class="info-value">{{ profile.educationalBackground }}</span>
-                            </div>
-                        </div>
+            <h2 class="section-title">关于我</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>{{ profile.name }}</h3>
+                    <p>{{ profile.title }}</p>
+                    <p>{{ profile.bio }}</p>
+                    <div class="personal-info">
+                        <p><strong>邮箱：</strong>{{ profile.email }}</p>
+                        <p><strong>电话：</strong>{{ profile.phone }}</p>
+                        <p><strong>所在地：</strong>{{ profile.location }}</p>
                     </div>
                 </div>
-                <div v-if="editMode" style="margin-top: 20px; text-align: center;">
-                    <button class="add-btn" @click="openProfileModal">
-                        <span>✎</span> 编辑个人信息
-                    </button>
-                </div>
-            </section>
-
-            <section class="section" :style="settings.experienceSectionBackground ? { backgroundImage: 'url(' + settings.experienceSectionBackground + ')' } : {}">
-                <h2 class="section-title">实习经历</h2>
-                <div v-if="editMode" style="margin-bottom: 20px;">
-                    <button class="add-btn" @click="openExperienceModal">
-                        <span>+</span> 添加实习经历
-                    </button>
-                </div>
-                <div v-for="(exp, index) in experiences" :key="exp.id" class="experience-item">
-                    <div class="experience-header">
-                        <div>
-                            <h4 class="experience-company">{{ exp.company }}</h4>
-                            <p class="experience-position">{{ exp.position }}</p>
-                        </div>
-                        <span class="experience-time">{{ exp.time }}</span>
-                    </div>
-                    <div class="experience-content" v-html="exp.content"></div>
-                    <div v-if="exp.image" style="margin-top: 15px;">
-                        <img :src="exp.image" style="max-width: 100%; max-height: 200px; border-radius: 8px; cursor: pointer;" @click="openImageViewer([exp.image])">
-                    </div>
-                    <div v-if="editMode" style="margin-top: 15px; display: flex; gap: 10px;">
-                        <button class="action-btn edit" @click="editExperience(exp.id)">✎</button>
-                        <button class="action-btn delete" @click="deleteExperience(exp.id)">✕</button>
-                    </div>
-                </div>
-            </section>
-
-            <section class="section">
-                <h2 class="section-title">校园实践</h2>
-                <div v-if="editMode" style="margin-bottom: 20px;">
-                    <button class="add-btn" @click="openCampusPracticeModal">
-                        <span>+</span> 添加校园实践
-                    </button>
-                </div>
-                <div v-for="(practice, index) in campusPractices" :key="practice.id" class="experience-item">
-                    <div class="experience-header">
-                        <div>
-                            <h4 class="experience-company">{{ practice.organization }}</h4>
-                            <p class="experience-position">{{ practice.position }}</p>
-                        </div>
-                        <span class="experience-time">{{ practice.time }}</span>
-                    </div>
-                    <div class="experience-content" v-html="practice.content"></div>
-                    <div v-if="practice.image" style="margin-top: 15px;">
-                        <img :src="practice.image" style="max-width: 100%; max-height: 200px; border-radius: 8px; cursor: pointer;" @click="openImageViewer([practice.image])">
-                    </div>
-                    <div v-if="editMode" style="margin-top: 15px; display: flex; gap: 10px;">
-                        <button class="action-btn edit" @click="editCampusPractice(practice.id)">✎</button>
-                        <button class="action-btn delete" @click="deleteCampusPractice(practice.id)">✕</button>
-                    </div>
-                </div>
-            </section>
-
-            <section class="section">
-                <h2 class="section-title">个人技能</h2>
-                <div v-if="editMode" style="margin-bottom: 20px;">
-                    <button class="add-btn" @click="openPersonalSkillModal">
-                        <span>+</span> 添加个人技能
-                    </button>
-                </div>
-                <div class="skills-container">
-                    <div v-for="skill in personalSkills" :key="skill.id" class="skill-card">
-                        <div class="skill-header">
-                            <div class="skill-icon">{{ skill.icon }}</div>
-                            <h3 class="skill-name">{{ skill.name }}</h3>
-                        </div>
-                        <div class="skill-level">
-                            <div class="skill-level-bar">
-                                <div class="skill-level-fill" :style="{ width: skill.level + '%' }"></div>
-                            </div>
-                            <span class="skill-level-text">{{ skill.level }}%</span>
-                        </div>
-                        <p class="skill-description">{{ skill.description }}</p>
-                        <div v-if="editMode" style="margin-top: 15px; display: flex; gap: 10px;">
-                            <button class="action-btn edit" @click="editPersonalSkill(skill.id)">✎</button>
-                            <button class="action-btn delete" @click="deletePersonalSkill(skill.id)">✕</button>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section class="section">
-                <h2 class="section-title">{{ personalEvaluation.title }}</h2>
-                <div class="evaluation-content">
-                    <div v-html="personalEvaluation.content"></div>
-                </div>
-                <div v-if="editMode" style="margin-top: 20px; text-align: center;">
-                    <button class="add-btn" @click="openPersonalEvaluationModal">
-                        <span>✎</span> 编辑个人评价
-                    </button>
-                </div>
-            </section>
-
-            <section class="section" id="portfolio" :style="settings.portfolioSectionBackground ? { backgroundImage: 'url(' + settings.portfolioSectionBackground + ')' } : {} ">
-                <h2 class="section-title">作品展示</h2>
-                
-                <div class="portfolio-subsection">
-                    <h3 class="subsection-title">📷 摄影作品</h3>
-                    <div v-if="editMode" style="margin-bottom: 15px;">
-                        <button class="add-btn" @click="openPortfolioModalWithCategory('摄影')">
-                            <span>+</span> 添加摄影作品
-                        </button>
-                    </div>
-                    <div :class="portfolioLayoutClass" v-if="getPortfoliosByCategory('摄影').length > 0">
-                        <div v-for="item in getPortfoliosByCategory('摄影')" :key="item.id" :class="portfolioItemClass">
-                            <div v-if="item.images && item.images.length > 0" class="portfolio-images" @click="openImageViewer(item.images)">
-                                <img :src="item.images[0]" class="portfolio-main-image" :alt="item.title">
-                                <div class="portfolio-thumbnails" v-if="item.images.length > 1">
-                                    <img v-for="(img, idx) in item.images.slice(0, 3)" :key="idx" :src="img" class="thumbnail">
-                                    <div v-if="item.images.length > 3" class="thumbnail" style="background: rgba(255,255,255,0.8); display: flex; align-items: center; justify-content: center; color: #333; font-size: 12px;">+{{ item.images.length - 3 }}</div>
-                                </div>
-                            </div>
-                            <div v-else-if="item.video" class="portfolio-video">
-                                <video :src="item.video" controls></video>
-                            </div>
-                            <div v-else class="portfolio-images">
-                                <div style="display: flex; align-items: center; justify-content: center; height: 100%; color: #999;">暂无图片</div>
-                            </div>
-                            <div class="portfolio-actions" v-if="editMode">
-                                <button class="action-btn edit" @click="editPortfolio(item.id); event.stopPropagation();">✎</button>
-                                <button class="action-btn delete" @click="deletePortfolio(item.id); event.stopPropagation();">✕</button>
-                            </div>
-                            <div class="portfolio-info">
-                                <p class="portfolio-category">{{ item.category }}</p>
-                                <h4 class="portfolio-title">{{ item.title }}</h4>
-                                <p class="portfolio-description">{{ item.description }}</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div v-else style="text-align: center; padding: 40px; color: #999;">
-                        暂无摄影作品
-                    </div>
-                </div>
-
-                <div class="portfolio-subsection">
-                    <h3 class="subsection-title">🏗️ 建筑作品</h3>
-                    <div v-if="editMode" style="margin-bottom: 15px;">
-                        <button class="add-btn" @click="openPortfolioModalWithCategory('建筑')">
-                            <span>+</span> 添加建筑作品
-                        </button>
-                    </div>
-                    <div :class="portfolioLayoutClass" v-if="getPortfoliosByCategory('建筑').length > 0">
-                        <div v-for="item in getPortfoliosByCategory('建筑')" :key="item.id" :class="portfolioItemClass">
-                            <div v-if="item.images && item.images.length > 0" class="portfolio-images" @click="openImageViewer(item.images)">
-                                <img :src="item.images[0]" class="portfolio-main-image" :alt="item.title">
-                                <div class="portfolio-thumbnails" v-if="item.images.length > 1">
-                                    <img v-for="(img, idx) in item.images.slice(0, 3)" :key="idx" :src="img" class="thumbnail">
-                                    <div v-if="item.images.length > 3" class="thumbnail" style="background: rgba(255,255,255,0.8); display: flex; align-items: center; justify-content: center; color: #333; font-size: 12px;">+{{ item.images.length - 3 }}</div>
-                                </div>
-                            </div>
-                            <div v-else-if="item.video" class="portfolio-video">
-                                <video :src="item.video" controls></video>
-                            </div>
-                            <div v-else class="portfolio-images">
-                                <div style="display: flex; align-items: center; justify-content: center; height: 100%; color: #999;">暂无图片</div>
-                            </div>
-                            <div class="portfolio-actions" v-if="editMode">
-                                <button class="action-btn edit" @click="editPortfolio(item.id); event.stopPropagation();">✎</button>
-                                <button class="action-btn delete" @click="deletePortfolio(item.id); event.stopPropagation();">✕</button>
-                            </div>
-                            <div class="portfolio-info">
-                                <p class="portfolio-category">{{ item.category }}</p>
-                                <h4 class="portfolio-title">{{ item.title }}</h4>
-                                <p class="portfolio-description">{{ item.description }}</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div v-else style="text-align: center; padding: 40px; color: #999;">
-                        暂无建筑作品
-                    </div>
-                </div>
-
-                <div class="portfolio-subsection">
-                    <h3 class="subsection-title">📱 自媒体作品</h3>
-                    <div v-if="editMode" style="margin-bottom: 15px;">
-                        <button class="add-btn" @click="openPortfolioModalWithCategory('自媒体')">
-                            <span>+</span> 添加自媒体作品
-                        </button>
-                    </div>
-                    <div :class="portfolioLayoutClass" v-if="getPortfoliosByCategory('自媒体').length > 0">
-                        <div v-for="item in getPortfoliosByCategory('自媒体')" :key="item.id" :class="portfolioItemClass">
-                            <div v-if="item.images && item.images.length > 0" class="portfolio-images" @click="openImageViewer(item.images)">
-                                <img :src="item.images[0]" class="portfolio-main-image" :alt="item.title">
-                                <div class="portfolio-thumbnails" v-if="item.images.length > 1">
-                                    <img v-for="(img, idx) in item.images.slice(0, 3)" :key="idx" :src="img" class="thumbnail">
-                                    <div v-if="item.images.length > 3" class="thumbnail" style="background: rgba(255,255,255,0.8); display: flex; align-items: center; justify-content: center; color: #333; font-size: 12px;">+{{ item.images.length - 3 }}</div>
-                                </div>
-                            </div>
-                            <div v-else-if="item.video" class="portfolio-video">
-                                <video :src="item.video" controls></video>
-                            </div>
-                            <div v-else class="portfolio-images">
-                                <div style="display: flex; align-items: center; justify-content: center; height: 100%; color: #999;">暂无图片</div>
-                            </div>
-                            <div class="portfolio-actions" v-if="editMode">
-                                <button class="action-btn edit" @click="editPortfolio(item.id); event.stopPropagation();">✎</button>
-                                <button class="action-btn delete" @click="deletePortfolio(item.id); event.stopPropagation();">✕</button>
-                            </div>
-                            <div class="portfolio-info">
-                                <p class="portfolio-category">{{ item.category }}</p>
-                                <h4 class="portfolio-title">{{ item.title }}</h4>
-                                <p class="portfolio-description">{{ item.description }}</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div v-else style="text-align: center; padding: 40px; color: #999;">
-                        暂无自媒体作品
-                    </div>
-                </div>
-            </section>
-        </div>
-
-        <button class="settings-toggle" @click="toggleSettingsPanel">
-            ⚙️
-        </button>
-
-        <div class="settings-panel" :class="{ open: showSettingsPanel }">
-            <div class="settings-header">
-                <h3>🎨 网页设置</h3>
-                <button class="settings-close-btn" @click="toggleSettingsPanel">✕</button>
-            </div>
-            <div class="settings-content">
-                <div class="settings-section">
-                    <h4>📐 图片排版方式</h4>
-                    <div class="setting-item">
-                        <label>排版布局</label>
-                        <select v-model="settings.portfolioLayout">
-                            <option value="grid">网格布局</option>
-                            <option value="masonry">瀑布流布局</option>
-                            <option value="carousel">轮播布局</option>
-                            <option value="staggered">错位布局</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="settings-section">
-                    <h4>📏 间距设置</h4>
-                    <div class="setting-item">
-                        <label>作品间距 <span class="setting-value">{{ settings.portfolioGap }}px</span></label>
-                        <input type="range" v-model="settings.portfolioGap" min="10" max="50" @input="updateStyles">
-                    </div>
-                    <div class="setting-item">
-                        <label>作品最小宽度 <span class="setting-value">{{ settings.portfolioMinWidth }}px</span></label>
-                        <input type="range" v-model="settings.portfolioMinWidth" min="200" max="600" @input="updateStyles">
-                    </div>
-                    <div class="setting-item">
-                        <label>容器最大宽度 <span class="setting-value">{{ settings.containerMaxWidth }}px</span></label>
-                        <input type="range" v-model="settings.containerMaxWidth" min="800" max="1600" @input="updateStyles">
-                    </div>
-                </div>
-
-                <div class="settings-section">
-                    <h4>🔤 字体大小</h4>
-                    <div class="setting-item">
-                        <label>标题大小 <span class="setting-value">{{ settings.headerFontSize }}em</span></label>
-                        <input type="range" v-model="settings.headerFontSize" min="1" max="4" step="0.1" @input="updateStyles">
-                    </div>
-                    <div class="setting-item">
-                        <label>章节标题大小 <span class="setting-value">{{ settings.sectionTitleFontSize }}em</span></label>
-                        <input type="range" v-model="settings.sectionTitleFontSize" min="1" max="3" step="0.1" @input="updateStyles">
-                    </div>
-                    <div class="setting-item">
-                        <label>姓名大小 <span class="setting-value">{{ settings.nameFontSize }}em</span></label>
-                        <input type="range" v-model="settings.nameFontSize" min="1.5" max="4" step="0.1" @input="updateStyles">
-                    </div>
-                    <div class="setting-item">
-                        <label>职位大小 <span class="setting-value">{{ settings.titleFontSize }}em</span></label>
-                        <input type="range" v-model="settings.titleFontSize" min="0.8" max="2" step="0.1" @input="updateStyles">
-                    </div>
-                    <div class="setting-item">
-                        <label>正文大小 <span class="setting-value">{{ settings.contentFontSize }}em</span></label>
-                        <input type="range" v-model="settings.contentFontSize" min="0.8" max="1.5" step="0.05" @input="updateStyles">
-                    </div>
-                </div>
-
-                <div class="settings-section">
-                    <h4>🎨 颜色主题</h4>
-                    <div class="setting-item">
-                        <label>主色调</label>
-                        <input type="color" v-model="settings.primaryGreen" @input="updateStyles">
-                    </div>
-                    <div class="setting-item">
-                        <label>浅色调</label>
-                        <input type="color" v-model="settings.lightGreen" @input="updateStyles">
-                    </div>
-                    <div class="setting-item">
-                        <label>淡色调</label>
-                        <input type="color" v-model="settings.paleGreen" @input="updateStyles">
-                    </div>
-                    <div class="setting-item">
-                        <label>深色调</label>
-                        <input type="color" v-model="settings.darkGreen" @input="updateStyles">
-                    </div>
-                    <div class="setting-item">
-                        <label>背景渐变起始色</label>
-                        <input type="color" v-model="settings.bgGradientStart" @input="updateStyles">
-                    </div>
-                    <div class="setting-item">
-                        <label>背景渐变结束色</label>
-                        <input type="color" v-model="settings.bgGradientEnd" @input="updateStyles">
-                    </div>
-                    <div class="setting-item">
-                        <label>文字颜色</label>
-                        <input type="color" v-model="settings.textColor" @input="updateStyles">
-                    </div>
-                    <div class="setting-item">
-                        <label>标题颜色</label>
-                        <input type="color" v-model="settings.titleColor" @input="updateStyles">
-                    </div>
-                    <div class="setting-item">
-                        <label>链接颜色</label>
-                        <input type="color" v-model="settings.linkColor" @input="updateStyles">
-                    </div>
-                </div>
-
-                <div class="settings-section">
-                    <h4>📱 其他设置</h4>
-                    <div class="setting-item">
-                        <label>瀑布流列数 <span class="setting-value">{{ settings.masonryColumns }}</span></label>
-                        <input type="range" v-model="settings.masonryColumns" min="1" max="5" @input="updateStyles">
-                    </div>
-                    <div class="setting-item">
-                        <label>轮播项目宽度 <span class="setting-value">{{ settings.carouselItemWidth }}px</span></label>
-                        <input type="range" v-model="settings.carouselItemWidth" min="300" max="600" @input="updateStyles">
-                    </div>
-                </div>
-
-                <div class="settings-section">
-                    <h4>🖼️ 背景图片</h4>
-                    <div class="setting-item">
-                        <label>封面背景</label>
-                        <div class="file-input-wrapper">
-                            <button class="file-input-btn">选择图片</button>
-                            <input type="file" accept="image/*" @change="handleHeroBackgroundUpload">
-                        </div>
-                        <img v-if="settings.heroBackground" :src="settings.heroBackground" class="bg-preview">
-                        <button v-if="settings.heroBackground" @click="settings.heroBackground = null; updateStyles()" class="remove-bg-btn">删除背景</button>
-                    </div>
-                    <div class="setting-item">
-                        <label>网页背景</label>
-                        <div class="file-input-wrapper">
-                            <button class="file-input-btn">选择图片</button>
-                            <input type="file" accept="image/*" @change="handleBodyBackgroundUpload">
-                        </div>
-                        <img v-if="settings.bodyBackground" :src="settings.bodyBackground" class="bg-preview">
-                        <button v-if="settings.bodyBackground" @click="settings.bodyBackground = null; updateStyles()" class="remove-bg-btn">删除背景</button>
-                    </div>
-                    <div class="setting-item">
-                        <label>个人介绍模块背景</label>
-                        <div class="file-input-wrapper">
-                            <button class="file-input-btn">选择图片</button>
-                            <input type="file" accept="image/*" @change="handleProfileSectionBackgroundUpload">
-                        </div>
-                        <img v-if="settings.profileSectionBackground" :src="settings.profileSectionBackground" class="bg-preview">
-                        <button v-if="settings.profileSectionBackground" @click="settings.profileSectionBackground = null; updateStyles()" class="remove-bg-btn">删除背景</button>
-                    </div>
-                    <div class="setting-item">
-                        <label>实习经历模块背景</label>
-                        <div class="file-input-wrapper">
-                            <button class="file-input-btn">选择图片</button>
-                            <input type="file" accept="image/*" @change="handleExperienceSectionBackgroundUpload">
-                        </div>
-                        <img v-if="settings.experienceSectionBackground" :src="settings.experienceSectionBackground" class="bg-preview">
-                        <button v-if="settings.experienceSectionBackground" @click="settings.experienceSectionBackground = null; updateStyles()" class="remove-bg-btn">删除背景</button>
-                    </div>
-                    <div class="setting-item">
-                        <label>作品展示模块背景</label>
-                        <div class="file-input-wrapper">
-                            <button class="file-input-btn">选择图片</button>
-                            <input type="file" accept="image/*" @change="handlePortfolioSectionBackgroundUpload">
-                        </div>
-                        <img v-if="settings.portfolioSectionBackground" :src="settings.portfolioSectionBackground" class="bg-preview">
-                        <button v-if="settings.portfolioSectionBackground" @click="settings.portfolioSectionBackground = null; updateStyles()" class="remove-bg-btn">删除背景</button>
-                    </div>
-                </div>
-
-                <div class="settings-section">
-                    <h4>📋 模块排序</h4>
-                    <div v-for="(moduleId, index) in moduleOrder" :key="moduleId" class="module-order-item">
-                        <span class="module-name">
-                            {{ getModuleName(moduleId) }}
-                        </span>
-                        <div class="module-order-buttons">
-                            <button class="order-btn" @click="moveModuleUp(index)" :disabled="index === 0">↑</button>
-                            <button class="order-btn" @click="moveModuleDown(index)" :disabled="index === moduleOrder.length - 1">↓</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-actions">
-                    <button class="btn btn-secondary" @click="resetSettings">重置设置</button>
-                    <button class="btn btn-primary" @click="saveSettings">保存设置</button>
+                <div class="about-image">
+                    <img :src="profile.image || 'https://via.placeholder.com/600x800'" alt="个人头像">
                 </div>
             </div>
         </div>
+    </section>
 
-        <div class="modal" v-if="showProfileModal" @click.self="closeModals">
-            <div class="modal-content">
-                <h3 class="modal-title">编辑个人信息</h3>
-                <div class="form-group">
-                    <label>姓名</label>
-                    <input type="text" v-model="editingProfile.name">
-                </div>
-                <div class="form-group">
-                    <label>职位</label>
-                    <input type="text" v-model="editingProfile.title">
-                </div>
-                <div class="form-group">
-                    <label>个人简介</label>
-                    <div class="rich-text-editor">
-                        <div class="rich-text-toolbar">
-                            <button class="toolbar-btn" @click="execCommand('bold')"><b>B</b></button>
-                            <button class="toolbar-btn" @click="execCommand('italic')"><i>I</i></button>
-                            <button class="toolbar-btn" @click="execCommand('insertParagraph')">段落</button>
-                        </div>
-                        <div class="rich-text-content" contenteditable="true" v-html="editingProfile.bio" @input="editingProfile.bio = $event.target.innerHTML"></div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label>技能（用逗号分隔）</label>
-                    <input type="text" v-model="editingProfile.skillsText">
-                </div>
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label>年龄</label>
-                        <input type="text" v-model="editingProfile.age">
-                    </div>
-                    <div class="form-group">
-                        <label>学历</label>
-                        <input type="text" v-model="editingProfile.education">
-                    </div>
-                    <div class="form-group">
-                        <label>电话</label>
-                        <input type="text" v-model="editingProfile.phone">
-                    </div>
-                    <div class="form-group">
-                        <label>专业</label>
-                        <input type="text" v-model="editingProfile.major">
-                    </div>
-                    <div class="form-group">
-                        <label>邮箱</label>
-                        <input type="text" v-model="editingProfile.email">
-                    </div>
-                    <div class="form-group">
-                        <label>微信</label>
-                        <input type="text" v-model="editingProfile.wechat">
-                    </div>
-                    <div class="form-group">
-                        <label>居住地</label>
-                        <input type="text" v-model="editingProfile.location">
-                    </div>
-                    <div class="form-group">
-                        <label>教育背景</label>
-                        <input type="text" v-model="editingProfile.educationalBackground">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label>头像</label>
-                    <div class="file-input-wrapper">
-                        <button class="file-input-btn">选择图片</button>
-                        <input type="file" accept="image/*" @change="handleProfileImageUpload">
-                    </div>
-                    <img v-if="editingProfile.imagePreview" :src="editingProfile.imagePreview" class="image-preview active">
-                </div>
-                <div class="form-actions">
-                    <button class="btn btn-secondary" @click="closeModals">取消</button>
-                    <button class="btn btn-primary" @click="saveProfile">保存</button>
+    <!-- Skills Section -->
+    <section class="section skills-section" id="skills" :style="skillsBackgroundStyle">
+        <div class="container">
+            <h2 class="section-title">我的技能</h2>
+            <div class="skills-grid">
+                <div class="skill-card" v-for="skill in personalSkills" :key="skill.id">
+                    <div class="skill-icon">{{ skill.icon }}</div>
+                    <h3 class="skill-name">{{ skill.name }}</h3>
+                    <p class="skill-level">熟练程度：{{ skill.level }}%</p>
                 </div>
             </div>
         </div>
+    </section>
 
-        <div class="modal" v-if="showExperienceModal" @click.self="closeModals">
-            <div class="modal-content">
-                <h3 class="modal-title">{{ editingExperience.id ? '编辑' : '添加' }}实习经历</h3>
-                <div class="form-group">
-                    <label>公司名称</label>
-                    <input type="text" v-model="editingExperience.company">
-                </div>
-                <div class="form-group">
-                    <label>职位</label>
-                    <input type="text" v-model="editingExperience.position">
-                </div>
-                <div class="form-group">
-                    <label>时间</label>
-                    <input type="text" v-model="editingExperience.time" placeholder="如：2023.01 - 2023.06">
-                </div>
-                <div class="form-group">
-                    <label>工作内容</label>
-                    <div class="rich-text-editor">
-                        <div class="rich-text-toolbar">
-                            <button class="toolbar-btn" @click="execCommand('bold')"><b>B</b></button>
-                            <button class="toolbar-btn" @click="execCommand('italic')"><i>I</i></button>
-                            <button class="toolbar-btn" @click="execCommand('insertParagraph')">段落</button>
+    <!-- Portfolio Section -->
+    <section class="section portfolio-section" id="portfolio" :style="portfolioBackgroundStyle">
+        <div class="container">
+            <h2 class="section-title">我的作品</h2>
+            <div class="portfolio-filters">
+                <button class="filter-btn" :class="{ active: currentFilter === 'all' }" @click="currentFilter = 'all'">全部</button>
+                <button class="filter-btn" v-for="tag in allTags" :key="tag" :class="{ active: currentFilter === tag }" @click="currentFilter = tag">
+                    {{ tag }}
+                </button>
+            </div>
+            <div class="portfolio-grid">
+                <div class="portfolio-item" v-for="item in filteredPortfolios" :key="item.id">
+                    <div class="portfolio-item-image">
+                        <img :src="item.images[0] || 'https://via.placeholder.com/600x400'" alt="作品图片">
+                    </div>
+                    <div class="portfolio-item-content">
+                        <span class="portfolio-item-category">{{ item.category }}</span>
+                        <h3 class="portfolio-item-title">{{ item.title }}</h3>
+                        <p class="portfolio-item-description">{{ item.description }}</p>
+                        <div class="portfolio-item-tags">
+                            <span class="portfolio-item-tag" v-for="tag in item.tags" :key="tag">{{ tag }}</span>
                         </div>
-                        <div class="rich-text-content" contenteditable="true" v-html="editingExperience.content" @input="editingExperience.content = $event.target.innerHTML"></div>
+                        <a href="#" class="portfolio-item-link" @click.prevent="openPortfolioModal(item)">查看详情</a>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label>佐证图</label>
-                    <div class="file-input-wrapper">
-                        <button class="file-input-btn">选择图片</button>
-                        <input type="file" accept="image/*" @change="handleExperienceImageUpload">
-                    </div>
-                    <img v-if="editingExperience.imagePreview" :src="editingExperience.imagePreview" class="image-preview active">
-                </div>
-                <div class="form-actions">
-                    <button class="btn btn-secondary" @click="closeModals">取消</button>
-                    <button class="btn btn-primary" @click="saveExperience">保存</button>
                 </div>
             </div>
         </div>
+    </section>
 
-        <div class="modal" v-if="showPortfolioModal" @click.self="closeModals">
-            <div class="modal-content">
-                <h3 class="modal-title">{{ editingPortfolio.id ? '编辑' : '添加' }}作品</h3>
-                <div class="form-group">
-                    <label>作品分类</label>
-                    <select v-model="editingPortfolio.category">
-                        <option value="">请选择分类</option>
-                        <option value="摄影">摄影</option>
-                        <option value="建筑">建筑</option>
-                        <option value="自媒体">自媒体</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>作品标题</label>
-                    <input type="text" v-model="editingPortfolio.title">
-                </div>
-                <div class="form-group">
-                    <label>作品描述</label>
-                    <textarea v-model="editingPortfolio.description"></textarea>
-                </div>
-                <div class="form-group">
-                    <label>作品图片（可选择多张）</label>
-                    <div class="file-input-wrapper">
-                        <button class="file-input-btn">选择图片</button>
-                        <input type="file" accept="image/*" multiple @change="handlePortfolioImagesUpload">
+    <!-- Contact Section -->
+    <section class="section contact-section" id="contact" :style="contactBackgroundStyle">
+        <div class="container">
+            <h2 class="section-title">联系我</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>联系方式</h3>
+                    <div class="contact-item">
+                        <div class="contact-item-icon">📧</div>
+                        <div class="contact-item-text">
+                            <h4>邮箱</h4>
+                            <p>{{ profile.email }}</p>
+                        </div>
                     </div>
-                    <div class="image-gallery">
-                        <div v-for="(img, idx) in editingPortfolio.images" :key="idx" class="gallery-item">
-                            <img :src="img" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
-                            <button class="gallery-item-remove" @click="removePortfolioImage(idx)">×</button>
+                    <div class="contact-item">
+                        <div class="contact-item-icon">📱</div>
+                        <div class="contact-item-text">
+                            <h4>电话</h4>
+                            <p>{{ profile.phone }}</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-item-icon">📍</div>
+                        <div class="contact-item-text">
+                            <h4>地址</h4>
+                            <p>{{ profile.location }}</p>
                         </div>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label>作品视频（MP4/MOV）</label>
-                    <div class="file-input-wrapper">
-                        <button class="file-input-btn">选择视频</button>
-                        <input type="file" accept="video/mp4,video/quicktime" @change="handlePortfolioVideoUpload">
-                    </div>
-                    <video v-if="editingPortfolio.videoPreview" :src="editingPortfolio.videoPreview" controls style="max-width: 100%; max-height: 200px; margin-top: 15px; border-radius: 10px;"></video>
-                </div>
-                <div class="form-actions">
-                    <button class="btn btn-secondary" @click="closeModals">取消</button>
-                    <button class="btn btn-primary" @click="savePortfolio">保存</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="modal" v-if="showCampusPracticeModal" @click.self="closeModals">
-            <div class="modal-content">
-                <h3 class="modal-title">{{ editingCampusPractice.id ? '编辑' : '添加' }}校园实践</h3>
-                <div class="form-group">
-                    <label>组织名称</label>
-                    <input type="text" v-model="editingCampusPractice.organization">
-                </div>
-                <div class="form-group">
-                    <label>职位</label>
-                    <input type="text" v-model="editingCampusPractice.position">
-                </div>
-                <div class="form-group">
-                    <label>时间</label>
-                    <input type="text" v-model="editingCampusPractice.time" placeholder="如：2022.09 - 2023.06">
-                </div>
-                <div class="form-group">
-                    <label>内容描述</label>
-                    <div class="rich-text-editor">
-                        <div class="rich-text-toolbar">
-                            <button class="toolbar-btn" @click="execCommand('bold')"><b>B</b></button>
-                            <button class="toolbar-btn" @click="execCommand('italic')"><i>I</i></button>
-                            <button class="toolbar-btn" @click="execCommand('insertParagraph')">段落</button>
+                <div class="contact-form">
+                    <h3>发送消息</h3>
+                    <form @submit.prevent="handleSubmit">
+                        <div class="form-group">
+                            <label for="name">姓名</label>
+                            <input type="text" id="name" v-model="form.name" required>
                         </div>
-                        <div class="rich-text-content" contenteditable="true" v-html="editingCampusPractice.content" @input="editingCampusPractice.content = $event.target.innerHTML"></div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label>相关图片</label>
-                    <div class="file-input-wrapper">
-                        <button class="file-input-btn">选择图片</button>
-                        <input type="file" accept="image/*" @change="handleCampusPracticeImageUpload">
-                    </div>
-                    <img v-if="editingCampusPractice.imagePreview" :src="editingCampusPractice.imagePreview" class="image-preview active">
-                </div>
-                <div class="form-actions">
-                    <button class="btn btn-secondary" @click="closeModals">取消</button>
-                    <button class="btn btn-primary" @click="saveCampusPractice">保存</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="modal" v-if="showPersonalEvaluationModal" @click.self="closeModals">
-            <div class="modal-content">
-                <h3 class="modal-title">编辑个人评价</h3>
-                <div class="form-group">
-                    <label>标题</label>
-                    <input type="text" v-model="editingPersonalEvaluation.title">
-                </div>
-                <div class="form-group">
-                    <label>评价内容</label>
-                    <div class="rich-text-editor">
-                        <div class="rich-text-toolbar">
-                            <button class="toolbar-btn" @click="execCommand('bold')"><b>B</b></button>
-                            <button class="toolbar-btn" @click="execCommand('italic')"><i>I</i></button>
-                            <button class="toolbar-btn" @click="execCommand('insertParagraph')">段落</button>
+                        <div class="form-group">
+                            <label for="email">邮箱</label>
+                            <input type="email" id="email" v-model="form.email" required>
                         </div>
-                        <div class="rich-text-content" contenteditable="true" v-html="editingPersonalEvaluation.content" @input="editingPersonalEvaluation.content = $event.target.innerHTML"></div>
+                        <div class="form-group">
+                            <label for="message">消息</label>
+                            <textarea id="message" v-model="form.message" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">发送消息</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>关于我</h3>
+                    <p>{{ profile.bio }}</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">🔗</a>
+                        <a href="#" class="social-link">📱</a>
+                        <a href="#" class="social-link">📧</a>
                     </div>
                 </div>
-                <div class="form-actions">
-                    <button class="btn btn-secondary" @click="closeModals">取消</button>
-                    <button class="btn btn-primary" @click="savePersonalEvaluation">保存</button>
+                <div class="footer-column">
+                    <h3>快速链接</h3>
+                    <ul style="list-style: none; padding: 0;">
+                        <li><a href="#about" style="color: rgba(255,255,255,0.7); text-decoration: none; line-height: 2;">关于我</a></li>
+                        <li><a href="#skills" style="color: rgba(255,255,255,0.7); text-decoration: none; line-height: 2;">技能</a></li>
+                        <li><a href="#portfolio" style="color: rgba(255,255,255,0.7); text-decoration: none; line-height: 2;">作品</a></li>
+                        <li><a href="#contact" style="color: rgba(255,255,255,0.7); text-decoration: none; line-height: 2;">联系我</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>联系我</h3>
+                    <p>邮箱：{{ profile.email }}</p>
+                    <p>电话：{{ profile.phone }}</p>
+                    <p>地址：{{ profile.location }}</p>
                 </div>
             </div>
-        </div>
-
-        <div class="image-viewer" v-if="showImageViewer" @click="closeImageViewer">
-            <div class="image-viewer-content" @click.stop>
-                <img :src="viewerImage" alt="查看图片">
-                <button class="image-viewer-close" @click="closeImageViewer">×</button>
+            <div class="footer-bottom">
+                <p>&copy; {{ new Date().getFullYear() }} {{ profile.name }}. 保留所有权利。</p>
             </div>
         </div>
+    </footer>
 
-        <div class="toast" v-if="toast.show">
-            {{ toast.message }}
-        </div>
-
-        <div class="login-modal" v-if="showLoginModal">
-            <div class="login-content">
-                <div class="login-icon">🔐</div>
-                <h3 class="login-title">管理员登录</h3>
-                <input type="password" v-model="loginPassword" class="login-input" placeholder="请输入管理员密码" @keyup.enter="handleLogin">
-                <button class="login-btn" @click="handleLogin">登录</button>
-                <div v-if="loginError" class="login-error">{{ loginError }}</div>
-                <div class="login-hint">提示：只有管理员才能编辑内容</div>
+    <!-- Portfolio Modal -->
+    <div class="modal" :class="{ active: showPortfolioModal }" @click.self="closePortfolioModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">{{ selectedPortfolio.title }}</h3>
+                <button class="modal-close" @click="closePortfolioModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="portfolio-modal-images" v-if="selectedPortfolio.images && selectedPortfolio.images.length > 0">
+                    <img v-for="(image, index) in selectedPortfolio.images" :key="index" :src="image" alt="作品图片" style="width: 100%; height: auto; border-radius: 10px; margin-bottom: 15px;">
+                </div>
+                <p>{{ selectedPortfolio.description }}</p>
+                <div class="portfolio-modal-tags" v-if="selectedPortfolio.tags && selectedPortfolio.tags.length > 0">
+                    <h4>标签：</h4>
+                    <div class="portfolio-item-tags">
+                        <span class="portfolio-item-tag" v-for="tag in selectedPortfolio.tags" :key="tag">{{ tag }}</span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+
+    <!-- Settings Panel -->
+    <div class="settings-panel" :class="{ open: showSettingsPanel }">
+        <div class="settings-header">
+            <h3>网站设置</h3>
+            <button class="modal-close" @click="toggleSettingsPanel">&times;</button>
+        </div>
+        <div class="settings-content">
+            <div class="settings-section">
+                <h4>主页设置</h4>
+                <div class="setting-item">
+                    <label>主标题</label>
+                    <input type="text" v-model="settings.heroTitle">
+                </div>
+                <div class="setting-item">
+                    <label>副标题</label>
+                    <input type="text" v-model="settings.heroSubtitle">
+                </div>
+                <div class="setting-item">
+                    <label>按钮文字</label>
+                    <input type="text" v-model="settings.heroCtaText">
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <h4>背景设置</h4>
+                <div class="setting-item">
+                    <label>主页背景</label>
+                    <input type="file" accept="image/*,video/*" @change="handleBackgroundUpload('hero')">
+                    <img v-if="settings.heroBackground" :src="settings.heroBackground" alt="背景图片" style="max-width: 100%; max-height: 150px; margin-top: 10px; border-radius: 10px;">
+                </div>
+                <div class="setting-item">
+                    <label>主页背景透明度 <span class="setting-value">{{ settings.heroBackgroundOpacity }}%</span></label>
+                    <input type="range" v-model="settings.heroBackgroundOpacity" min="0" max="100" @input="updateBackgroundStyles">
+                </div>
+                <div class="setting-item">
+                    <label>关于我背景</label>
+                    <input type="file" accept="image/*,video/*" @change="handleBackgroundUpload('about')">
+                    <img v-if="settings.aboutBackground" :src="settings.aboutBackground" alt="背景图片" style="max-width: 100%; max-height: 150px; margin-top: 10px; border-radius: 10px;">
+                </div>
+                <div class="setting-item">
+                    <label>关于我背景透明度 <span class="setting-value">{{ settings.aboutBackgroundOpacity }}%</span></label>
+                    <input type="range" v-model="settings.aboutBackgroundOpacity" min="0" max="100" @input="updateBackgroundStyles">
+                </div>
+                <div class="setting-item">
+                    <label>技能背景</label>
+                    <input type="file" accept="image/*,video/*" @change="handleBackgroundUpload('skills')">
+                    <img v-if="settings.skillsBackground" :src="settings.skillsBackground" alt="背景图片" style="max-width: 100%; max-height: 150px; margin-top: 10px; border-radius: 10px;">
+                </div>
+                <div class="setting-item">
+                    <label>技能背景透明度 <span class="setting-value">{{ settings.skillsBackgroundOpacity }}%</span></label>
+                    <input type="range" v-model="settings.skillsBackgroundOpacity" min="0" max="100" @input="updateBackgroundStyles">
+                </div>
+                <div class="setting-item">
+                    <label>作品背景</label>
+                    <input type="file" accept="image/*,video/*" @change="handleBackgroundUpload('portfolio')">
+                    <img v-if="settings.portfolioBackground" :src="settings.portfolioBackground" alt="背景图片" style="max-width: 100%; max-height: 150px; margin-top: 10px; border-radius: 10px;">
+                </div>
+                <div class="setting-item">
+                    <label>作品背景透明度 <span class="setting-value">{{ settings.portfolioBackgroundOpacity }}%</span></label>
+                    <input type="range" v-model="settings.portfolioBackgroundOpacity" min="0" max="100" @input="updateBackgroundStyles">
+                </div>
+                <div class="setting-item">
+                    <label>联系我背景</label>
+                    <input type="file" accept="image/*,video/*" @change="handleBackgroundUpload('contact')">
+                    <img v-if="settings.contactBackground" :src="settings.contactBackground" alt="背景图片" style="max-width: 100%; max-height: 150px; margin-top: 10px; border-radius: 10px;">
+                </div>
+                <div class="setting-item">
+                    <label>联系我背景透明度 <span class="setting-value">{{ settings.contactBackgroundOpacity }}%</span></label>
+                    <input type="range" v-model="settings.contactBackgroundOpacity" min="0" max="100" @input="updateBackgroundStyles">
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <h4>个人信息</h4>
+                <div class="setting-item">
+                    <label>姓名</label>
+                    <input type="text" v-model="profile.name">
+                </div>
+                <div class="setting-item">
+                    <label>职位</label>
+                    <input type="text" v-model="profile.title">
+                </div>
+                <div class="setting-item">
+                    <label>简介</label>
+                    <textarea v-model="profile.bio" rows="4"></textarea>
+                </div>
+                <div class="setting-item">
+                    <label>邮箱</label>
+                    <input type="email" v-model="profile.email">
+                </div>
+                <div class="setting-item">
+                    <label>电话</label>
+                    <input type="text" v-model="profile.phone">
+                </div>
+                <div class="setting-item">
+                    <label>所在地</label>
+                    <input type="text" v-model="profile.location">
+                </div>
+                <div class="setting-item">
+                    <label>头像</label>
+                    <input type="file" accept="image/*" @change="handleProfileImageUpload">
+                    <img v-if="profile.image" :src="profile.image" alt="头像" style="max-width: 100px; max-height: 100px; margin-top: 10px; border-radius: 50%;">
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <h4>作品管理</h4>
+                <button class="submit-btn" style="margin-bottom: 20px;" @click="openAddPortfolioModal">添加作品</button>
+                <div v-for="(item, index) in portfolios" :key="item.id" style="background: #f8f9fa; padding: 15px; border-radius: 10px; margin-bottom: 10px;">
+                    <h5>{{ item.title }}</h5>
+                    <p>{{ item.category }}</p>
+                    <button class="filter-btn" style="margin-right: 10px;" @click="editPortfolio(item.id)">编辑</button>
+                    <button class="filter-btn" style="background: #ff006e; color: white; border-color: #ff006e;" @click="deletePortfolio(item.id)">删除</button>
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <h4>技能管理</h4>
+                <button class="submit-btn" style="margin-bottom: 20px;" @click="openAddSkillModal">添加技能</button>
+                <div v-for="(skill, index) in personalSkills" :key="skill.id" style="background: #f8f9fa; padding: 15px; border-radius: 10px; margin-bottom: 10px;">
+                    <h5>{{ skill.name }}</h5>
+                    <p>熟练程度：{{ skill.level }}%</p>
+                    <button class="filter-btn" style="margin-right: 10px;" @click="editSkill(skill.id)">编辑</button>
+                    <button class="filter-btn" style="background: #ff006e; color: white; border-color: #ff006e;" @click="deleteSkill(skill.id)">删除</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Settings Toggle -->
+    <button class="settings-toggle" @click="toggleSettingsPanel">⚙️</button>
 
     <script>
         const { createApp, ref, computed, onMounted, watch } = Vue;
 
         createApp({
             setup() {
-                const editMode = ref(false);
-                const showProfileModal = ref(false);
-                const showExperienceModal = ref(false);
-                const showPortfolioModal = ref(false);
-                const showImageViewer = ref(false);
+                // 状态管理
                 const showSettingsPanel = ref(false);
-                const showLoginModal = ref(false);
-                const viewerImage = ref('');
-                const currentCategory = ref('all');
-                const toast = ref({ show: false, message: '' });
-                const loginPassword = ref('');
-                const loginError = ref('');
-                const isLoggedIn = ref(false);
-                const ADMIN_PASSWORD = 'portfolio2024';
+                const showPortfolioModal = ref(false);
+                const selectedPortfolio = ref({});
+                const currentFilter = ref('all');
+                const form = ref({ name: '', email: '', message: '' });
 
+                // 个人信息
                 const profile = ref({
                     name: '张三',
-                    title: '设计师 / 开发者',
-                    bio: '热爱设计与编程，致力于创造美好的数字体验。拥有5年以上的行业经验，专注于用户体验设计和前端开发。',
-                    skills: ['Vue.js', 'React', 'UI设计', '前端开发', '用户体验'],
-                    image: null,
-                    age: '',
-                    education: '',
-                    phone: '',
-                    major: '',
-                    email: '',
-                    wechat: '',
-                    location: '',
-                    educationalBackground: ''
+                    title: 'UI/UX 设计师',
+                    bio: '我是一名充满激情的 UI/UX 设计师，专注于创建美观且用户友好的数字体验。拥有 3 年的设计经验，擅长使用 Figma、Sketch 等设计工具，并且对前端开发有一定的了解。我相信好的设计应该既美观又实用，能够解决实际问题并提供出色的用户体验。',
+                    email: 'zhangsan@example.com',
+                    phone: '13800138000',
+                    location: '北京市',
+                    image: 'https://via.placeholder.com/600x800'
                 });
 
-                const experiences = ref([
-                    {
-                        id: 1,
-                        company: 'ABC科技有限公司',
-                        position: '前端开发工程师',
-                        time: '2023.01 - 2023.06',
-                        content: '负责公司核心产品的前端开发工作，使用Vue3框架构建响应式用户界面，优化页面性能，提升用户体验。',
-                        image: null
-                    }
+                // 技能
+                const personalSkills = ref([
+                    { id: 1, name: 'UI 设计', level: 90, icon: '🎨' },
+                    { id: 2, name: 'UX 设计', level: 85, icon: '👤' },
+                    { id: 3, name: 'Figma', level: 95, icon: '🎯' },
+                    { id: 4, name: 'Sketch', level: 80, icon: '✏️' },
+                    { id: 5, name: 'HTML/CSS', level: 75, icon: '💻' },
+                    { id: 6, name: 'JavaScript', level: 65, icon: '⚡' }
                 ]);
 
+                // 作品
                 const portfolios = ref([
                     {
                         id: 1,
-                        category: '设计',
-                        title: '品牌设计项目',
-                        description: '为科技初创公司设计的品牌识别系统，包括Logo、名片、宣传册等。',
-                        images: [],
-                        video: null
-                    }
-                ]);
-
-                const campusPractices = ref([
-                    {
-                        id: 1,
-                        organization: '学生会',
-                        position: '宣传部部长',
-                        time: '2022.09 - 2023.06',
-                        content: '负责学生会的宣传工作，组织策划了多次大型活动，包括迎新晚会、运动会等。',
-                        image: null
-                    }
-                ]);
-
-                const personalSkills = ref([
-                    {
-                        id: 1,
-                        name: '前端开发',
-                        level: 90,
-                        description: '熟练掌握HTML、CSS、JavaScript、Vue3等前端技术，能够独立开发响应式网站。',
-                        icon: '💻'
+                        category: 'UI 设计',
+                        title: '移动应用界面设计',
+                        description: '为一款健康追踪应用设计的用户界面，注重简洁性和用户体验。包含登录页、仪表盘、统计页等多个界面。',
+                        images: ['https://via.placeholder.com/600x400', 'https://via.placeholder.com/600x400'],
+                        tags: ['UI', '移动应用', '健康']
                     },
                     {
                         id: 2,
-                        name: 'UI设计',
-                        level: 85,
-                        description: '熟悉Figma、Photoshop等设计工具，能够设计美观的用户界面。',
-                        icon: '🎨'
+                        category: '网站设计',
+                        title: '企业官网重设计',
+                        description: '为一家科技公司重新设计的官方网站，提升品牌形象和用户体验。采用现代、简洁的设计风格。',
+                        images: ['https://via.placeholder.com/600x400', 'https://via.placeholder.com/600x400', 'https://via.placeholder.com/600x400'],
+                        tags: ['网站设计', '企业官网', '响应式']
                     },
                     {
                         id: 3,
-                        name: '沟通协作',
-                        level: 95,
-                        description: '良好的团队协作能力和沟通能力，能够与不同角色的人员有效配合。',
-                        icon: '🤝'
+                        category: 'UX 设计',
+                        title: '电商应用用户体验优化',
+                        description: '对一款电商应用进行用户体验优化，通过用户研究和数据分析，改进了购物流程和界面设计。',
+                        images: ['https://via.placeholder.com/600x400', 'https://via.placeholder.com/600x400'],
+                        tags: ['UX', '电商', '用户研究']
                     }
                 ]);
 
-                const personalEvaluation = ref({
-                    title: '自我评价',
-                    content: '我是一名充满热情的设计师和开发者，对新技术和新挑战充满好奇心。在工作中，我注重细节，追求完美，同时保持开放的心态，乐于接受反馈和建议。我相信通过不断学习和实践，能够创造出更好的作品。'
-                });
-
-                const moduleOrder = ref(['profile', 'experience', 'campus', 'skills', 'evaluation', 'portfolio']);
-
-                const editingProfile = ref({
-                    name: '',
-                    title: '',
-                    bio: '',
-                    skillsText: '',
-                    image: null,
-                    imagePreview: null,
-                    age: '',
-                    education: '',
-                    phone: '',
-                    major: '',
-                    email: '',
-                    wechat: '',
-                    location: '',
-                    educationalBackground: ''
-                });
-
-                const editingExperience = ref({
-                    id: null,
-                    company: '',
-                    position: '',
-                    time: '',
-                    content: '',
-                    image: null,
-                    imagePreview: null
-                });
-
-                const editingPortfolio = ref({
-                    id: null,
-                    category: '',
-                    title: '',
-                    description: '',
-                    images: [],
-                    video: null,
-                    videoPreview: null
-                });
-
-                const editingCampusPractice = ref({
-                    id: null,
-                    organization: '',
-                    position: '',
-                    time: '',
-                    content: '',
-                    image: null,
-                    imagePreview: null
-                });
-
-                const showCampusPracticeModal = ref(false);
-
-                const editingPersonalSkill = ref({
-                    id: null,
-                    name: '',
-                    level: 80,
-                    description: '',
-                    icon: '⭐'
-                });
-
-                const showPersonalSkillModal = ref(false);
-
-                const editingPersonalEvaluation = ref({
-                    title: '',
-                    content: ''
-                });
-
-                const showPersonalEvaluationModal = ref(false);
-
+                // 设置
                 const settings = ref({
-                    portfolioLayout: 'grid',
-                    portfolioGap: 25,
-                    portfolioMinWidth: 350,
-                    containerMaxWidth: 1200,
-                    headerFontSize: 2,
-                    sectionTitleFontSize: 1.8,
-                    nameFontSize: 2.5,
-                    titleFontSize: 1.2,
-                    contentFontSize: 1.1,
-                    primaryGreen: '#66bb6a',
-                    lightGreen: '#81c784',
-                    paleGreen: '#f8fff8',
-                    darkGreen: '#43a047',
-                    bgGradientStart: '#f8fff8',
-                    bgGradientEnd: '#e8f5e8',
-                    masonryColumns: 3,
-                    carouselItemWidth: 400,
+                    heroTitle: '创意设计师',
+                    heroSubtitle: '专注于 UI/UX 设计与前端开发',
+                    heroCtaText: '查看我的作品',
                     heroBackground: null,
-                    bodyBackground: null,
-                    profileSectionBackground: null,
-                    experienceSectionBackground: null,
-                    portfolioSectionBackground: null,
-                    textColor: '#333333',
-                    titleColor: '#2c3e50',
-                    linkColor: '#66bb6a'
+                    heroBackgroundOpacity: 100,
+                    aboutBackground: null,
+                    aboutBackgroundOpacity: 100,
+                    skillsBackground: null,
+                    skillsBackgroundOpacity: 100,
+                    portfolioBackground: null,
+                    portfolioBackgroundOpacity: 100,
+                    contactBackground: null,
+                    contactBackgroundOpacity: 100
                 });
 
-                const categories = computed(() => {
-                    return [...new Set(portfolios.value.map(p => p.category).filter(Boolean))];
-                });
-
-                const sortedModules = computed(() => {
-                    return moduleOrder.value.map(moduleId => {
-                        switch(moduleId) {
-                            case 'profile':
-                                return { id: 'profile', name: '个人介绍', component: 'profile' };
-                            case 'experience':
-                                return { id: 'experience', name: '实习经历', component: 'experience' };
-                            case 'campus':
-                                return { id: 'campus', name: '校园实践', component: 'campus' };
-                            case 'skills':
-                                return { id: 'skills', name: '个人技能', component: 'skills' };
-                            case 'evaluation':
-                                return { id: 'evaluation', name: '个人评价', component: 'evaluation' };
-                            case 'portfolio':
-                                return { id: 'portfolio', name: '作品展示', component: 'portfolio' };
-                            default:
-                                return null;
-                        }
-                    }).filter(Boolean);
+                // 计算属性
+                const allTags = computed(() => {
+                    const tags = new Set();
+                    portfolios.value.forEach(item => {
+                        item.tags.forEach(tag => tags.add(tag));
+                    });
+                    return Array.from(tags);
                 });
 
                 const filteredPortfolios = computed(() => {
-                    if (currentCategory.value === 'all') {
+                    if (currentFilter.value === 'all') {
                         return portfolios.value;
-                    }
-                    return portfolios.value.filter(p => p.category === currentCategory.value);
-                });
-
-                const portfolioLayoutClass = computed(() => {
-                    const layoutMap = {
-                        grid: 'portfolio-grid',
-                        masonry: 'masonry-layout',
-                        carousel: 'carousel-layout',
-                        staggered: 'staggered-layout'
-                    };
-                    return layoutMap[settings.value.portfolioLayout] || 'portfolio-grid';
-                });
-
-                const portfolioItemClass = computed(() => {
-                    const itemMap = {
-                        grid: 'portfolio-item',
-                        masonry: 'portfolio-item masonry-item',
-                        carousel: 'portfolio-item carousel-item',
-                        staggered: 'portfolio-item staggered-item'
-                    };
-                    return itemMap[settings.value.portfolioLayout] || 'portfolio-item';
-                });
-
-                const toggleEditMode = () => {
-                    if (!isLoggedIn.value) {
-                        showLoginModal.value = true;
-                        return;
-                    }
-                    editMode.value = !editMode.value;
-                    if (!editMode.value) {
-                        saveAllData();
-                    }
-                };
-
-                const handleLogin = () => {
-                    if (loginPassword.value === ADMIN_PASSWORD) {
-                        isLoggedIn.value = true;
-                        showLoginModal.value = false;
-                        loginPassword.value = '';
-                        loginError.value = '';
-                        editMode.value = true;
-                        showToast('登录成功，进入编辑模式');
                     } else {
-                        loginError.value = '密码错误，请重试';
+                        return portfolios.value.filter(item => item.tags.includes(currentFilter.value));
                     }
-                };
+                });
 
-                const handleLogout = () => {
-                    isLoggedIn.value = false;
-                    editMode.value = false;
-                    showToast('已退出登录');
-                };
+                // 背景样式计算
+                const heroBackgroundStyle = computed(() => {
+                    if (settings.value.heroBackground) {
+                        const opacity = settings.value.heroBackgroundOpacity / 100;
+                        return {
+                            background: `linear-gradient(rgba(0, 0, 0, ${1 - opacity * 0.5}), rgba(0, 0, 0, ${1 - opacity * 0.5})), url(${settings.value.heroBackground})`,
+                            backgroundSize: 'cover',
+                            backgroundPosition: 'center',
+                            backgroundRepeat: 'no-repeat'
+                        };
+                    }
+                    return {
+                        background: 'linear-gradient(135deg, #3a86ff, #8338ec)'
+                    };
+                });
 
+                const aboutBackgroundStyle = computed(() => {
+                    if (settings.value.aboutBackground) {
+                        const opacity = settings.value.aboutBackgroundOpacity / 100;
+                        return {
+                            background: `linear-gradient(rgba(255, 255, 255, ${opacity}), rgba(255, 255, 255, ${opacity})), url(${settings.value.aboutBackground})`,
+                            backgroundSize: 'cover',
+                            backgroundPosition: 'center',
+                            backgroundRepeat: 'no-repeat'
+                        };
+                    }
+                    return {};
+                });
+
+                const skillsBackgroundStyle = computed(() => {
+                    if (settings.value.skillsBackground) {
+                        const opacity = settings.value.skillsBackgroundOpacity / 100;
+                        return {
+                            background: `linear-gradient(rgba(255, 255, 255, ${opacity}), rgba(255, 255, 255, ${opacity})), url(${settings.value.skillsBackground})`,
+                            backgroundSize: 'cover',
+                            backgroundPosition: 'center',
+                            backgroundRepeat: 'no-repeat'
+                        };
+                    }
+                    return {};
+                });
+
+                const portfolioBackgroundStyle = computed(() => {
+                    if (settings.value.portfolioBackground) {
+                        const opacity = settings.value.portfolioBackgroundOpacity / 100;
+                        return {
+                            background: `linear-gradient(rgba(255, 255, 255, ${opacity}), rgba(255, 255, 255, ${opacity})), url(${settings.value.portfolioBackground})`,
+                            backgroundSize: 'cover',
+                            backgroundPosition: 'center',
+                            backgroundRepeat: 'no-repeat'
+                        };
+                    }
+                    return {};
+                });
+
+                const contactBackgroundStyle = computed(() => {
+                    if (settings.value.contactBackground) {
+                        const opacity = settings.value.contactBackgroundOpacity / 100;
+                        return {
+                            background: `linear-gradient(rgba(255, 255, 255, ${opacity}), rgba(255, 255, 255, ${opacity})), url(${settings.value.contactBackground})`,
+                            backgroundSize: 'cover',
+                            backgroundPosition: 'center',
+                            backgroundRepeat: 'no-repeat'
+                        };
+                    }
+                    return {};
+                });
+
+                // 方法
                 const toggleSettingsPanel = () => {
                     showSettingsPanel.value = !showSettingsPanel.value;
                 };
 
-                const updateStyles = () => {
-                    const root = document.documentElement;
-                    root.style.setProperty('--portfolio-gap', `${settings.value.portfolioGap}px`);
-                    root.style.setProperty('--portfolio-min-width', `${settings.value.portfolioMinWidth}px`);
-                    root.style.setProperty('--masonry-columns', settings.value.masonryColumns);
-                    root.style.setProperty('--carousel-item-width', `${settings.value.carouselItemWidth}px`);
-                    root.style.setProperty('--primary-green', settings.value.primaryGreen);
-                    root.style.setProperty('--light-green', settings.value.lightGreen);
-                    root.style.setProperty('--pale-green', settings.value.paleGreen);
-                    root.style.setProperty('--dark-green', settings.value.darkGreen);
-                    root.style.setProperty('--text-color', settings.value.textColor);
-                    root.style.setProperty('--title-color', settings.value.titleColor);
-                    root.style.setProperty('--link-color', settings.value.linkColor);
-                    
-                    if (settings.value.bodyBackground) {
-                        document.body.style.background = `url(${settings.value.bodyBackground})`;
-                    } else {
-                        document.body.style.background = `linear-gradient(135deg, ${settings.value.bgGradientStart} 0%, ${settings.value.bgGradientEnd} 100%)`;
-                    }
-                    
-                    document.querySelector('.container').style.maxWidth = `${settings.value.containerMaxWidth}px`;
-                    document.querySelector('.header h1').style.fontSize = `${settings.value.headerFontSize}em`;
-                    document.querySelector('.section-title').style.fontSize = `${settings.value.sectionTitleFontSize}em`;
-                    document.querySelector('.profile-name').style.fontSize = `${settings.value.nameFontSize}em`;
-                    document.querySelector('.profile-title').style.fontSize = `${settings.value.titleFontSize}em`;
-                    document.querySelector('.profile-content').style.fontSize = `${settings.value.contentFontSize}em`;
-                };
-
-                const handleHeroBackgroundUpload = (e) => {
-                    const file = e.target.files[0];
-                    if (file) {
-                        const reader = new FileReader();
-                        reader.onload = (event) => {
-                            settings.value.heroBackground = event.target.result;
-                            updateStyles();
-                        };
-                        reader.readAsDataURL(file);
-                    }
-                };
-
-                const handleBodyBackgroundUpload = (e) => {
-                    const file = e.target.files[0];
-                    if (file) {
-                        const reader = new FileReader();
-                        reader.onload = (event) => {
-                            settings.value.bodyBackground = event.target.result;
-                            updateStyles();
-                        };
-                        reader.readAsDataURL(file);
-                    }
-                };
-
-                const handleProfileSectionBackgroundUpload = (e) => {
-                    const file = e.target.files[0];
-                    if (file) {
-                        const reader = new FileReader();
-                        reader.onload = (event) => {
-                            settings.value.profileSectionBackground = event.target.result;
-                            updateStyles();
-                        };
-                        reader.readAsDataURL(file);
-                    }
-                };
-
-                const handleExperienceSectionBackgroundUpload = (e) => {
-                    const file = e.target.files[0];
-                    if (file) {
-                        const reader = new FileReader();
-                        reader.onload = (event) => {
-                            settings.value.experienceSectionBackground = event.target.result;
-                            updateStyles();
-                        };
-                        reader.readAsDataURL(file);
-                    }
-                };
-
-                const handlePortfolioSectionBackgroundUpload = (e) => {
-                    const file = e.target.files[0];
-                    if (file) {
-                        const reader = new FileReader();
-                        reader.onload = (event) => {
-                            settings.value.portfolioSectionBackground = event.target.result;
-                            updateStyles();
-                        };
-                        reader.readAsDataURL(file);
-                    }
-                };
-
-                const saveSettings = () => {
-                    localStorage.setItem('portfolioSettings', JSON.stringify(settings.value));
-                    showToast('设置已保存');
-                };
-
-                const resetSettings = () => {
-                    if (confirm('确定要重置所有设置吗？')) {
-                        settings.value = {
-                            portfolioLayout: 'grid',
-                            portfolioGap: 25,
-                            portfolioMinWidth: 350,
-                            containerMaxWidth: 1200,
-                            headerFontSize: 2,
-                            sectionTitleFontSize: 1.8,
-                            nameFontSize: 2.5,
-                            titleFontSize: 1.2,
-                            contentFontSize: 1.1,
-                            primaryGreen: '#66bb6a',
-                            lightGreen: '#81c784',
-                            paleGreen: '#f8fff8',
-                            darkGreen: '#43a047',
-                            bgGradientStart: '#f8fff8',
-                            bgGradientEnd: '#e8f5e8',
-                            masonryColumns: 3,
-                            carouselItemWidth: 400
-                        };
-                        updateStyles();
-                        saveSettings();
-                        showToast('设置已重置');
-                    }
-                };
-
-                const loadSettings = () => {
-                    const saved = localStorage.getItem('portfolioSettings');
-                    if (saved) {
-                        settings.value = JSON.parse(saved);
-                        setTimeout(updateStyles, 100);
-                    }
-                };
-
-                const showToast = (message) => {
-                    toast.value = { show: true, message };
-                    setTimeout(() => {
-                        toast.value.show = false;
-                    }, 3000);
-                };
-
-                const openProfileModal = () => {
-                    editingProfile.value = {
-                        name: profile.value.name,
-                        title: profile.value.title,
-                        bio: profile.value.bio,
-                        skillsText: profile.value.skills.join(', '),
-                        image: profile.value.image,
-                        imagePreview: profile.value.image,
-                        age: profile.value.age,
-                        education: profile.value.education,
-                        phone: profile.value.phone,
-                        major: profile.value.major,
-                        email: profile.value.email,
-                        wechat: profile.value.wechat,
-                        location: profile.value.location,
-                        educationalBackground: profile.value.educationalBackground
-                    };
-                    showProfileModal.value = true;
-                };
-
-                const handleProfileImageUpload = (e) => {
-                    const file = e.target.files[0];
-                    if (file) {
-                        const reader = new FileReader();
-                        reader.onload = (event) => {
-                            editingProfile.value.imagePreview = event.target.result;
-                            editingProfile.value.image = event.target.result;
-                        };
-                        reader.readAsDataURL(file);
-                    }
-                };
-
-                const saveProfile = () => {
-                    profile.value = {
-                        ...profile.value,
-                        name: editingProfile.value.name,
-                        title: editingProfile.value.title,
-                        bio: editingProfile.value.bio,
-                        skills: editingProfile.value.skillsText.split(',').map(s => s.trim()).filter(Boolean),
-                        image: editingProfile.value.image,
-                        age: editingProfile.value.age,
-                        education: editingProfile.value.education,
-                        phone: editingProfile.value.phone,
-                        major: editingProfile.value.major,
-                        email: editingProfile.value.email,
-                        wechat: editingProfile.value.wechat,
-                        location: editingProfile.value.location,
-                        educationalBackground: editingProfile.value.educationalBackground
-                    };
-                    closeModals();
-                    showToast('个人信息已保存');
-                };
-
-                const openExperienceModal = () => {
-                    editingExperience.value = {
-                        id: null,
-                        company: '',
-                        position: '',
-                        time: '',
-                        content: '',
-                        image: null,
-                        imagePreview: null
-                    };
-                    showExperienceModal.value = true;
-                };
-
-                const editExperience = (id) => {
-                    const exp = experiences.value.find(e => e.id === id);
-                    if (exp) {
-                        editingExperience.value = {
-                            id: exp.id,
-                            company: exp.company,
-                            position: exp.position,
-                            time: exp.time,
-                            content: exp.content,
-                            image: exp.image,
-                            imagePreview: exp.image
-                        };
-                        showExperienceModal.value = true;
-                    }
-                };
-
-                const handleExperienceImageUpload = (e) => {
-                    const file = e.target.files[0];
-                    if (file) {
-                        const reader = new FileReader();
-                        reader.onload = (event) => {
-                            editingExperience.value.imagePreview = event.target.result;
-                            editingExperience.value.image = event.target.result;
-                        };
-                        reader.readAsDataURL(file);
-                    }
-                };
-
-                const saveExperience = () => {
-                    if (editingExperience.value.id) {
-                        const index = experiences.value.findIndex(e => e.id === editingExperience.value.id);
-                        if (index !== -1) {
-                            experiences.value[index] = {
-                                ...experiences.value[index],
-                                company: editingExperience.value.company,
-                                position: editingExperience.value.position,
-                                time: editingExperience.value.time,
-                                content: editingExperience.value.content,
-                                image: editingExperience.value.image
-                            };
-                        }
-                    } else {
-                        experiences.value.push({
-                            id: Date.now(),
-                            company: editingExperience.value.company,
-                            position: editingExperience.value.position,
-                            time: editingExperience.value.time,
-                            content: editingExperience.value.content,
-                            image: editingExperience.value.image
-                        });
-                    }
-                    closeModals();
-                    showToast('实习经历已保存');
-                };
-
-                const deleteExperience = (id) => {
-                    if (confirm('确定要删除这段实习经历吗？')) {
-                        experiences.value = experiences.value.filter(e => e.id !== id);
-                        showToast('实习经历已删除');
-                    }
-                };
-
-                const openPortfolioModal = () => {
-                    editingPortfolio.value = {
-                        id: null,
-                        category: '',
-                        title: '',
-                        description: '',
-                        images: [],
-                        video: null,
-                        videoPreview: null
-                    };
+                const openPortfolioModal = (item) => {
+                    selectedPortfolio.value = item;
                     showPortfolioModal.value = true;
                 };
 
-                const openPortfolioModalWithCategory = (category) => {
-                    editingPortfolio.value = {
-                        id: null,
-                        category: category,
-                        title: '',
-                        description: '',
-                        images: [],
-                        video: null,
-                        videoPreview: null
-                    };
-                    showPortfolioModal.value = true;
+                const closePortfolioModal = () => {
+                    showPortfolioModal.value = false;
+                    selectedPortfolio.value = {};
                 };
 
-                const getPortfoliosByCategory = (category) => {
-                    return portfolios.value.filter(item => item.category === category);
+                const handleBackgroundUpload = (section) => {
+                    const input = event.target;
+                    if (input.files && input.files[0]) {
+                        const reader = new FileReader();
+                        reader.onload = (e) => {
+                            settings.value[`${section}Background`] = e.target.result;
+                        };
+                        reader.readAsDataURL(input.files[0]);
+                    }
+                };
+
+                const handleProfileImageUpload = () => {
+                    const input = event.target;
+                    if (input.files && input.files[0]) {
+                        const reader = new FileReader();
+                        reader.onload = (e) => {
+                            profile.value.image = e.target.result;
+                        };
+                        reader.readAsDataURL(input.files[0]);
+                    }
+                };
+
+                const updateBackgroundStyles = () => {
+                    // 背景样式会通过计算属性自动更新
+                };
+
+                const handleSubmit = () => {
+                    alert('消息已发送！');
+                    form.value = { name: '', email: '', message: '' };
+                };
+
+                const openAddPortfolioModal = () => {
+                    // 这里可以实现添加作品的模态框
+                    alert('添加作品功能开发中');
                 };
 
                 const editPortfolio = (id) => {
-                    const item = portfolios.value.find(p => p.id === id);
-                    if (item) {
-                        editingPortfolio.value = {
-                            id: item.id,
-                            category: item.category,
-                            title: item.title,
-                            description: item.description,
-                            images: [...item.images],
-                            video: item.video,
-                            videoPreview: item.video
-                        };
-                        showPortfolioModal.value = true;
-                    }
-                };
-
-                const handlePortfolioImagesUpload = (e) => {
-                    const files = Array.from(e.target.files);
-                    files.forEach(file => {
-                        const reader = new FileReader();
-                        reader.onload = (event) => {
-                            editingPortfolio.value.images.push(event.target.result);
-                        };
-                        reader.readAsDataURL(file);
-                    });
-                };
-
-                const removePortfolioImage = (index) => {
-                    editingPortfolio.value.images.splice(index, 1);
-                };
-
-                const handlePortfolioVideoUpload = (e) => {
-                    const file = e.target.files[0];
-                    if (file) {
-                        const reader = new FileReader();
-                        reader.onload = (event) => {
-                            editingPortfolio.value.videoPreview = event.target.result;
-                            editingPortfolio.value.video = event.target.result;
-                        };
-                        reader.readAsDataURL(file);
-                    }
-                };
-
-                const openCampusPracticeModal = () => {
-                    editingCampusPractice.value = {
-                        id: null,
-                        organization: '',
-                        position: '',
-                        time: '',
-                        content: '',
-                        image: null,
-                        imagePreview: null
-                    };
-                    showCampusPracticeModal.value = true;
-                };
-
-                const editCampusPractice = (id) => {
-                    const practice = campusPractices.value.find(p => p.id === id);
-                    if (practice) {
-                        editingCampusPractice.value = {
-                            id: practice.id,
-                            organization: practice.organization,
-                            position: practice.position,
-                            time: practice.time,
-                            content: practice.content,
-                            image: practice.image,
-                            imagePreview: practice.image
-                        };
-                        showCampusPracticeModal.value = true;
-                    }
-                };
-
-                const handleCampusPracticeImageUpload = (e) => {
-                    const file = e.target.files[0];
-                    if (file) {
-                        const reader = new FileReader();
-                        reader.onload = (event) => {
-                            editingCampusPractice.value.image = event.target.result;
-                            editingCampusPractice.value.imagePreview = event.target.result;
-                        };
-                        reader.readAsDataURL(file);
-                    }
-                };
-
-                const saveCampusPractice = () => {
-                    if (editingCampusPractice.value.id) {
-                        const index = campusPractices.value.findIndex(p => p.id === editingCampusPractice.value.id);
-                        if (index !== -1) {
-                            campusPractices.value[index] = {
-                                ...campusPractices.value[index],
-                                organization: editingCampusPractice.value.organization,
-                                position: editingCampusPractice.value.position,
-                                time: editingCampusPractice.value.time,
-                                content: editingCampusPractice.value.content,
-                                image: editingCampusPractice.value.image
-                            };
-                        }
-                    } else {
-                        campusPractices.value.push({
-                            id: Date.now(),
-                            organization: editingCampusPractice.value.organization,
-                            position: editingCampusPractice.value.position,
-                            time: editingCampusPractice.value.time,
-                            content: editingCampusPractice.value.content,
-                            image: editingCampusPractice.value.image
-                        });
-                    }
-                    closeModals();
-                    showToast('校园实践已保存');
-                };
-
-                const deleteCampusPractice = (id) => {
-                    if (confirm('确定要删除这段校园实践吗？')) {
-                        campusPractices.value = campusPractices.value.filter(p => p.id !== id);
-                        showToast('校园实践已删除');
-                    }
-                };
-
-                const openPersonalSkillModal = () => {
-                    editingPersonalSkill.value = {
-                        id: null,
-                        name: '',
-                        level: 80,
-                        description: '',
-                        icon: '⭐'
-                    };
-                    showPersonalSkillModal.value = true;
-                };
-
-                const editPersonalSkill = (id) => {
-                    const skill = personalSkills.value.find(s => s.id === id);
-                    if (skill) {
-                        editingPersonalSkill.value = {
-                            ...skill
-                        };
-                        showPersonalSkillModal.value = true;
-                    }
-                };
-
-                const savePersonalSkill = () => {
-                    if (editingPersonalSkill.value.id) {
-                        const index = personalSkills.value.findIndex(s => s.id === editingPersonalSkill.value.id);
-                        if (index !== -1) {
-                            personalSkills.value[index] = {
-                                ...editingPersonalSkill.value
-                            };
-                        }
-                    } else {
-                        editingPersonalSkill.value.id = Date.now();
-                        personalSkills.value.push({
-                            ...editingPersonalSkill.value
-                        });
-                    }
-                    closeModals();
-                    showToast('个人技能已保存');
-                };
-
-                const deletePersonalSkill = (id) => {
-                    if (confirm('确定要删除这项个人技能吗？')) {
-                        personalSkills.value = personalSkills.value.filter(s => s.id !== id);
-                        showToast('个人技能已删除');
-                    }
-                };
-
-                const openPersonalEvaluationModal = () => {
-                    editingPersonalEvaluation.value = {
-                        title: personalEvaluation.value.title,
-                        content: personalEvaluation.value.content
-                    };
-                    showPersonalEvaluationModal.value = true;
-                };
-
-                const savePersonalEvaluation = () => {
-                    personalEvaluation.value = {
-                        title: editingPersonalEvaluation.value.title,
-                        content: editingPersonalEvaluation.value.content
-                    };
-                    closeModals();
-                    showToast('个人评价已保存');
-                };
-
-                const moveModuleUp = (index) => {
-                    if (index > 0) {
-                        const temp = moduleOrder.value[index];
-                        moduleOrder.value[index] = moduleOrder.value[index - 1];
-                        moduleOrder.value[index - 1] = temp;
-                        saveModuleOrder();
-                    }
-                };
-
-                const moveModuleDown = (index) => {
-                    if (index < moduleOrder.value.length - 1) {
-                        const temp = moduleOrder.value[index];
-                        moduleOrder.value[index] = moduleOrder.value[index + 1];
-                        moduleOrder.value[index + 1] = temp;
-                        saveModuleOrder();
-                    }
-                };
-
-                const saveModuleOrder = () => {
-                    localStorage.setItem('moduleOrder', JSON.stringify(moduleOrder.value));
-                    showToast('模块顺序已保存');
-                };
-
-                const loadModuleOrder = () => {
-                    const saved = localStorage.getItem('moduleOrder');
-                    if (saved) {
-                        moduleOrder.value = JSON.parse(saved);
-                    }
-                };
-
-                const getModuleName = (moduleId) => {
-                    const moduleNames = {
-                        'profile': '个人介绍',
-                        'experience': '实习经历',
-                        'campus': '校园实践',
-                        'skills': '个人技能',
-                        'evaluation': '个人评价',
-                        'portfolio': '作品展示'
-                    };
-                    return moduleNames[moduleId] || moduleId;
-                };
-
-                const savePortfolio = () => {
-                    if (editingPortfolio.value.id) {
-                        const index = portfolios.value.findIndex(p => p.id === editingPortfolio.value.id);
-                        if (index !== -1) {
-                            portfolios.value[index] = {
-                                ...portfolios.value[index],
-                                category: editingPortfolio.value.category,
-                                title: editingPortfolio.value.title,
-                                description: editingPortfolio.value.description,
-                                images: editingPortfolio.value.images,
-                                video: editingPortfolio.value.video
-                            };
-                        }
-                    } else {
-                        portfolios.value.push({
-                            id: Date.now(),
-                            category: editingPortfolio.value.category,
-                            title: editingPortfolio.value.title,
-                            description: editingPortfolio.value.description,
-                            images: editingPortfolio.value.images,
-                            video: editingPortfolio.value.video
-                        });
-                    }
-                    closeModals();
-                    showToast('作品已保存');
+                    // 这里可以实现编辑作品的功能
+                    alert('编辑作品功能开发中');
                 };
 
                 const deletePortfolio = (id) => {
                     if (confirm('确定要删除这个作品吗？')) {
-                        portfolios.value = portfolios.value.filter(p => p.id !== id);
-                        showToast('作品已删除');
+                        portfolios.value = portfolios.value.filter(item => item.id !== id);
                     }
                 };
 
-                const openImageViewer = (images) => {
-                    if (Array.isArray(images) && images.length > 0) {
-                        viewerImage.value = images[0];
-                        showImageViewer.value = true;
+                const openAddSkillModal = () => {
+                    // 这里可以实现添加技能的模态框
+                    alert('添加技能功能开发中');
+                };
+
+                const editSkill = (id) => {
+                    // 这里可以实现编辑技能的功能
+                    alert('编辑技能功能开发中');
+                };
+
+                const deleteSkill = (id) => {
+                    if (confirm('确定要删除这个技能吗？')) {
+                        personalSkills.value = personalSkills.value.filter(item => item.id !== id);
                     }
                 };
 
-                const closeImageViewer = () => {
-                    showImageViewer.value = false;
-                };
-
-                const closeModals = () => {
-                    showProfileModal.value = false;
-                    showExperienceModal.value = false;
-                    showPortfolioModal.value = false;
-                    showCampusPracticeModal.value = false;
-                    showPersonalSkillModal.value = false;
-                    showPersonalEvaluationModal.value = false;
-                };
-
-                const execCommand = (command) => {
-                    document.execCommand(command, false, null);
-                };
-
-                const saveAllData = () => {
-                    localStorage.setItem('portfolioData', JSON.stringify({
-                        profile: profile.value,
-                        experiences: experiences.value,
-                        portfolios: portfolios.value,
-                        campusPractices: campusPractices.value,
-                        personalSkills: personalSkills.value,
-                        personalEvaluation: personalEvaluation.value
-                    }));
-                    showToast('所有数据已保存');
-                };
-
-                const loadData = () => {
-                    const saved = localStorage.getItem('portfolioData');
-                    if (saved) {
-                        const data = JSON.parse(saved);
-                        profile.value = data.profile || profile.value;
-                        experiences.value = data.experiences || experiences.value;
-                        portfolios.value = data.portfolios || portfolios.value;
-                        campusPractices.value = data.campusPractices || campusPractices.value;
-                        personalSkills.value = data.personalSkills || personalSkills.value;
-                        personalEvaluation.value = data.personalEvaluation || personalEvaluation.value;
-                    }
-                };
-
+                // 生命周期钩子
                 onMounted(() => {
-                    loadData();
-                    loadSettings();
-                    loadModuleOrder();
-                    setTimeout(updateStyles, 200);
+                    // 监听滚动事件，添加导航栏滚动效果
+                    window.addEventListener('scroll', () => {
+                        const navbar = document.getElementById('navbar');
+                        if (window.scrollY > 50) {
+                            navbar.classList.add('scrolled');
+                        } else {
+                            navbar.classList.remove('scrolled');
+                        }
+                    });
+
+                    // 平滑滚动
+                    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                        anchor.addEventListener('click', function (e) {
+                            e.preventDefault();
+                            const target = document.querySelector(this.getAttribute('href'));
+                            if (target) {
+                                target.scrollIntoView({ behavior: 'smooth' });
+                            }
+                        });
+                    });
                 });
 
                 return {
-                    editMode,
-                    showProfileModal,
-                    showExperienceModal,
-                    showPortfolioModal,
-                    showCampusPracticeModal,
-                    showPersonalSkillModal,
-                    showPersonalEvaluationModal,
-                    showImageViewer,
                     showSettingsPanel,
-                    showLoginModal,
-                    viewerImage,
-                    currentCategory,
-                    toast,
-                    loginPassword,
-                    loginError,
-                    isLoggedIn,
+                    showPortfolioModal,
+                    selectedPortfolio,
+                    currentFilter,
+                    form,
                     profile,
-                    experiences,
-                    portfolios,
-                    campusPractices,
                     personalSkills,
-                    personalEvaluation,
-                    editingProfile,
-                    editingExperience,
-                    editingPortfolio,
-                    editingCampusPractice,
-                    editingPersonalSkill,
-                    editingPersonalEvaluation,
+                    portfolios,
                     settings,
-                    categories,
+                    allTags,
                     filteredPortfolios,
-                    portfolioLayoutClass,
-                    portfolioItemClass,
-                    moduleOrder,
-                    sortedModules,
-                    toggleEditMode,
-                    handleLogin,
-                    handleLogout,
+                    heroBackgroundStyle,
+                    aboutBackgroundStyle,
+                    skillsBackgroundStyle,
+                    portfolioBackgroundStyle,
+                    contactBackgroundStyle,
                     toggleSettingsPanel,
-                    updateStyles,
-                    saveSettings,
-                    resetSettings,
-                    handleHeroBackgroundUpload,
-                    handleBodyBackgroundUpload,
-                    handleProfileSectionBackgroundUpload,
-                    handleExperienceSectionBackgroundUpload,
-                    handlePortfolioSectionBackgroundUpload,
-                    openProfileModal,
-                    handleProfileImageUpload,
-                    saveProfile,
-                    openExperienceModal,
-                    editExperience,
-                    handleExperienceImageUpload,
-                    saveExperience,
-                    deleteExperience,
                     openPortfolioModal,
-                    openPortfolioModalWithCategory,
-                    getPortfoliosByCategory,
+                    closePortfolioModal,
+                    handleBackgroundUpload,
+                    handleProfileImageUpload,
+                    updateBackgroundStyles,
+                    handleSubmit,
+                    openAddPortfolioModal,
                     editPortfolio,
-                    handlePortfolioImagesUpload,
-                    removePortfolioImage,
-                    handlePortfolioVideoUpload,
-                    savePortfolio,
                     deletePortfolio,
-                    openCampusPracticeModal,
-                    editCampusPractice,
-                    handleCampusPracticeImageUpload,
-                    saveCampusPractice,
-                    deleteCampusPractice,
-                    openPersonalSkillModal,
-                    editPersonalSkill,
-                    savePersonalSkill,
-                    deletePersonalSkill,
-                    openPersonalEvaluationModal,
-                    savePersonalEvaluation,
-                    moveModuleUp,
-                    moveModuleDown,
-                    getModuleName,
-                    openImageViewer,
-                    closeImageViewer,
-                    closeModals,
-                    execCommand
+                    openAddSkillModal,
+                    editSkill,
+                    deleteSkill
                 };
             }
-        }).mount('#app');
+        }).mount('body');
     </script>
 </body>
 </html>
