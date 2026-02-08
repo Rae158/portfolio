@@ -13,10 +13,11 @@
         }
 
         :root {
-            --primary-green: #66bb6a;
-            --light-green: #81c784;
-            --pale-green: #f8fff8;
-            --dark-green: #43a047;
+            --primary-purple: #6a4c93;
+            --light-purple: #8d6bbf;
+            --pale-purple: #f8f5ff;
+            --dark-purple: #4b2e83;
+            --accent-pink: #e63946;
             --white: #ffffff;
             --light-gray: #f5f5f5;
             --gray: #666666;
@@ -31,11 +32,59 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background: linear-gradient(135deg, var(--pale-green) 0%, #e8f5e8 100%);
+            background: linear-gradient(135deg, #6a4c93 0%, #8d6bbf 50%, #c5a3ff 100%);
             min-height: 100vh;
             color: var(--dark-gray);
             line-height: 1.6;
             transition: background 0.3s;
+        }
+
+        .hero-section {
+            background: linear-gradient(135deg, rgba(106, 76, 147, 0.9) 0%, rgba(141, 107, 191, 0.8) 100%), url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800"%3E%3Cdefs%3E%3ClinearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%"%3E%3Cstop offset="0%" style="stop-color:%236a4c93;stop-opacity:0.8" /%3E%3Cstop offset="100%" style="stop-color:%238d6bbf;stop-opacity:0.6" /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width="100%" height="100%" fill="url(%23grad1)"/%3E%3Cg fill="%23ffffff" fill-opacity="0.1"%3E%3Ccircle cx="100" cy="100" r="10"/%3E%3Ccircle cx="300" cy="200" r="15"/%3E%3Ccircle cx="500" cy="150" r="12"/%3E%3Ccircle cx="700" cy="250" r="18"/%3E%3Ccircle cx="900" cy="180" r="14"/%3E%3Ccircle cx="1100" cy="120" r="10"/%3E%3Ccircle cx="200" cy="400" r="16"/%3E%3Ccircle cx="400" cy="450" r="13"/%3E%3Ccircle cx="600" cy="420" r="17"/%3E%3Ccircle cx="800" cy="480" r="11"/%3E%3Ccircle cx="1000" cy="430" r="15"/%3E%3Ccircle cx="100" cy="600" r="14"/%3E%3Ccircle cx="300" cy="650" r="12"/%3E%3Ccircle cx="500" cy="620" r="16"/%3E%3Ccircle cx="700" cy="680" r="13"/%3E%3Ccircle cx="900" cy="640" r="15"/%3E%3Ccircle cx="1100" cy="610" r="11"/%3E%3C/g%3E%3C/svg%3E');
+            background-size: cover;
+            background-position: center;
+            padding: 100px 0;
+            text-align: center;
+            color: white;
+            margin-bottom: 50px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .hero-title {
+            font-size: 3em;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-subtitle {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .hero-cta {
+            background: var(--accent-pink);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .hero-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(230, 57, 70, 0.4);
         }
 
         .container {
@@ -61,7 +110,7 @@
         }
 
         .edit-mode-btn {
-            background: linear-gradient(135deg, var(--primary-green) 0%, var(--dark-green) 100%);
+            background: linear-gradient(135deg, var(--primary-purple) 0%, var(--dark-purple) 100%);
             color: white;
             border: none;
             padding: 12px 24px;
@@ -76,11 +125,11 @@
 
         .edit-mode-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102, 187, 106, 0.4);
+            box-shadow: 0 5px 15px rgba(106, 76, 147, 0.4);
         }
 
         .edit-mode-btn.active {
-            background: linear-gradient(135deg, #ef5350 0%, #e53935 100%);
+            background: linear-gradient(135deg, var(--accent-pink) 0%, #c1121f 100%);
         }
 
         .section {
@@ -98,7 +147,7 @@
 
         .section-title {
             font-size: 1.8em;
-            color: var(--dark-green);
+            color: var(--dark-purple);
             margin-bottom: 25px;
             font-weight: 300;
             display: flex;
@@ -111,7 +160,7 @@
             content: '';
             width: 4px;
             height: 30px;
-            background: var(--primary-green);
+            background: var(--primary-purple);
             border-radius: 2px;
         }
 
@@ -143,14 +192,14 @@
 
         .profile-name {
             font-size: 2.5em;
-            color: var(--dark-green);
+            color: var(--dark-purple);
             margin-bottom: 10px;
             font-weight: 300;
             transition: font-size 0.3s;
         }
 
         .profile-title {
-            color: var(--primary-green);
+            color: var(--primary-purple);
             font-size: 1.2em;
             margin-bottom: 20px;
             font-weight: 500;
@@ -173,8 +222,8 @@
         }
 
         .skill-tag {
-            background: var(--pale-green);
-            color: var(--dark-green);
+            background: var(--pale-purple);
+            color: var(--dark-purple);
             padding: 8px 16px;
             border-radius: 20px;
             font-size: 0.9em;
@@ -184,8 +233,14 @@
             transition: all 0.3s;
         }
 
+        .skill-tag:hover {
+            background: var(--primary-purple);
+            color: white;
+            transform: translateY(-2px);
+        }
+
         .experience-item {
-            border-left: 3px solid var(--primary-green);
+            border-left: 3px solid var(--primary-purple);
             padding-left: 25px;
             margin-bottom: 30px;
             position: relative;
@@ -199,7 +254,7 @@
             top: 0;
             width: 13px;
             height: 13px;
-            background: var(--primary-green);
+            background: var(--primary-purple);
             border-radius: 50%;
         }
 
@@ -212,7 +267,7 @@
 
         .experience-company {
             font-size: 1.3em;
-            color: var(--dark-green);
+            color: var(--dark-purple);
             font-weight: 500;
             transition: font-size 0.3s;
         }
@@ -224,7 +279,7 @@
         }
 
         .experience-position {
-            color: var(--primary-green);
+            color: var(--primary-purple);
             font-size: 1.1em;
             margin-bottom: 10px;
             transition: font-size 0.3s;
@@ -963,9 +1018,17 @@
 </head>
 <body>
     <div id="app">
+        <div class="hero-section">
+            <div class="hero-content">
+                <h1 class="hero-title">个人作品集</h1>
+                <p class="hero-subtitle">展示我的项目、技能和经验</p>
+                <a href="#portfolio" class="hero-cta">查看作品集</a>
+            </div>
+        </div>
+
         <div class="container">
             <header class="header">
-                <h1>个人作品集</h1>
+                <h1>管理中心</h1>
                 <div style="display: flex; gap: 10px;">
                     <button v-if="isLoggedIn" class="edit-mode-btn" :class="{ active: editMode }" @click="toggleEditMode">
                         <span v-if="!editMode">✎ 编辑模式</span>
@@ -1031,7 +1094,7 @@
                 </div>
             </section>
 
-            <section class="section">
+            <section class="section" id="portfolio">
                 <h2 class="section-title">作品展示</h2>
                 <div class="category-filter">
                     <button class="category-btn" :class="{ active: currentCategory === 'all' }" @click="currentCategory = 'all'">全部</button>
