@@ -853,16 +853,39 @@
 
         .settings-header {
             padding: 20px;
-            background: linear-gradient(135deg, var(--primary-green) 0%, var(--dark-green) 100%);
+            background: linear-gradient(135deg, var(--primary-purple) 0%, var(--dark-purple) 100%);
             color: white;
             position: sticky;
             top: 0;
             z-index: 10;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         .settings-header h3 {
             margin: 0;
             font-size: 1.3em;
+        }
+
+        .settings-close-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .settings-close-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
         }
 
         .settings-content {
@@ -1144,6 +1167,7 @@
         <div class="settings-panel" :class="{ open: showSettingsPanel }">
             <div class="settings-header">
                 <h3>🎨 网页设置</h3>
+                <button class="settings-close-btn" @click="toggleSettingsPanel">✕</button>
             </div>
             <div class="settings-content">
                 <div class="settings-section">
