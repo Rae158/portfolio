@@ -1802,6 +1802,8 @@
 
         createApp({
             setup() {
+                const portfolioDescriptionEditor = ref(null);
+                const experienceDescriptionEditor = ref(null);
                 const showSettingsPanel = ref(false);
                 const showLoginModal = ref(false);
                 const showPortfolioViewer = ref(false);
@@ -2141,14 +2143,13 @@
                 const updateBackgroundStyles = () => {};
 
                 const formatText = (type, command) => {
-                    let editorRef;
+                    let editor;
                     if (type === 'portfolio') {
-                        editorRef = 'portfolioDescriptionEditor';
+                        editor = portfolioDescriptionEditor.value;
                     } else if (type === 'experience') {
-                        editorRef = 'experienceDescriptionEditor';
+                        editor = experienceDescriptionEditor.value;
                     }
                     
-                    const editor = document.querySelector(`[ref="${editorRef}"]`);
                     if (editor) {
                         document.execCommand(command, false, null);
                         editor.focus();
@@ -2429,6 +2430,8 @@
                 });
 
                 return {
+                    portfolioDescriptionEditor,
+                    experienceDescriptionEditor,
                     showSettingsPanel,
                     showLoginModal,
                     showPortfolioViewer,
