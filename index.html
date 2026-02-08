@@ -717,6 +717,52 @@
             color: var(--accent-color);
         }
 
+        .rich-text-editor {
+            border: 2px solid var(--light-gray);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .rich-text-toolbar {
+            background: var(--light-gray);
+            padding: 10px;
+            display: flex;
+            gap: 5px;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .rich-text-toolbar button {
+            padding: 5px 10px;
+            background: white;
+            border: 1px solid var(--light-gray);
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: var(--transition);
+        }
+
+        .rich-text-toolbar button:hover {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        .rich-text-content {
+            min-height: 150px;
+            padding: 15px;
+            outline: none;
+            overflow-y: auto;
+        }
+
+        .rich-text-content:focus {
+            background: rgba(58, 134, 255, 0.02);
+        }
+
+        .rich-text-content b,
+        .rich-text-content strong {
+            font-weight: bold;
+        }
+
         /* Portfolio Viewer */
         .portfolio-viewer {
             position: fixed;
@@ -1166,7 +1212,8 @@
             <a href="#" class="logo">Portfolio</a>
             <ul class="nav-links">
                 <li><a href="#about" class="nav-link">关于我</a></li>
-                <li><a href="#experience" class="nav-link">经历</a></li>
+                <li><a href="#experience" class="nav-link">实习经历</a></li>
+                <li><a href="#campus-experience" class="nav-link">校园经历</a></li>
                 <li><a href="#skills" class="nav-link">技能</a></li>
                 <li><a href="#portfolio" class="nav-link">作品</a></li>
                 <li><a href="#contact" class="nav-link">联系我</a></li>
@@ -1196,6 +1243,13 @@
                         <p><strong>邮箱：</strong>{{ profile.email }}</p>
                         <p><strong>电话：</strong>{{ profile.phone }}</p>
                         <p><strong>所在地：</strong>{{ profile.location }}</p>
+                        <p><strong>院校：</strong>{{ profile.school }}</p>
+                        <p><strong>专业：</strong>{{ profile.major }}</p>
+                        <p><strong>微信号：</strong>{{ profile.wechat }}</p>
+                        <p v-if="profile.awards"><strong>奖项：</strong></p>
+                        <ul v-if="profile.awards" style="margin-left: 20px;">
+                            <li v-for="(award, index) in profile.awards.split('\n').filter(a => a.trim())" :key="index">{{ award }}</li>
+                        </ul>
                     </div>
                 </div>
                 <div class="about-image">
@@ -1208,17 +1262,36 @@
     <!-- Experience Section -->
     <section class="section experience-section" id="experience" :style="experienceBackgroundStyle">
         <div class="container">
-            <h2 class="section-title">{{ settings.experienceSectionTitle }}</h2>
-            <div class="experience-timeline">
-                <div class="experience-item" v-for="item in experiences" :key="item.id">
+            <h2 class="section-title">实习经历</h2>
+            <div class="experience-timeline" v-if="internshipExperiences.length > 0">
+                <div class="experience-item" v-for="item in internshipExperiences" :key="item.id">
                     <div class="experience-content">
                         <span class="experience-date">{{ item.date }}</span>
                         <h3 class="experience-title">{{ item.title }}</h3>
                         <p class="experience-company">{{ item.company }}</p>
-                        <p class="experience-description">{{ item.description }}</p>
+                        <p class="experience-description" v-html="item.description"></p>
                     </div>
                 </div>
             </div>
+            <p v-else style="text-align: center; color: #6c757d;">暂无实习经历</p>
+        </div>
+    </section>
+
+    <!-- Campus Experience Section -->
+    <section class="section campus-experience-section" id="campus-experience" :style="experienceBackgroundStyle">
+        <div class="container">
+            <h2 class="section-title">校园经历</h2>
+            <div class="experience-timeline" v-if="campusExperiences.length > 0">
+                <div class="experience-item" v-for="item in campusExperiences" :key="item.id">
+                    <div class="experience-content">
+                        <span class="experience-date">{{ item.date }}</span>
+                        <h3 class="experience-title">{{ item.title }}</h3>
+                        <p class="experience-company">{{ item.company }}</p>
+                        <p class="experience-description" v-html="item.description"></p>
+                    </div>
+                </div>
+            </div>
+            <p v-else style="text-align: center; color: #6c757d;">暂无校园经历</p>
         </div>
     </section>
 
@@ -1255,7 +1328,7 @@
                     <div class="portfolio-item-content">
                         <span class="portfolio-item-category">{{ item.category }}</span>
                         <h3 class="portfolio-item-title">{{ item.title }}</h3>
-                        <p class="portfolio-item-description">{{ item.description }}</p>
+                        <p class="portfolio-item-description" v-html="item.description"></p>
                         <div class="portfolio-item-tags">
                             <span class="portfolio-item-tag" v-for="tag in item.tags" :key="tag">{{ tag }}</span>
                         </div>
@@ -1271,7 +1344,7 @@
         <div class="container">
             <h2 class="section-title">联系我</h2>
             <div class="contact-content">
-                <div class="contact-info">
+                <div class="contact-info" style="grid-column: 1 / -1;">
                     <h3>联系方式</h3>
                     <div class="contact-item">
                         <div class="contact-item-icon">📧</div>
@@ -1294,24 +1367,13 @@
                             <p>{{ profile.location }}</p>
                         </div>
                     </div>
-                </div>
-                <div class="contact-form">
-                    <h3>发送消息</h3>
-                    <form @submit.prevent="handleSubmit">
-                        <div class="form-group">
-                            <label for="name">姓名</label>
-                            <input type="text" id="name" v-model="form.name" required>
+                    <div class="contact-item">
+                        <div class="contact-item-icon">💬</div>
+                        <div class="contact-item-text">
+                            <h4>微信</h4>
+                            <p>{{ profile.wechat }}</p>
                         </div>
-                        <div class="form-group">
-                            <label for="email">邮箱</label>
-                            <input type="email" id="email" v-model="form.email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">消息</label>
-                            <textarea id="message" v-model="form.message" required></textarea>
-                        </div>
-                        <button type="submit" class="submit-btn">发送消息</button>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1393,6 +1455,131 @@
                     <input type="text" v-model="loginForm.username" placeholder="用户名" required>
                     <input type="password" v-model="loginForm.password" placeholder="密码" required>
                     <button type="submit" class="submit-btn">登录</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Portfolio Modal -->
+    <div class="modal" :class="{ active: showPortfolioModal }" @click.self="closePortfolioModal">
+        <div class="modal-content" style="max-width: 800px;">
+            <div class="modal-header">
+                <h3 class="modal-title">{{ portfolioModalMode === 'add' ? '添加作品' : '编辑作品' }}</h3>
+                <button class="modal-close" @click="closePortfolioModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form @submit.prevent="savePortfolio">
+                    <div class="form-group">
+                        <label>作品标题</label>
+                        <input type="text" v-model="portfolioForm.title" required>
+                    </div>
+                    <div class="form-group">
+                        <label>作品分类</label>
+                        <input type="text" v-model="portfolioForm.category" required>
+                    </div>
+                    <div class="form-group">
+                        <label>作品描述</label>
+                        <div class="rich-text-editor">
+                            <div class="rich-text-toolbar">
+                                <button type="button" @click="formatText('portfolio', 'bold')"><b>B</b></button>
+                                <button type="button" @click="formatText('portfolio', 'italic')"><i>I</i></button>
+                                <button type="button" @click="formatText('portfolio', 'underline')"><u>U</u></button>
+                            </div>
+                            <div class="rich-text-content" 
+                                 contenteditable="true" 
+                                 v-html="portfolioForm.description" 
+                                 @input="portfolioForm.description = $event.target.innerHTML"
+                                 ref="portfolioDescriptionEditor"></div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>作品图片（可多选）</label>
+                        <input type="file" accept="image/*" multiple @change="handlePortfolioImageUpload">
+                        <div v-if="portfolioForm.images.length > 0" style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px;">
+                            <img v-for="(img, idx) in portfolioForm.images" :key="idx" :src="img" style="width: 100px; height: 100px; object-fit: cover; border-radius: 5px;">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>标签（用逗号分隔）</label>
+                        <input type="text" v-model="portfolioForm.tagsString" placeholder="例如：UI, 移动应用, 健康">
+                    </div>
+                    <button type="submit" class="submit-btn">{{ portfolioModalMode === 'add' ? '添加作品' : '保存修改' }}</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Experience Modal -->
+    <div class="modal" :class="{ active: showExperienceModal }" @click.self="closeExperienceModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">{{ experienceModalMode === 'add' ? '添加经历' : '编辑经历' }}</h3>
+                <button class="modal-close" @click="closeExperienceModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form @submit.prevent="saveExperience">
+                    <div class="form-group">
+                        <label>经历类型</label>
+                        <select v-model="experienceForm.type" required>
+                            <option value="internship">实习经历</option>
+                            <option value="campus">校园经历</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>职位/角色</label>
+                        <input type="text" v-model="experienceForm.title" required>
+                    </div>
+                    <div class="form-group">
+                        <label>公司/组织</label>
+                        <input type="text" v-model="experienceForm.company" required>
+                    </div>
+                    <div class="form-group">
+                        <label>时间</label>
+                        <input type="text" v-model="experienceForm.date" required>
+                    </div>
+                    <div class="form-group">
+                        <label>描述</label>
+                        <div class="rich-text-editor">
+                            <div class="rich-text-toolbar">
+                                <button type="button" @click="formatText('experience', 'bold')"><b>B</b></button>
+                                <button type="button" @click="formatText('experience', 'italic')"><i>I</i></button>
+                                <button type="button" @click="formatText('experience', 'underline')"><u>U</u></button>
+                            </div>
+                            <div class="rich-text-content" 
+                                 contenteditable="true" 
+                                 v-html="experienceForm.description" 
+                                 @input="experienceForm.description = $event.target.innerHTML"
+                                 ref="experienceDescriptionEditor"></div>
+                        </div>
+                    </div>
+                    <button type="submit" class="submit-btn">{{ experienceModalMode === 'add' ? '添加经历' : '保存修改' }}</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Skill Modal -->
+    <div class="modal" :class="{ active: showSkillModal }" @click.self="closeSkillModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">{{ skillModalMode === 'add' ? '添加技能' : '编辑技能' }}</h3>
+                <button class="modal-close" @click="closeSkillModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form @submit.prevent="saveSkill">
+                    <div class="form-group">
+                        <label>技能名称</label>
+                        <input type="text" v-model="skillForm.name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>熟练程度 (0-100)</label>
+                        <input type="number" v-model="skillForm.level" min="0" max="100" required>
+                    </div>
+                    <div class="form-group">
+                        <label>图标（emoji）</label>
+                        <input type="text" v-model="skillForm.icon" placeholder="例如：🎨">
+                    </div>
+                    <button type="submit" class="submit-btn">{{ skillModalMode === 'add' ? '添加技能' : '保存修改' }}</button>
                 </form>
             </div>
         </div>
@@ -1506,6 +1693,22 @@
                     <input type="text" v-model="profile.location">
                 </div>
                 <div class="setting-item">
+                    <label>院校</label>
+                    <input type="text" v-model="profile.school">
+                </div>
+                <div class="setting-item">
+                    <label>专业</label>
+                    <input type="text" v-model="profile.major">
+                </div>
+                <div class="setting-item">
+                    <label>奖项（每行一个）</label>
+                    <textarea v-model="profile.awards" rows="3" placeholder="每行一个奖项"></textarea>
+                </div>
+                <div class="setting-item">
+                    <label>微信号</label>
+                    <input type="text" v-model="profile.wechat">
+                </div>
+                <div class="setting-item">
                     <label>头像</label>
                     <input type="file" accept="image/*" @change="handleProfileImageUpload">
                     <img v-if="profile.image" :src="profile.image" alt="头像" style="max-width: 100px; max-height: 100px; margin-top: 10px; border-radius: 50%;">
@@ -1513,9 +1716,21 @@
             </div>
 
             <div class="settings-section">
-                <h4>经历管理</h4>
-                <button class="submit-btn" style="margin-bottom: 20px;" @click="openAddExperienceModal">添加经历</button>
-                <div v-for="(item, index) in experiences" :key="item.id" style="background: #f8f9fa; padding: 15px; border-radius: 10px; margin-bottom: 10px;">
+                <h4>实习经历管理</h4>
+                <button class="submit-btn" style="margin-bottom: 20px;" @click="openAddExperienceModal('internship')">添加实习经历</button>
+                <div v-for="(item, index) in internshipExperiences" :key="item.id" style="background: #f8f9fa; padding: 15px; border-radius: 10px; margin-bottom: 10px;">
+                    <h5>{{ item.title }}</h5>
+                    <p>{{ item.company }}</p>
+                    <p>{{ item.date }}</p>
+                    <button class="filter-btn" style="margin-right: 10px;" @click="editExperience(item.id)">编辑</button>
+                    <button class="filter-btn" style="background: #ff006e; color: white; border-color: #ff006e;" @click="deleteExperience(item.id)">删除</button>
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <h4>校园经历管理</h4>
+                <button class="submit-btn" style="margin-bottom: 20px;" @click="openAddExperienceModal('campus')">添加校园经历</button>
+                <div v-for="(item, index) in campusExperiences" :key="item.id" style="background: #f8f9fa; padding: 15px; border-radius: 10px; margin-bottom: 10px;">
                     <h5>{{ item.title }}</h5>
                     <p>{{ item.company }}</p>
                     <p>{{ item.date }}</p>
@@ -1590,6 +1805,9 @@
                 const showSettingsPanel = ref(false);
                 const showLoginModal = ref(false);
                 const showPortfolioViewer = ref(false);
+                const showPortfolioModal = ref(false);
+                const showExperienceModal = ref(false);
+                const showSkillModal = ref(false);
                 const selectedPortfolio = ref({});
                 const currentFilter = ref('all');
                 const viewerMode = ref('single');
@@ -1598,6 +1816,32 @@
                 const form = ref({ name: '', email: '', message: '' });
                 const loginForm = ref({ username: '', password: '' });
                 const newTag = ref('');
+                const portfolioModalMode = ref('add');
+                const experienceModalMode = ref('add');
+                const skillModalMode = ref('add');
+                const portfolioForm = ref({
+                    id: null,
+                    title: '',
+                    category: '',
+                    description: '',
+                    images: [],
+                    tags: [],
+                    tagsString: ''
+                });
+                const experienceForm = ref({
+                    id: null,
+                    type: 'internship',
+                    title: '',
+                    company: '',
+                    date: '',
+                    description: ''
+                });
+                const skillForm = ref({
+                    id: null,
+                    name: '',
+                    level: 80,
+                    icon: ''
+                });
 
                 const profile = ref({
                     name: '张三',
@@ -1606,12 +1850,17 @@
                     email: 'zhangsan@example.com',
                     phone: '13800138000',
                     location: '北京市',
+                    school: '某某大学',
+                    major: '计算机科学与技术',
+                    awards: '2023年优秀设计师奖\n2022年最佳用户体验奖',
+                    wechat: 'zhangsan_wx',
                     image: 'https://via.placeholder.com/600x800'
                 });
 
                 const experiences = ref([
                     {
                         id: 1,
+                        type: 'internship',
                         title: 'UI/UX 设计师',
                         company: '某科技公司',
                         date: '2021.06 - 至今',
@@ -1619,6 +1868,7 @@
                     },
                     {
                         id: 2,
+                        type: 'internship',
                         title: '前端开发实习生',
                         company: '某互联网公司',
                         date: '2020.07 - 2021.05',
@@ -1626,6 +1876,7 @@
                     },
                     {
                         id: 3,
+                        type: 'campus',
                         title: '学生会技术部部长',
                         company: '某某大学',
                         date: '2018.09 - 2020.06',
@@ -1693,6 +1944,14 @@
 
                 const allTags = computed(() => {
                     return customTags.value;
+                });
+
+                const internshipExperiences = computed(() => {
+                    return experiences.value.filter(e => e.type === 'internship');
+                });
+
+                const campusExperiences = computed(() => {
+                    return experiences.value.filter(e => e.type === 'campus');
                 });
 
                 const filteredPortfolios = computed(() => {
@@ -1865,11 +2124,35 @@
                     }
                 };
 
+                const handlePortfolioImageUpload = () => {
+                    const input = event.target;
+                    if (input.files && input.files.length > 0) {
+                        const files = Array.from(input.files);
+                        files.forEach(file => {
+                            const reader = new FileReader();
+                            reader.onload = (e) => {
+                                portfolioForm.value.images.push(e.target.result);
+                            };
+                            reader.readAsDataURL(file);
+                        });
+                    }
+                };
+
                 const updateBackgroundStyles = () => {};
 
-                const handleSubmit = () => {
-                    alert('消息已发送！');
-                    form.value = { name: '', email: '', message: '' };
+                const formatText = (type, command) => {
+                    let editorRef;
+                    if (type === 'portfolio') {
+                        editorRef = 'portfolioDescriptionEditor';
+                    } else if (type === 'experience') {
+                        editorRef = 'experienceDescriptionEditor';
+                    }
+                    
+                    const editor = document.querySelector(`[ref="${editorRef}"]`);
+                    if (editor) {
+                        document.execCommand(command, false, null);
+                        editor.focus();
+                    }
                 };
 
                 const deleteTag = (tag) => {
@@ -1893,11 +2176,79 @@
                 };
 
                 const openAddPortfolioModal = () => {
-                    alert('添加作品功能开发中');
+                    portfolioModalMode.value = 'add';
+                    portfolioForm.value = {
+                        id: null,
+                        title: '',
+                        category: '',
+                        description: '',
+                        images: [],
+                        tags: [],
+                        tagsString: ''
+                    };
+                    showPortfolioModal.value = true;
                 };
 
                 const editPortfolio = (id) => {
-                    alert('编辑作品功能开发中');
+                    const item = portfolios.value.find(p => p.id === id);
+                    if (item) {
+                        portfolioModalMode.value = 'edit';
+                        portfolioForm.value = {
+                            id: item.id,
+                            title: item.title,
+                            category: item.category,
+                            description: item.description,
+                            images: [...item.images],
+                            tags: [...item.tags],
+                            tagsString: item.tags.join(', ')
+                        };
+                        showPortfolioModal.value = true;
+                    }
+                };
+
+                const savePortfolio = () => {
+                    const tags = portfolioForm.value.tagsString
+                        .split(',')
+                        .map(tag => tag.trim())
+                        .filter(tag => tag);
+
+                    if (portfolioModalMode.value === 'add') {
+                        const newId = Math.max(...portfolios.value.map(p => p.id), 0) + 1;
+                        portfolios.value.push({
+                            id: newId,
+                            title: portfolioForm.value.title,
+                            category: portfolioForm.value.category,
+                            description: portfolioForm.value.description,
+                            images: portfolioForm.value.images,
+                            tags: tags
+                        });
+                    } else {
+                        const index = portfolios.value.findIndex(p => p.id === portfolioForm.value.id);
+                        if (index !== -1) {
+                            portfolios.value[index] = {
+                                id: portfolioForm.value.id,
+                                title: portfolioForm.value.title,
+                                category: portfolioForm.value.category,
+                                description: portfolioForm.value.description,
+                                images: portfolioForm.value.images,
+                                tags: tags
+                            };
+                        }
+                    }
+                    closePortfolioModal();
+                };
+
+                const closePortfolioModal = () => {
+                    showPortfolioModal.value = false;
+                    portfolioForm.value = {
+                        id: null,
+                        title: '',
+                        category: '',
+                        description: '',
+                        images: [],
+                        tags: [],
+                        tagsString: ''
+                    };
                 };
 
                 const deletePortfolio = (id) => {
@@ -1906,12 +2257,72 @@
                     }
                 };
 
-                const openAddExperienceModal = () => {
-                    alert('添加经历功能开发中');
+                const openAddExperienceModal = (type) => {
+                    experienceModalMode.value = 'add';
+                    experienceForm.value = {
+                        id: null,
+                        type: type || 'internship',
+                        title: '',
+                        company: '',
+                        date: '',
+                        description: ''
+                    };
+                    showExperienceModal.value = true;
                 };
 
                 const editExperience = (id) => {
-                    alert('编辑经历功能开发中');
+                    const item = experiences.value.find(e => e.id === id);
+                    if (item) {
+                        experienceModalMode.value = 'edit';
+                        experienceForm.value = {
+                            id: item.id,
+                            type: item.type,
+                            title: item.title,
+                            company: item.company,
+                            date: item.date,
+                            description: item.description
+                        };
+                        showExperienceModal.value = true;
+                    }
+                };
+
+                const saveExperience = () => {
+                    if (experienceModalMode.value === 'add') {
+                        const newId = Math.max(...experiences.value.map(e => e.id), 0) + 1;
+                        experiences.value.push({
+                            id: newId,
+                            type: experienceForm.value.type,
+                            title: experienceForm.value.title,
+                            company: experienceForm.value.company,
+                            date: experienceForm.value.date,
+                            description: experienceForm.value.description
+                        });
+                    } else {
+                        const index = experiences.value.findIndex(e => e.id === experienceForm.value.id);
+                        if (index !== -1) {
+                            experiences.value[index] = {
+                                id: experienceForm.value.id,
+                                type: experienceForm.value.type,
+                                title: experienceForm.value.title,
+                                company: experienceForm.value.company,
+                                date: experienceForm.value.date,
+                                description: experienceForm.value.description
+                            };
+                        }
+                    }
+                    closeExperienceModal();
+                };
+
+                const closeExperienceModal = () => {
+                    showExperienceModal.value = false;
+                    experienceForm.value = {
+                        id: null,
+                        type: 'internship',
+                        title: '',
+                        company: '',
+                        date: '',
+                        description: ''
+                    };
                 };
 
                 const deleteExperience = (id) => {
@@ -1921,11 +2332,61 @@
                 };
 
                 const openAddSkillModal = () => {
-                    alert('添加技能功能开发中');
+                    skillModalMode.value = 'add';
+                    skillForm.value = {
+                        id: null,
+                        name: '',
+                        level: 80,
+                        icon: ''
+                    };
+                    showSkillModal.value = true;
                 };
 
                 const editSkill = (id) => {
-                    alert('编辑技能功能开发中');
+                    const item = personalSkills.value.find(s => s.id === id);
+                    if (item) {
+                        skillModalMode.value = 'edit';
+                        skillForm.value = {
+                            id: item.id,
+                            name: item.name,
+                            level: item.level,
+                            icon: item.icon
+                        };
+                        showSkillModal.value = true;
+                    }
+                };
+
+                const saveSkill = () => {
+                    if (skillModalMode.value === 'add') {
+                        const newId = Math.max(...personalSkills.value.map(s => s.id), 0) + 1;
+                        personalSkills.value.push({
+                            id: newId,
+                            name: skillForm.value.name,
+                            level: parseInt(skillForm.value.level),
+                            icon: skillForm.value.icon
+                        });
+                    } else {
+                        const index = personalSkills.value.findIndex(s => s.id === skillForm.value.id);
+                        if (index !== -1) {
+                            personalSkills.value[index] = {
+                                id: skillForm.value.id,
+                                name: skillForm.value.name,
+                                level: parseInt(skillForm.value.level),
+                                icon: skillForm.value.icon
+                            };
+                        }
+                    }
+                    closeSkillModal();
+                };
+
+                const closeSkillModal = () => {
+                    showSkillModal.value = false;
+                    skillForm.value = {
+                        id: null,
+                        name: '',
+                        level: 80,
+                        icon: ''
+                    };
                 };
 
                 const deleteSkill = (id) => {
@@ -1971,6 +2432,9 @@
                     showSettingsPanel,
                     showLoginModal,
                     showPortfolioViewer,
+                    showPortfolioModal,
+                    showExperienceModal,
+                    showSkillModal,
                     selectedPortfolio,
                     currentFilter,
                     viewerMode,
@@ -1979,6 +2443,12 @@
                     form,
                     loginForm,
                     newTag,
+                    portfolioModalMode,
+                    experienceModalMode,
+                    skillModalMode,
+                    portfolioForm,
+                    experienceForm,
+                    skillForm,
                     profile,
                     experiences,
                     personalSkills,
@@ -1986,6 +2456,8 @@
                     customTags,
                     settings,
                     allTags,
+                    internshipExperiences,
+                    campusExperiences,
                     filteredPortfolios,
                     heroBackgroundStyle,
                     aboutBackgroundStyle,
@@ -2004,19 +2476,26 @@
                     nextImage,
                     handleBackgroundUpload,
                     handleProfileImageUpload,
+                    handlePortfolioImageUpload,
                     updateBackgroundStyles,
-                    handleSubmit,
+                    formatText,
                     deleteTag,
                     addTag,
                     deleteCustomTag,
                     openAddPortfolioModal,
                     editPortfolio,
+                    savePortfolio,
+                    closePortfolioModal,
                     deletePortfolio,
                     openAddExperienceModal,
                     editExperience,
+                    saveExperience,
+                    closeExperienceModal,
                     deleteExperience,
                     openAddSkillModal,
                     editSkill,
+                    saveSkill,
+                    closeSkillModal,
                     deleteSkill
                 };
             }
