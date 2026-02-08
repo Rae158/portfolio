@@ -37,6 +37,9 @@
             color: var(--dark-gray);
             line-height: 1.6;
             transition: background 0.3s;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
         }
 
         .hero-section {
@@ -47,6 +50,7 @@
             text-align: center;
             color: white;
             margin-bottom: 50px;
+            transition: background 0.3s;
         }
 
         .hero-content {
@@ -139,10 +143,18 @@
             margin-bottom: 30px;
             box-shadow: var(--shadow);
             transition: all 0.3s;
+            background-size: cover;
+            background-position: center;
         }
 
         .section:hover {
             box-shadow: var(--shadow-hover);
+        }
+
+        .section.has-bg {
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
         }
 
         .section-title {
@@ -749,6 +761,32 @@
             font-size: 0.85em;
         }
 
+        .bg-preview {
+            max-width: 100%;
+            max-height: 150px;
+            margin-top: 10px;
+            border-radius: 8px;
+            object-fit: cover;
+            border: 2px solid var(--light-gray);
+        }
+
+        .remove-bg-btn {
+            background: #ef5350;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.85em;
+            margin-top: 8px;
+            transition: all 0.3s;
+        }
+
+        .remove-bg-btn:hover {
+            background: #c62828;
+            transform: translateY(-1px);
+        }
+
         .category-filter {
             display: flex;
             gap: 15px;
@@ -1041,7 +1079,7 @@
 </head>
 <body>
     <div id="app">
-        <div class="hero-section">
+        <div class="hero-section" :style="settings.heroBackground ? { backgroundImage: 'url(' + settings.heroBackground + ')' } : {}">
             <div class="hero-content">
                 <h1 class="hero-title">个人作品集</h1>
                 <p class="hero-subtitle">展示我的项目、技能和经验</p>
@@ -1066,7 +1104,7 @@
                 </div>
             </header>
 
-            <section class="section">
+            <section class="section" :style="settings.profileSectionBackground ? { backgroundImage: 'url(' + settings.profileSectionBackground + ')' } : {}">
                 <h2 class="section-title">个人介绍</h2>
                 <div class="profile-section">
                     <div class="profile-image-container">
@@ -1091,7 +1129,7 @@
                 </div>
             </section>
 
-            <section class="section">
+            <section class="section" :style="settings.experienceSectionBackground ? { backgroundImage: 'url(' + settings.experienceSectionBackground + ')' } : {}">
                 <h2 class="section-title">实习经历</h2>
                 <div v-if="editMode" style="margin-bottom: 20px;">
                     <button class="add-btn" @click="openExperienceModal">
@@ -1117,7 +1155,7 @@
                 </div>
             </section>
 
-            <section class="section" id="portfolio">
+            <section class="section" id="portfolio" :style="settings.portfolioSectionBackground ? { backgroundImage: 'url(' + settings.portfolioSectionBackground + ')' } : {}">
                 <h2 class="section-title">作品展示</h2>
                 <div class="category-filter">
                     <button class="category-btn" :class="{ active: currentCategory === 'all' }" @click="currentCategory = 'all'">全部</button>
@@ -1260,6 +1298,55 @@
                     <div class="setting-item">
                         <label>轮播项目宽度 <span class="setting-value">{{ settings.carouselItemWidth }}px</span></label>
                         <input type="range" v-model="settings.carouselItemWidth" min="300" max="600" @input="updateStyles">
+                    </div>
+                </div>
+
+                <div class="settings-section">
+                    <h4>🖼️ 背景图片</h4>
+                    <div class="setting-item">
+                        <label>封面背景</label>
+                        <div class="file-input-wrapper">
+                            <button class="file-input-btn">选择图片</button>
+                            <input type="file" accept="image/*" @change="handleHeroBackgroundUpload">
+                        </div>
+                        <img v-if="settings.heroBackground" :src="settings.heroBackground" class="bg-preview">
+                        <button v-if="settings.heroBackground" @click="settings.heroBackground = null; updateStyles()" class="remove-bg-btn">删除背景</button>
+                    </div>
+                    <div class="setting-item">
+                        <label>网页背景</label>
+                        <div class="file-input-wrapper">
+                            <button class="file-input-btn">选择图片</button>
+                            <input type="file" accept="image/*" @change="handleBodyBackgroundUpload">
+                        </div>
+                        <img v-if="settings.bodyBackground" :src="settings.bodyBackground" class="bg-preview">
+                        <button v-if="settings.bodyBackground" @click="settings.bodyBackground = null; updateStyles()" class="remove-bg-btn">删除背景</button>
+                    </div>
+                    <div class="setting-item">
+                        <label>个人介绍模块背景</label>
+                        <div class="file-input-wrapper">
+                            <button class="file-input-btn">选择图片</button>
+                            <input type="file" accept="image/*" @change="handleProfileSectionBackgroundUpload">
+                        </div>
+                        <img v-if="settings.profileSectionBackground" :src="settings.profileSectionBackground" class="bg-preview">
+                        <button v-if="settings.profileSectionBackground" @click="settings.profileSectionBackground = null; updateStyles()" class="remove-bg-btn">删除背景</button>
+                    </div>
+                    <div class="setting-item">
+                        <label>实习经历模块背景</label>
+                        <div class="file-input-wrapper">
+                            <button class="file-input-btn">选择图片</button>
+                            <input type="file" accept="image/*" @change="handleExperienceSectionBackgroundUpload">
+                        </div>
+                        <img v-if="settings.experienceSectionBackground" :src="settings.experienceSectionBackground" class="bg-preview">
+                        <button v-if="settings.experienceSectionBackground" @click="settings.experienceSectionBackground = null; updateStyles()" class="remove-bg-btn">删除背景</button>
+                    </div>
+                    <div class="setting-item">
+                        <label>作品展示模块背景</label>
+                        <div class="file-input-wrapper">
+                            <button class="file-input-btn">选择图片</button>
+                            <input type="file" accept="image/*" @change="handlePortfolioSectionBackgroundUpload">
+                        </div>
+                        <img v-if="settings.portfolioSectionBackground" :src="settings.portfolioSectionBackground" class="bg-preview">
+                        <button v-if="settings.portfolioSectionBackground" @click="settings.portfolioSectionBackground = null; updateStyles()" class="remove-bg-btn">删除背景</button>
                     </div>
                 </div>
 
@@ -1514,7 +1601,12 @@
                     bgGradientStart: '#f8fff8',
                     bgGradientEnd: '#e8f5e8',
                     masonryColumns: 3,
-                    carouselItemWidth: 400
+                    carouselItemWidth: 400,
+                    heroBackground: null,
+                    bodyBackground: null,
+                    profileSectionBackground: null,
+                    experienceSectionBackground: null,
+                    portfolioSectionBackground: null
                 });
 
                 const categories = computed(() => {
@@ -1593,7 +1685,11 @@
                     root.style.setProperty('--pale-green', settings.value.paleGreen);
                     root.style.setProperty('--dark-green', settings.value.darkGreen);
                     
-                    document.body.style.background = `linear-gradient(135deg, ${settings.value.bgGradientStart} 0%, ${settings.value.bgGradientEnd} 100%)`;
+                    if (settings.value.bodyBackground) {
+                        document.body.style.background = `url(${settings.value.bodyBackground})`;
+                    } else {
+                        document.body.style.background = `linear-gradient(135deg, ${settings.value.bgGradientStart} 0%, ${settings.value.bgGradientEnd} 100%)`;
+                    }
                     
                     document.querySelector('.container').style.maxWidth = `${settings.value.containerMaxWidth}px`;
                     document.querySelector('.header h1').style.fontSize = `${settings.value.headerFontSize}em`;
@@ -1601,6 +1697,66 @@
                     document.querySelector('.profile-name').style.fontSize = `${settings.value.nameFontSize}em`;
                     document.querySelector('.profile-title').style.fontSize = `${settings.value.titleFontSize}em`;
                     document.querySelector('.profile-content').style.fontSize = `${settings.value.contentFontSize}em`;
+                };
+
+                const handleHeroBackgroundUpload = (e) => {
+                    const file = e.target.files[0];
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = (event) => {
+                            settings.value.heroBackground = event.target.result;
+                            updateStyles();
+                        };
+                        reader.readAsDataURL(file);
+                    }
+                };
+
+                const handleBodyBackgroundUpload = (e) => {
+                    const file = e.target.files[0];
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = (event) => {
+                            settings.value.bodyBackground = event.target.result;
+                            updateStyles();
+                        };
+                        reader.readAsDataURL(file);
+                    }
+                };
+
+                const handleProfileSectionBackgroundUpload = (e) => {
+                    const file = e.target.files[0];
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = (event) => {
+                            settings.value.profileSectionBackground = event.target.result;
+                            updateStyles();
+                        };
+                        reader.readAsDataURL(file);
+                    }
+                };
+
+                const handleExperienceSectionBackgroundUpload = (e) => {
+                    const file = e.target.files[0];
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = (event) => {
+                            settings.value.experienceSectionBackground = event.target.result;
+                            updateStyles();
+                        };
+                        reader.readAsDataURL(file);
+                    }
+                };
+
+                const handlePortfolioSectionBackgroundUpload = (e) => {
+                    const file = e.target.files[0];
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = (event) => {
+                            settings.value.portfolioSectionBackground = event.target.result;
+                            updateStyles();
+                        };
+                        reader.readAsDataURL(file);
+                    }
                 };
 
                 const saveSettings = () => {
@@ -1930,6 +2086,11 @@
                     updateStyles,
                     saveSettings,
                     resetSettings,
+                    handleHeroBackgroundUpload,
+                    handleBodyBackgroundUpload,
+                    handleProfileSectionBackgroundUpload,
+                    handleExperienceSectionBackgroundUpload,
+                    handlePortfolioSectionBackgroundUpload,
                     openProfileModal,
                     handleProfileImageUpload,
                     saveProfile,
