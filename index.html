@@ -23,6 +23,10 @@
             --dark-gray: #333333;
             --shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
             --shadow-hover: 0 4px 16px rgba(0, 0, 0, 0.12);
+            --portfolio-gap: 25px;
+            --portfolio-min-width: 350px;
+            --masonry-columns: 3;
+            --carousel-item-width: 400px;
         }
 
         body {
@@ -31,12 +35,14 @@
             min-height: 100vh;
             color: var(--dark-gray);
             line-height: 1.6;
+            transition: background 0.3s;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
+            transition: max-width 0.3s;
         }
 
         .header {
@@ -51,6 +57,7 @@
             font-size: 2em;
             font-weight: 300;
             color: var(--dark-green);
+            transition: font-size 0.3s;
         }
 
         .edit-mode-btn {
@@ -97,6 +104,7 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            transition: font-size 0.3s;
         }
 
         .section-title::before {
@@ -126,6 +134,7 @@
             border: 4px solid var(--white);
             box-shadow: var(--shadow-hover);
             background: var(--light-gray);
+            transition: all 0.3s;
         }
 
         .profile-info {
@@ -137,6 +146,7 @@
             color: var(--dark-green);
             margin-bottom: 10px;
             font-weight: 300;
+            transition: font-size 0.3s;
         }
 
         .profile-title {
@@ -144,6 +154,7 @@
             font-size: 1.2em;
             margin-bottom: 20px;
             font-weight: 500;
+            transition: font-size 0.3s;
         }
 
         .profile-content {
@@ -151,6 +162,7 @@
             font-size: 1.1em;
             line-height: 1.8;
             margin-bottom: 20px;
+            transition: font-size 0.3s;
         }
 
         .skills-grid {
@@ -169,6 +181,7 @@
             display: flex;
             align-items: center;
             gap: 8px;
+            transition: all 0.3s;
         }
 
         .experience-item {
@@ -176,6 +189,7 @@
             padding-left: 25px;
             margin-bottom: 30px;
             position: relative;
+            transition: all 0.3s;
         }
 
         .experience-item::before {
@@ -200,28 +214,33 @@
             font-size: 1.3em;
             color: var(--dark-green);
             font-weight: 500;
+            transition: font-size 0.3s;
         }
 
         .experience-time {
             color: var(--gray);
             font-size: 0.9em;
+            transition: font-size 0.3s;
         }
 
         .experience-position {
             color: var(--primary-green);
             font-size: 1.1em;
             margin-bottom: 10px;
+            transition: font-size 0.3s;
         }
 
         .experience-content {
             color: var(--gray);
             line-height: 1.8;
+            transition: font-size 0.3s;
         }
 
         .portfolio-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 25px;
+            gap: var(--portfolio-gap);
+            grid-template-columns: repeat(auto-fill, minmax(var(--portfolio-min-width), 1fr));
+            transition: all 0.3s;
         }
 
         .portfolio-item {
@@ -289,6 +308,7 @@
             margin-bottom: 8px;
             text-transform: uppercase;
             letter-spacing: 1px;
+            transition: font-size 0.3s;
         }
 
         .portfolio-title {
@@ -296,12 +316,14 @@
             color: var(--dark-green);
             margin-bottom: 10px;
             font-weight: 500;
+            transition: font-size 0.3s;
         }
 
         .portfolio-description {
             color: var(--gray);
             font-size: 0.95em;
             line-height: 1.6;
+            transition: font-size 0.3s;
         }
 
         .portfolio-actions {
@@ -657,6 +679,178 @@
             background: var(--pale-green);
         }
 
+        .settings-panel {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 380px;
+            height: 100vh;
+            background: var(--white);
+            box-shadow: -5px 0 20px rgba(0, 0, 0, 0.15);
+            z-index: 1500;
+            transition: right 0.3s ease;
+            overflow-y: auto;
+        }
+
+        .settings-panel.open {
+            right: 0;
+        }
+
+        .settings-toggle {
+            position: fixed;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+            background: var(--primary-green);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 10px 0 0 10px;
+            cursor: pointer;
+            font-size: 24px;
+            z-index: 1400;
+            transition: all 0.3s;
+        }
+
+        .settings-toggle:hover {
+            background: var(--dark-green);
+        }
+
+        .settings-header {
+            padding: 20px;
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--dark-green) 100%);
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .settings-header h3 {
+            margin: 0;
+            font-size: 1.3em;
+        }
+
+        .settings-content {
+            padding: 20px;
+        }
+
+        .settings-section {
+            margin-bottom: 30px;
+            border-bottom: 1px solid var(--light-gray);
+            padding-bottom: 20px;
+        }
+
+        .settings-section:last-child {
+            border-bottom: none;
+        }
+
+        .settings-section h4 {
+            color: var(--dark-green);
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        .setting-item {
+            margin-bottom: 15px;
+        }
+
+        .setting-item label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--gray);
+            font-weight: 500;
+        }
+
+        .setting-item input[type="range"] {
+            width: 100%;
+            height: 6px;
+            border-radius: 3px;
+            background: var(--light-gray);
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        .setting-item input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--primary-green);
+            cursor: pointer;
+        }
+
+        .setting-item input[type="color"] {
+            width: 50px;
+            height: 35px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .setting-item select {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid var(--light-gray);
+            border-radius: 8px;
+            font-size: 0.95em;
+            outline: none;
+        }
+
+        .setting-item select:focus {
+            border-color: var(--primary-green);
+        }
+
+        .setting-value {
+            display: inline-block;
+            margin-left: 10px;
+            color: var(--primary-green);
+            font-weight: 500;
+        }
+
+        .grid-layout {
+            display: grid;
+            gap: var(--portfolio-gap);
+            grid-template-columns: repeat(auto-fill, minmax(var(--portfolio-min-width), 1fr));
+        }
+
+        .masonry-layout {
+            column-count: var(--masonry-columns);
+            column-gap: var(--portfolio-gap);
+        }
+
+        .masonry-item {
+            break-inside: avoid;
+            margin-bottom: var(--portfolio-gap);
+        }
+
+        .carousel-layout {
+            display: flex;
+            overflow-x: auto;
+            gap: var(--portfolio-gap);
+            padding: 20px 0;
+            scroll-snap-type: x mandatory;
+        }
+
+        .carousel-item {
+            flex: 0 0 var(--carousel-item-width);
+            scroll-snap-align: start;
+        }
+
+        .staggered-layout {
+            display: grid;
+            gap: var(--portfolio-gap);
+            grid-template-columns: repeat(auto-fill, minmax(var(--portfolio-min-width), 1fr));
+        }
+
+        .staggered-item:nth-child(2n) {
+            transform: translateY(30px);
+        }
+
+        .staggered-item:nth-child(3n) {
+            transform: translateY(-30px);
+        }
+
         @media (max-width: 768px) {
             .profile-section {
                 flex-direction: column;
@@ -667,8 +861,17 @@
                 flex: 0 0 auto;
             }
 
-            .portfolio-grid {
-                grid-template-columns: 1fr;
+            .settings-panel {
+                width: 100%;
+                right: -100%;
+            }
+
+            .masonry-layout {
+                column-count: 1;
+            }
+
+            .carousel-item {
+                flex: 0 0 300px;
             }
 
             .header {
@@ -755,8 +958,8 @@
                         <span>+</span> 添加新作品
                     </button>
                 </div>
-                <div class="portfolio-grid">
-                    <div v-for="item in filteredPortfolios" :key="item.id" class="portfolio-item">
+                <div :class="portfolioLayoutClass">
+                    <div v-for="item in filteredPortfolios" :key="item.id" :class="portfolioItemClass">
                         <div v-if="item.images && item.images.length > 0" class="portfolio-images" @click="openImageViewer(item.images)">
                             <img :src="item.images[0]" class="portfolio-main-image" :alt="item.title">
                             <div class="portfolio-thumbnails" v-if="item.images.length > 1">
@@ -782,6 +985,115 @@
                     </div>
                 </div>
             </section>
+        </div>
+
+        <button class="settings-toggle" @click="toggleSettingsPanel">
+            ⚙️
+        </button>
+
+        <div class="settings-panel" :class="{ open: showSettingsPanel }">
+            <div class="settings-header">
+                <h3>🎨 网页设置</h3>
+            </div>
+            <div class="settings-content">
+                <div class="settings-section">
+                    <h4>📐 图片排版方式</h4>
+                    <div class="setting-item">
+                        <label>排版布局</label>
+                        <select v-model="settings.portfolioLayout">
+                            <option value="grid">网格布局</option>
+                            <option value="masonry">瀑布流布局</option>
+                            <option value="carousel">轮播布局</option>
+                            <option value="staggered">错位布局</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="settings-section">
+                    <h4>📏 间距设置</h4>
+                    <div class="setting-item">
+                        <label>作品间距 <span class="setting-value">{{ settings.portfolioGap }}px</span></label>
+                        <input type="range" v-model="settings.portfolioGap" min="10" max="50" @input="updateStyles">
+                    </div>
+                    <div class="setting-item">
+                        <label>作品最小宽度 <span class="setting-value">{{ settings.portfolioMinWidth }}px</span></label>
+                        <input type="range" v-model="settings.portfolioMinWidth" min="200" max="600" @input="updateStyles">
+                    </div>
+                    <div class="setting-item">
+                        <label>容器最大宽度 <span class="setting-value">{{ settings.containerMaxWidth }}px</span></label>
+                        <input type="range" v-model="settings.containerMaxWidth" min="800" max="1600" @input="updateStyles">
+                    </div>
+                </div>
+
+                <div class="settings-section">
+                    <h4>🔤 字体大小</h4>
+                    <div class="setting-item">
+                        <label>标题大小 <span class="setting-value">{{ settings.headerFontSize }}em</span></label>
+                        <input type="range" v-model="settings.headerFontSize" min="1" max="4" step="0.1" @input="updateStyles">
+                    </div>
+                    <div class="setting-item">
+                        <label>章节标题大小 <span class="setting-value">{{ settings.sectionTitleFontSize }}em</span></label>
+                        <input type="range" v-model="settings.sectionTitleFontSize" min="1" max="3" step="0.1" @input="updateStyles">
+                    </div>
+                    <div class="setting-item">
+                        <label>姓名大小 <span class="setting-value">{{ settings.nameFontSize }}em</span></label>
+                        <input type="range" v-model="settings.nameFontSize" min="1.5" max="4" step="0.1" @input="updateStyles">
+                    </div>
+                    <div class="setting-item">
+                        <label>职位大小 <span class="setting-value">{{ settings.titleFontSize }}em</span></label>
+                        <input type="range" v-model="settings.titleFontSize" min="0.8" max="2" step="0.1" @input="updateStyles">
+                    </div>
+                    <div class="setting-item">
+                        <label>正文大小 <span class="setting-value">{{ settings.contentFontSize }}em</span></label>
+                        <input type="range" v-model="settings.contentFontSize" min="0.8" max="1.5" step="0.05" @input="updateStyles">
+                    </div>
+                </div>
+
+                <div class="settings-section">
+                    <h4>🎨 颜色主题</h4>
+                    <div class="setting-item">
+                        <label>主色调</label>
+                        <input type="color" v-model="settings.primaryGreen" @input="updateStyles">
+                    </div>
+                    <div class="setting-item">
+                        <label>浅色调</label>
+                        <input type="color" v-model="settings.lightGreen" @input="updateStyles">
+                    </div>
+                    <div class="setting-item">
+                        <label>淡色调</label>
+                        <input type="color" v-model="settings.paleGreen" @input="updateStyles">
+                    </div>
+                    <div class="setting-item">
+                        <label>深色调</label>
+                        <input type="color" v-model="settings.darkGreen" @input="updateStyles">
+                    </div>
+                    <div class="setting-item">
+                        <label>背景渐变起始色</label>
+                        <input type="color" v-model="settings.bgGradientStart" @input="updateStyles">
+                    </div>
+                    <div class="setting-item">
+                        <label>背景渐变结束色</label>
+                        <input type="color" v-model="settings.bgGradientEnd" @input="updateStyles">
+                    </div>
+                </div>
+
+                <div class="settings-section">
+                    <h4>📱 其他设置</h4>
+                    <div class="setting-item">
+                        <label>瀑布流列数 <span class="setting-value">{{ settings.masonryColumns }}</span></label>
+                        <input type="range" v-model="settings.masonryColumns" min="1" max="5" @input="updateStyles">
+                    </div>
+                    <div class="setting-item">
+                        <label>轮播项目宽度 <span class="setting-value">{{ settings.carouselItemWidth }}px</span></label>
+                        <input type="range" v-model="settings.carouselItemWidth" min="300" max="600" @input="updateStyles">
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button class="btn btn-secondary" @click="resetSettings">重置设置</button>
+                    <button class="btn btn-primary" @click="saveSettings">保存设置</button>
+                </div>
+            </div>
         </div>
 
         <div class="modal" v-if="showProfileModal" @click.self="closeModals">
@@ -922,7 +1234,7 @@
     </div>
 
     <script>
-        const { createApp, ref, computed, onMounted } = Vue;
+        const { createApp, ref, computed, onMounted, watch } = Vue;
 
         createApp({
             setup() {
@@ -931,6 +1243,7 @@
                 const showExperienceModal = ref(false);
                 const showPortfolioModal = ref(false);
                 const showImageViewer = ref(false);
+                const showSettingsPanel = ref(false);
                 const viewerImage = ref('');
                 const currentCategory = ref('all');
                 const toast = ref({ show: false, message: '' });
@@ -994,6 +1307,26 @@
                     videoPreview: null
                 });
 
+                const settings = ref({
+                    portfolioLayout: 'grid',
+                    portfolioGap: 25,
+                    portfolioMinWidth: 350,
+                    containerMaxWidth: 1200,
+                    headerFontSize: 2,
+                    sectionTitleFontSize: 1.8,
+                    nameFontSize: 2.5,
+                    titleFontSize: 1.2,
+                    contentFontSize: 1.1,
+                    primaryGreen: '#66bb6a',
+                    lightGreen: '#81c784',
+                    paleGreen: '#f8fff8',
+                    darkGreen: '#43a047',
+                    bgGradientStart: '#f8fff8',
+                    bgGradientEnd: '#e8f5e8',
+                    masonryColumns: 3,
+                    carouselItemWidth: 400
+                });
+
                 const categories = computed(() => {
                     return [...new Set(portfolios.value.map(p => p.category).filter(Boolean))];
                 });
@@ -1005,10 +1338,95 @@
                     return portfolios.value.filter(p => p.category === currentCategory.value);
                 });
 
+                const portfolioLayoutClass = computed(() => {
+                    const layoutMap = {
+                        grid: 'portfolio-grid',
+                        masonry: 'masonry-layout',
+                        carousel: 'carousel-layout',
+                        staggered: 'staggered-layout'
+                    };
+                    return layoutMap[settings.value.portfolioLayout] || 'portfolio-grid';
+                });
+
+                const portfolioItemClass = computed(() => {
+                    const itemMap = {
+                        grid: 'portfolio-item',
+                        masonry: 'portfolio-item masonry-item',
+                        carousel: 'portfolio-item carousel-item',
+                        staggered: 'portfolio-item staggered-item'
+                    };
+                    return itemMap[settings.value.portfolioLayout] || 'portfolio-item';
+                });
+
                 const toggleEditMode = () => {
                     editMode.value = !editMode.value;
                     if (!editMode.value) {
                         saveAllData();
+                    }
+                };
+
+                const toggleSettingsPanel = () => {
+                    showSettingsPanel.value = !showSettingsPanel.value;
+                };
+
+                const updateStyles = () => {
+                    const root = document.documentElement;
+                    root.style.setProperty('--portfolio-gap', `${settings.value.portfolioGap}px`);
+                    root.style.setProperty('--portfolio-min-width', `${settings.value.portfolioMinWidth}px`);
+                    root.style.setProperty('--masonry-columns', settings.value.masonryColumns);
+                    root.style.setProperty('--carousel-item-width', `${settings.value.carouselItemWidth}px`);
+                    root.style.setProperty('--primary-green', settings.value.primaryGreen);
+                    root.style.setProperty('--light-green', settings.value.lightGreen);
+                    root.style.setProperty('--pale-green', settings.value.paleGreen);
+                    root.style.setProperty('--dark-green', settings.value.darkGreen);
+                    
+                    document.body.style.background = `linear-gradient(135deg, ${settings.value.bgGradientStart} 0%, ${settings.value.bgGradientEnd} 100%)`;
+                    
+                    document.querySelector('.container').style.maxWidth = `${settings.value.containerMaxWidth}px`;
+                    document.querySelector('.header h1').style.fontSize = `${settings.value.headerFontSize}em`;
+                    document.querySelector('.section-title').style.fontSize = `${settings.value.sectionTitleFontSize}em`;
+                    document.querySelector('.profile-name').style.fontSize = `${settings.value.nameFontSize}em`;
+                    document.querySelector('.profile-title').style.fontSize = `${settings.value.titleFontSize}em`;
+                    document.querySelector('.profile-content').style.fontSize = `${settings.value.contentFontSize}em`;
+                };
+
+                const saveSettings = () => {
+                    localStorage.setItem('portfolioSettings', JSON.stringify(settings.value));
+                    showToast('设置已保存');
+                };
+
+                const resetSettings = () => {
+                    if (confirm('确定要重置所有设置吗？')) {
+                        settings.value = {
+                            portfolioLayout: 'grid',
+                            portfolioGap: 25,
+                            portfolioMinWidth: 350,
+                            containerMaxWidth: 1200,
+                            headerFontSize: 2,
+                            sectionTitleFontSize: 1.8,
+                            nameFontSize: 2.5,
+                            titleFontSize: 1.2,
+                            contentFontSize: 1.1,
+                            primaryGreen: '#66bb6a',
+                            lightGreen: '#81c784',
+                            paleGreen: '#f8fff8',
+                            darkGreen: '#43a047',
+                            bgGradientStart: '#f8fff8',
+                            bgGradientEnd: '#e8f5e8',
+                            masonryColumns: 3,
+                            carouselItemWidth: 400
+                        };
+                        updateStyles();
+                        saveSettings();
+                        showToast('设置已重置');
+                    }
+                };
+
+                const loadSettings = () => {
+                    const saved = localStorage.getItem('portfolioSettings');
+                    if (saved) {
+                        settings.value = JSON.parse(saved);
+                        setTimeout(updateStyles, 100);
                     }
                 };
 
@@ -1263,6 +1681,8 @@
 
                 onMounted(() => {
                     loadData();
+                    loadSettings();
+                    setTimeout(updateStyles, 200);
                 });
 
                 return {
@@ -1271,6 +1691,7 @@
                     showExperienceModal,
                     showPortfolioModal,
                     showImageViewer,
+                    showSettingsPanel,
                     viewerImage,
                     currentCategory,
                     toast,
@@ -1280,9 +1701,16 @@
                     editingProfile,
                     editingExperience,
                     editingPortfolio,
+                    settings,
                     categories,
                     filteredPortfolios,
+                    portfolioLayoutClass,
+                    portfolioItemClass,
                     toggleEditMode,
+                    toggleSettingsPanel,
+                    updateStyles,
+                    saveSettings,
+                    resetSettings,
                     openProfileModal,
                     handleProfileImageUpload,
                     saveProfile,
