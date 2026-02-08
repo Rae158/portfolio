@@ -615,6 +615,85 @@
             }
         }
 
+        .login-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 4000;
+        }
+
+        .login-content {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 20px;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+        }
+
+        .login-title {
+            font-size: 1.5em;
+            color: var(--dark-green);
+            margin-bottom: 30px;
+            font-weight: 500;
+        }
+
+        .login-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+        }
+
+        .login-input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid var(--light-gray);
+            border-radius: 10px;
+            font-size: 1em;
+            margin-bottom: 15px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .login-input:focus {
+            border-color: var(--primary-green);
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--dark-green) 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 10px;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 187, 106, 0.4);
+        }
+
+        .login-error {
+            color: #ef5350;
+            margin-top: 15px;
+            font-size: 0.9em;
+        }
+
+        .login-hint {
+            color: var(--gray);
+            margin-top: 20px;
+            font-size: 0.85em;
+        }
+
         .category-filter {
             display: flex;
             gap: 15px;
@@ -887,10 +966,18 @@
         <div class="container">
             <header class="header">
                 <h1>个人作品集</h1>
-                <button class="edit-mode-btn" :class="{ active: editMode }" @click="toggleEditMode">
-                    <span v-if="!editMode">✎ 编辑模式</span>
-                    <span v-else>✓ 完成编辑</span>
-                </button>
+                <div style="display: flex; gap: 10px;">
+                    <button v-if="isLoggedIn" class="edit-mode-btn" :class="{ active: editMode }" @click="toggleEditMode">
+                        <span v-if="!editMode">✎ 编辑模式</span>
+                        <span v-else>✓ 完成编辑</span>
+                    </button>
+                    <button v-if="isLoggedIn" class="edit-mode-btn" @click="handleLogout" style="background: linear-gradient(135deg, #78909c 0%, #546e7a 100%);">
+                        <span>🚪 退出</span>
+                    </button>
+                    <button v-if="!isLoggedIn" class="edit-mode-btn" @click="toggleEditMode">
+                        <span>🔐 管理员登录</span>
+                    </button>
+                </div>
             </header>
 
             <section class="section">
@@ -1231,6 +1318,17 @@
         <div class="toast" v-if="toast.show">
             {{ toast.message }}
         </div>
+
+        <div class="login-modal" v-if="showLoginModal">
+            <div class="login-content">
+                <div class="login-icon">🔐</div>
+                <h3 class="login-title">管理员登录</h3>
+                <input type="password" v-model="loginPassword" class="login-input" placeholder="请输入管理员密码" @keyup.enter="handleLogin">
+                <button class="login-btn" @click="handleLogin">登录</button>
+                <div v-if="loginError" class="login-error">{{ loginError }}</div>
+                <div class="login-hint">提示：只有管理员才能编辑内容</div>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -1244,9 +1342,14 @@
                 const showPortfolioModal = ref(false);
                 const showImageViewer = ref(false);
                 const showSettingsPanel = ref(false);
+                const showLoginModal = ref(false);
                 const viewerImage = ref('');
                 const currentCategory = ref('all');
                 const toast = ref({ show: false, message: '' });
+                const loginPassword = ref('');
+                const loginError = ref('');
+                const isLoggedIn = ref(false);
+                const ADMIN_PASSWORD = 'portfolio2024';
 
                 const profile = ref({
                     name: '张三',
@@ -1359,10 +1462,33 @@
                 });
 
                 const toggleEditMode = () => {
+                    if (!isLoggedIn.value) {
+                        showLoginModal.value = true;
+                        return;
+                    }
                     editMode.value = !editMode.value;
                     if (!editMode.value) {
                         saveAllData();
                     }
+                };
+
+                const handleLogin = () => {
+                    if (loginPassword.value === ADMIN_PASSWORD) {
+                        isLoggedIn.value = true;
+                        showLoginModal.value = false;
+                        loginPassword.value = '';
+                        loginError.value = '';
+                        editMode.value = true;
+                        showToast('登录成功，进入编辑模式');
+                    } else {
+                        loginError.value = '密码错误，请重试';
+                    }
+                };
+
+                const handleLogout = () => {
+                    isLoggedIn.value = false;
+                    editMode.value = false;
+                    showToast('已退出登录');
                 };
 
                 const toggleSettingsPanel = () => {
@@ -1692,9 +1818,13 @@
                     showPortfolioModal,
                     showImageViewer,
                     showSettingsPanel,
+                    showLoginModal,
                     viewerImage,
                     currentCategory,
                     toast,
+                    loginPassword,
+                    loginError,
+                    isLoggedIn,
                     profile,
                     experiences,
                     portfolios,
@@ -1707,6 +1837,8 @@
                     portfolioLayoutClass,
                     portfolioItemClass,
                     toggleEditMode,
+                    handleLogin,
+                    handleLogout,
                     toggleSettingsPanel,
                     updateStyles,
                     saveSettings,
