@@ -763,6 +763,42 @@
             font-weight: bold;
         }
 
+        .field-order-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .field-order-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 15px;
+            background: #f8f9fa;
+            border: 2px solid var(--light-gray);
+            border-radius: 10px;
+            cursor: move;
+            transition: var(--transition);
+        }
+
+        .field-order-item:hover {
+            border-color: var(--primary-color);
+            background: rgba(58, 134, 255, 0.05);
+        }
+
+        .field-order-item.dragging {
+            opacity: 0.5;
+            border-color: var(--primary-color);
+            background: rgba(58, 134, 255, 0.1);
+        }
+
+        .drag-handle {
+            color: var(--gray-color);
+            font-size: 1.2rem;
+            cursor: move;
+            user-select: none;
+        }
+
         /* Portfolio Viewer */
         .portfolio-viewer {
             position: fixed;
@@ -1240,16 +1276,13 @@
                     <p>{{ profile.title }}</p>
                     <p>{{ profile.bio }}</p>
                     <div class="personal-info">
-                        <p><strong>邮箱：</strong>{{ profile.email }}</p>
-                        <p><strong>电话：</strong>{{ profile.phone }}</p>
-                        <p><strong>所在地：</strong>{{ profile.location }}</p>
-                        <p><strong>院校：</strong>{{ profile.school }}</p>
-                        <p><strong>专业：</strong>{{ profile.major }}</p>
-                        <p><strong>微信号：</strong>{{ profile.wechat }}</p>
-                        <p v-if="profile.awards"><strong>奖项：</strong></p>
-                        <ul v-if="profile.awards" style="margin-left: 20px;">
-                            <li v-for="(award, index) in profile.awards.split('\n').filter(a => a.trim())" :key="index">{{ award }}</li>
-                        </ul>
+                        <template v-for="field in profileFieldsOrder" :key="field.key">
+                            <p v-if="field.key === 'awards' && profile[field.key]"><strong>{{ field.label }}：</strong></p>
+                            <ul v-if="field.key === 'awards' && profile[field.key]" style="margin-left: 20px;">
+                                <li v-for="(award, index) in profile[field.key].split('\n').filter(a => a.trim())" :key="index">{{ award }}</li>
+                            </ul>
+                            <p v-if="field.key !== 'awards'"><strong>{{ field.label }}：</strong>{{ profile[field.key] }}</p>
+                        </template>
                     </div>
                 </div>
                 <div class="about-image">
@@ -1681,8 +1714,37 @@
                     <textarea v-model="profile.bio" rows="4"></textarea>
                 </div>
                 <div class="setting-item">
+                    <label>头像</label>
+                    <input type="file" accept="image/*" @change="handleProfileImageUpload">
+                    <img v-if="profile.image" :src="profile.image" alt="头像" style="max-width: 100px; max-height: 100px; margin-top: 10px; border-radius: 50%;">
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <h4>个人信息字段顺序</h4>
+                <p style="color: #6c757d; font-size: 0.9rem; margin-bottom: 15px;">拖拽调整字段在页面中的显示顺序</p>
+                <div class="field-order-list">
+                    <div 
+                        v-for="(field, index) in profileFieldsOrder" 
+                        :key="field.key" 
+                        class="field-order-item"
+                        draggable="true"
+                        @dragstart="handleDragStart(index)"
+                        @dragover="handleDragOver(index)"
+                        @drop="handleDrop(index)"
+                        @dragend="handleDragEnd"
+                    >
+                        <span class="drag-handle">⋮⋮</span>
+                        <span>{{ field.label }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <h4>个人信息详情</h4>
+                <div class="setting-item">
                     <label>邮箱</label>
-                    <input type="email" v-model="profile.email">
+                    <input type="text" v-model="profile.email">
                 </div>
                 <div class="setting-item">
                     <label>电话</label>
@@ -1707,11 +1769,6 @@
                 <div class="setting-item">
                     <label>微信号</label>
                     <input type="text" v-model="profile.wechat">
-                </div>
-                <div class="setting-item">
-                    <label>头像</label>
-                    <input type="file" accept="image/*" @change="handleProfileImageUpload">
-                    <img v-if="profile.image" :src="profile.image" alt="头像" style="max-width: 100px; max-height: 100px; margin-top: 10px; border-radius: 50%;">
                 </div>
             </div>
 
@@ -1858,6 +1915,16 @@
                     wechat: 'zhangsan_wx',
                     image: 'https://via.placeholder.com/600x800'
                 });
+
+                const profileFieldsOrder = ref([
+                    { key: 'email', label: '邮箱' },
+                    { key: 'phone', label: '电话' },
+                    { key: 'location', label: '所在地' },
+                    { key: 'school', label: '院校' },
+                    { key: 'major', label: '专业' },
+                    { key: 'wechat', label: '微信号' },
+                    { key: 'awards', label: '奖项' }
+                ]);
 
                 const experiences = ref([
                     {
@@ -2141,6 +2208,31 @@
                 };
 
                 const updateBackgroundStyles = () => {};
+
+                const draggedIndex = ref(null);
+
+                const handleDragStart = (index) => {
+                    draggedIndex.value = index;
+                    event.target.classList.add('dragging');
+                };
+
+                const handleDragOver = (index) => {
+                    event.preventDefault();
+                    event.dataTransfer.dropEffect = 'move';
+                };
+
+                const handleDrop = (index) => {
+                    event.preventDefault();
+                    if (draggedIndex.value !== null && draggedIndex.value !== index) {
+                        const item = profileFieldsOrder.value.splice(draggedIndex.value, 1)[0];
+                        profileFieldsOrder.value.splice(index, 0, item);
+                    }
+                };
+
+                const handleDragEnd = (event) => {
+                    event.target.classList.remove('dragging');
+                    draggedIndex.value = null;
+                };
 
                 const formatText = (type, command) => {
                     let editor;
@@ -2453,6 +2545,7 @@
                     experienceForm,
                     skillForm,
                     profile,
+                    profileFieldsOrder,
                     experiences,
                     personalSkills,
                     portfolios,
@@ -2481,6 +2574,10 @@
                     handleProfileImageUpload,
                     handlePortfolioImageUpload,
                     updateBackgroundStyles,
+                    handleDragStart,
+                    handleDragOver,
+                    handleDrop,
+                    handleDragEnd,
                     formatText,
                     deleteTag,
                     addTag,
