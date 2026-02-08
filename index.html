@@ -695,7 +695,7 @@
                 <div class="profile-section">
                     <div class="profile-image-container">
                         <img :src="profile.image || 'data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27300%27 height=%27300%27 viewBox=%270 0 300 300%27%3E%3Crect fill=%23f5f5f5%27 width=%27300%27 height=%27300%27/%3E%3Ccircle cx=%27150%27 cy=%27120%27 r=%2750%27 fill=%23ccc%27/%3E%3Cellipse cx=%27150%27 cy=%27220%27 rx=%2770%27 ry=%2750%27 fill=%23ccc%27/%3E%3C/svg%3E'" 
-                             class="profile-image" alt="个人头像">
+                                 class="profile-image" alt="个人头像">
                     </div>
                     <div class="profile-info">
                         <h3 class="profile-name">{{ profile.name }}</h3>
@@ -771,8 +771,8 @@
                             <div style="display: flex; align-items: center; justify-content: center; height: 100%; color: #999;">暂无图片</div>
                         </div>
                         <div class="portfolio-actions" v-if="editMode">
-                            <button class="action-btn edit" @click="editPortfolio(item.id)">✎</button>
-                            <button class="action-btn delete" @click="deletePortfolio(item.id)">✕</button>
+                            <button class="action-btn edit" @click="editPortfolio(item.id); event.stopPropagation();">✎</button>
+                            <button class="action-btn delete" @click="deletePortfolio(item.id); event.stopPropagation();">✕</button>
                         </div>
                         <div class="portfolio-info">
                             <p class="portfolio-category">{{ item.category }}</p>
