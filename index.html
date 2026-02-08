@@ -227,6 +227,94 @@
             color: var(--dark-color);
         }
 
+        /* Experience Section */
+        .experience-timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .experience-timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: var(--light-gray);
+        }
+
+        .experience-item {
+            position: relative;
+            margin-bottom: 50px;
+            padding: 0 40px;
+        }
+
+        .experience-item:nth-child(odd) {
+            text-align: right;
+        }
+
+        .experience-item:nth-child(even) {
+            text-align: left;
+        }
+
+        .experience-item::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            border: 4px solid white;
+            box-shadow: var(--shadow);
+        }
+
+        .experience-content {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .experience-content:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .experience-date {
+            display: inline-block;
+            padding: 5px 15px;
+            background: rgba(58, 134, 255, 0.1);
+            color: var(--primary-color);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+
+        .experience-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--dark-color);
+        }
+
+        .experience-company {
+            font-size: 1.1rem;
+            color: var(--gray-color);
+            margin-bottom: 10px;
+        }
+
+        .experience-description {
+            color: var(--gray-color);
+            line-height: 1.6;
+        }
+
+        /* Skills Section */
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -283,6 +371,7 @@
             cursor: pointer;
             transition: var(--transition);
             color: var(--dark-color);
+            position: relative;
         }
 
         .filter-btn:hover,
@@ -290,6 +379,12 @@
             background: var(--primary-color);
             color: white;
             border-color: var(--primary-color);
+        }
+
+        .filter-btn .delete-tag {
+            margin-left: 5px;
+            cursor: pointer;
+            font-weight: bold;
         }
 
         .portfolio-grid {
@@ -584,7 +679,7 @@
             background: white;
             border-radius: 20px;
             padding: 40px;
-            max-width: 600px;
+            max-width: 800px;
             width: 90%;
             max-height: 90vh;
             overflow-y: auto;
@@ -620,6 +715,161 @@
 
         .modal-close:hover {
             color: var(--accent-color);
+        }
+
+        /* Portfolio Viewer */
+        .portfolio-viewer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 3000;
+            display: flex;
+            flex-direction: column;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .portfolio-viewer.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .portfolio-viewer-header {
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+        }
+
+        .portfolio-viewer-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .portfolio-viewer-close:hover {
+            transform: rotate(90deg);
+        }
+
+        .portfolio-viewer-mode {
+            display: flex;
+            gap: 10px;
+        }
+
+        .mode-btn {
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            color: white;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .mode-btn:hover,
+        .mode-btn.active {
+            background: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        .portfolio-viewer-content {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        /* Single Image Mode */
+        .single-image-mode {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .single-image-mode img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+        }
+
+        .nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            font-size: 2rem;
+            padding: 20px;
+            cursor: pointer;
+            transition: var(--transition);
+            border-radius: 50%;
+        }
+
+        .nav-btn:hover {
+            background: var(--primary-color);
+        }
+
+        .nav-btn.prev {
+            left: 20px;
+        }
+
+        .nav-btn.next {
+            right: 20px;
+        }
+
+        /* Strip Mode */
+        .strip-mode {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            overflow-x: auto;
+            padding: 20px;
+            gap: 20px;
+        }
+
+        .strip-mode::-webkit-scrollbar {
+            height: 10px;
+        }
+
+        .strip-mode::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .strip-mode::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 5px;
+        }
+
+        .strip-mode img {
+            height: 80%;
+            object-fit: contain;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+
+        .portfolio-viewer-info {
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            text-align: center;
+        }
+
+        .portfolio-viewer-info h3 {
+            margin-bottom: 10px;
         }
 
         /* Settings Panel */
@@ -745,6 +995,74 @@
             transform: translateY(-50%) scale(1.1);
         }
 
+        /* Login Modal */
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .login-form input {
+            padding: 15px;
+            border: 2px solid var(--light-gray);
+            border-radius: 10px;
+            font-size: 1rem;
+        }
+
+        .login-form input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        /* Tag Management */
+        .tag-input-container {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .tag-input-container input {
+            flex: 1;
+            padding: 10px;
+            border: 2px solid var(--light-gray);
+            border-radius: 10px;
+        }
+
+        .tag-input-container button {
+            padding: 10px 20px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .tag-input-container button:hover {
+            background: var(--secondary-color);
+        }
+
+        .tag-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tag-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 5px 15px;
+            background: var(--light-gray);
+            border-radius: 20px;
+        }
+
+        .tag-item .delete-tag {
+            cursor: pointer;
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
         /* Animations */
         @keyframes fadeInUp {
             from {
@@ -774,6 +1092,20 @@
 
             .about-text {
                 order: 1;
+            }
+
+            .experience-timeline::before {
+                left: 20px;
+            }
+
+            .experience-item {
+                text-align: left !important;
+                padding-left: 50px;
+                padding-right: 0;
+            }
+
+            .experience-item::before {
+                left: 20px;
             }
         }
 
@@ -834,6 +1166,7 @@
             <a href="#" class="logo">Portfolio</a>
             <ul class="nav-links">
                 <li><a href="#about" class="nav-link">关于我</a></li>
+                <li><a href="#experience" class="nav-link">经历</a></li>
                 <li><a href="#skills" class="nav-link">技能</a></li>
                 <li><a href="#portfolio" class="nav-link">作品</a></li>
                 <li><a href="#contact" class="nav-link">联系我</a></li>
@@ -872,6 +1205,23 @@
         </div>
     </section>
 
+    <!-- Experience Section -->
+    <section class="section experience-section" id="experience" :style="experienceBackgroundStyle">
+        <div class="container">
+            <h2 class="section-title">{{ settings.experienceSectionTitle }}</h2>
+            <div class="experience-timeline">
+                <div class="experience-item" v-for="item in experiences" :key="item.id">
+                    <div class="experience-content">
+                        <span class="experience-date">{{ item.date }}</span>
+                        <h3 class="experience-title">{{ item.title }}</h3>
+                        <p class="experience-company">{{ item.company }}</p>
+                        <p class="experience-description">{{ item.description }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Skills Section -->
     <section class="section skills-section" id="skills" :style="skillsBackgroundStyle">
         <div class="container">
@@ -889,11 +1239,12 @@
     <!-- Portfolio Section -->
     <section class="section portfolio-section" id="portfolio" :style="portfolioBackgroundStyle">
         <div class="container">
-            <h2 class="section-title">我的作品</h2>
+            <h2 class="section-title">{{ settings.portfolioSectionTitle }}</h2>
             <div class="portfolio-filters">
                 <button class="filter-btn" :class="{ active: currentFilter === 'all' }" @click="currentFilter = 'all'">全部</button>
                 <button class="filter-btn" v-for="tag in allTags" :key="tag" :class="{ active: currentFilter === tag }" @click="currentFilter = tag">
                     {{ tag }}
+                    <span class="delete-tag" @click.stop="deleteTag(tag)">×</span>
                 </button>
             </div>
             <div class="portfolio-grid">
@@ -908,7 +1259,7 @@
                         <div class="portfolio-item-tags">
                             <span class="portfolio-item-tag" v-for="tag in item.tags" :key="tag">{{ tag }}</span>
                         </div>
-                        <a href="#" class="portfolio-item-link" @click.prevent="openPortfolioModal(item)">查看详情</a>
+                        <a href="#" class="portfolio-item-link" @click.prevent="openPortfolioViewer(item)">查看详情</a>
                     </div>
                 </div>
             </div>
@@ -983,6 +1334,7 @@
                     <h3>快速链接</h3>
                     <ul style="list-style: none; padding: 0;">
                         <li><a href="#about" style="color: rgba(255,255,255,0.7); text-decoration: none; line-height: 2;">关于我</a></li>
+                        <li><a href="#experience" style="color: rgba(255,255,255,0.7); text-decoration: none; line-height: 2;">经历</a></li>
                         <li><a href="#skills" style="color: rgba(255,255,255,0.7); text-decoration: none; line-height: 2;">技能</a></li>
                         <li><a href="#portfolio" style="color: rgba(255,255,255,0.7); text-decoration: none; line-height: 2;">作品</a></li>
                         <li><a href="#contact" style="color: rgba(255,255,255,0.7); text-decoration: none; line-height: 2;">联系我</a></li>
@@ -1001,30 +1353,53 @@
         </div>
     </footer>
 
-    <!-- Portfolio Modal -->
-    <div class="modal" :class="{ active: showPortfolioModal }" @click.self="closePortfolioModal">
+    <!-- Portfolio Viewer -->
+    <div class="portfolio-viewer" :class="{ active: showPortfolioViewer }">
+        <div class="portfolio-viewer-header">
+            <div class="portfolio-viewer-mode">
+                <button class="mode-btn" :class="{ active: viewerMode === 'single' }" @click="viewerMode = 'single'">单张浏览</button>
+                <button class="mode-btn" :class="{ active: viewerMode === 'strip' }" @click="viewerMode = 'strip'">长条浏览</button>
+            </div>
+            <button class="portfolio-viewer-close" @click="closePortfolioViewer">&times;</button>
+        </div>
+        <div class="portfolio-viewer-content">
+            <div class="single-image-mode" v-if="viewerMode === 'single' && selectedPortfolio.images && selectedPortfolio.images.length > 0">
+                <button class="nav-btn prev" @click="prevImage" v-if="currentImageIndex > 0">❮</button>
+                <img :src="selectedPortfolio.images[currentImageIndex]" alt="作品图片">
+                <button class="nav-btn next" @click="nextImage" v-if="currentImageIndex < selectedPortfolio.images.length - 1">❯</button>
+            </div>
+            <div class="strip-mode" v-if="viewerMode === 'strip' && selectedPortfolio.images && selectedPortfolio.images.length > 0">
+                <img v-for="(image, index) in selectedPortfolio.images" :key="index" :src="image" alt="作品图片">
+            </div>
+        </div>
+        <div class="portfolio-viewer-info" v-if="selectedPortfolio.title">
+            <h3>{{ selectedPortfolio.title }}</h3>
+            <p>{{ selectedPortfolio.description }}</p>
+            <div class="portfolio-item-tags" style="justify-content: center; margin-top: 10px;">
+                <span class="portfolio-item-tag" v-for="tag in selectedPortfolio.tags" :key="tag">{{ tag }}</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div class="modal" :class="{ active: showLoginModal }" @click.self="closeLoginModal">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title">{{ selectedPortfolio.title }}</h3>
-                <button class="modal-close" @click="closePortfolioModal">&times;</button>
+                <h3 class="modal-title">管理员登录</h3>
+                <button class="modal-close" @click="closeLoginModal">&times;</button>
             </div>
             <div class="modal-body">
-                <div class="portfolio-modal-images" v-if="selectedPortfolio.images && selectedPortfolio.images.length > 0">
-                    <img v-for="(image, index) in selectedPortfolio.images" :key="index" :src="image" alt="作品图片" style="width: 100%; height: auto; border-radius: 10px; margin-bottom: 15px;">
-                </div>
-                <p>{{ selectedPortfolio.description }}</p>
-                <div class="portfolio-modal-tags" v-if="selectedPortfolio.tags && selectedPortfolio.tags.length > 0">
-                    <h4>标签：</h4>
-                    <div class="portfolio-item-tags">
-                        <span class="portfolio-item-tag" v-for="tag in selectedPortfolio.tags" :key="tag">{{ tag }}</span>
-                    </div>
-                </div>
+                <form class="login-form" @submit.prevent="handleLogin">
+                    <input type="text" v-model="loginForm.username" placeholder="用户名" required>
+                    <input type="password" v-model="loginForm.password" placeholder="密码" required>
+                    <button type="submit" class="submit-btn">登录</button>
+                </form>
             </div>
         </div>
     </div>
 
     <!-- Settings Panel -->
-    <div class="settings-panel" :class="{ open: showSettingsPanel }">
+    <div class="settings-panel" :class="{ open: showSettingsPanel && isAdmin }">
         <div class="settings-header">
             <h3>网站设置</h3>
             <button class="modal-close" @click="toggleSettingsPanel">&times;</button>
@@ -1065,6 +1440,15 @@
                 <div class="setting-item">
                     <label>关于我背景透明度 <span class="setting-value">{{ settings.aboutBackgroundOpacity }}%</span></label>
                     <input type="range" v-model="settings.aboutBackgroundOpacity" min="0" max="100" @input="updateBackgroundStyles">
+                </div>
+                <div class="setting-item">
+                    <label>经历背景</label>
+                    <input type="file" accept="image/*,video/*" @change="handleBackgroundUpload('experience')">
+                    <img v-if="settings.experienceBackground" :src="settings.experienceBackground" alt="背景图片" style="max-width: 100%; max-height: 150px; margin-top: 10px; border-radius: 10px;">
+                </div>
+                <div class="setting-item">
+                    <label>经历背景透明度 <span class="setting-value">{{ settings.experienceBackgroundOpacity }}%</span></label>
+                    <input type="range" v-model="settings.experienceBackgroundOpacity" min="0" max="100" @input="updateBackgroundStyles">
                 </div>
                 <div class="setting-item">
                     <label>技能背景</label>
@@ -1129,13 +1513,14 @@
             </div>
 
             <div class="settings-section">
-                <h4>作品管理</h4>
-                <button class="submit-btn" style="margin-bottom: 20px;" @click="openAddPortfolioModal">添加作品</button>
-                <div v-for="(item, index) in portfolios" :key="item.id" style="background: #f8f9fa; padding: 15px; border-radius: 10px; margin-bottom: 10px;">
+                <h4>经历管理</h4>
+                <button class="submit-btn" style="margin-bottom: 20px;" @click="openAddExperienceModal">添加经历</button>
+                <div v-for="(item, index) in experiences" :key="item.id" style="background: #f8f9fa; padding: 15px; border-radius: 10px; margin-bottom: 10px;">
                     <h5>{{ item.title }}</h5>
-                    <p>{{ item.category }}</p>
-                    <button class="filter-btn" style="margin-right: 10px;" @click="editPortfolio(item.id)">编辑</button>
-                    <button class="filter-btn" style="background: #ff006e; color: white; border-color: #ff006e;" @click="deletePortfolio(item.id)">删除</button>
+                    <p>{{ item.company }}</p>
+                    <p>{{ item.date }}</p>
+                    <button class="filter-btn" style="margin-right: 10px;" @click="editExperience(item.id)">编辑</button>
+                    <button class="filter-btn" style="background: #ff006e; color: white; border-color: #ff006e;" @click="deleteExperience(item.id)">删除</button>
                 </div>
             </div>
 
@@ -1149,6 +1534,48 @@
                     <button class="filter-btn" style="background: #ff006e; color: white; border-color: #ff006e;" @click="deleteSkill(skill.id)">删除</button>
                 </div>
             </div>
+
+            <div class="settings-section">
+                <h4>作品管理</h4>
+                <button class="submit-btn" style="margin-bottom: 20px;" @click="openAddPortfolioModal">添加作品</button>
+                <div v-for="(item, index) in portfolios" :key="item.id" style="background: #f8f9fa; padding: 15px; border-radius: 10px; margin-bottom: 10px;">
+                    <h5>{{ item.title }}</h5>
+                    <p>{{ item.category }}</p>
+                    <button class="filter-btn" style="margin-right: 10px;" @click="editPortfolio(item.id)">编辑</button>
+                    <button class="filter-btn" style="background: #ff006e; color: white; border-color: #ff006e;" @click="deletePortfolio(item.id)">删除</button>
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <h4>标签管理</h4>
+                <div class="tag-input-container">
+                    <input type="text" v-model="newTag" placeholder="输入新标签" @keyup.enter="addTag">
+                    <button @click="addTag">添加标签</button>
+                </div>
+                <div class="tag-list">
+                    <div class="tag-item" v-for="tag in customTags" :key="tag">
+                        {{ tag }}
+                        <span class="delete-tag" @click="deleteCustomTag(tag)">×</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <h4>板块名称设置</h4>
+                <div class="setting-item">
+                    <label>经历板块名称</label>
+                    <input type="text" v-model="settings.experienceSectionTitle">
+                </div>
+                <div class="setting-item">
+                    <label>作品板块名称</label>
+                    <input type="text" v-model="settings.portfolioSectionTitle">
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <h4>退出登录</h4>
+                <button class="submit-btn" style="background: #ff006e;" @click="logout">退出登录</button>
+            </div>
         </div>
     </div>
 
@@ -1160,14 +1587,18 @@
 
         createApp({
             setup() {
-                // 状态管理
                 const showSettingsPanel = ref(false);
-                const showPortfolioModal = ref(false);
+                const showLoginModal = ref(false);
+                const showPortfolioViewer = ref(false);
                 const selectedPortfolio = ref({});
                 const currentFilter = ref('all');
+                const viewerMode = ref('single');
+                const currentImageIndex = ref(0);
+                const isAdmin = ref(false);
                 const form = ref({ name: '', email: '', message: '' });
+                const loginForm = ref({ username: '', password: '' });
+                const newTag = ref('');
 
-                // 个人信息
                 const profile = ref({
                     name: '张三',
                     title: 'UI/UX 设计师',
@@ -1178,7 +1609,30 @@
                     image: 'https://via.placeholder.com/600x800'
                 });
 
-                // 技能
+                const experiences = ref([
+                    {
+                        id: 1,
+                        title: 'UI/UX 设计师',
+                        company: '某科技公司',
+                        date: '2021.06 - 至今',
+                        description: '负责公司产品的用户界面设计和用户体验优化，主导了多个重要项目的设计工作。'
+                    },
+                    {
+                        id: 2,
+                        title: '前端开发实习生',
+                        company: '某互联网公司',
+                        date: '2020.07 - 2021.05',
+                        description: '参与公司官网和移动应用的前端开发工作，使用 Vue.js 和 React 技术栈。'
+                    },
+                    {
+                        id: 3,
+                        title: '学生会技术部部长',
+                        company: '某某大学',
+                        date: '2018.09 - 2020.06',
+                        description: '负责学生会技术相关工作，组织技术培训和活动，协助维护学校网站。'
+                    }
+                ]);
+
                 const personalSkills = ref([
                     { id: 1, name: 'UI 设计', level: 90, icon: '🎨' },
                     { id: 2, name: 'UX 设计', level: 85, icon: '👤' },
@@ -1188,7 +1642,6 @@
                     { id: 6, name: 'JavaScript', level: 65, icon: '⚡' }
                 ]);
 
-                // 作品
                 const portfolios = ref([
                     {
                         id: 1,
@@ -1216,15 +1669,20 @@
                     }
                 ]);
 
-                // 设置
+                const customTags = ref(['UI', 'UX', '移动应用', '网站设计', '电商', '健康']);
+
                 const settings = ref({
                     heroTitle: '创意设计师',
                     heroSubtitle: '专注于 UI/UX 设计与前端开发',
                     heroCtaText: '查看我的作品',
+                    experienceSectionTitle: '经历',
+                    portfolioSectionTitle: '我的作品',
                     heroBackground: null,
                     heroBackgroundOpacity: 100,
                     aboutBackground: null,
                     aboutBackgroundOpacity: 100,
+                    experienceBackground: null,
+                    experienceBackgroundOpacity: 100,
                     skillsBackground: null,
                     skillsBackgroundOpacity: 100,
                     portfolioBackground: null,
@@ -1233,13 +1691,8 @@
                     contactBackgroundOpacity: 100
                 });
 
-                // 计算属性
                 const allTags = computed(() => {
-                    const tags = new Set();
-                    portfolios.value.forEach(item => {
-                        item.tags.forEach(tag => tags.add(tag));
-                    });
-                    return Array.from(tags);
+                    return customTags.value;
                 });
 
                 const filteredPortfolios = computed(() => {
@@ -1250,7 +1703,6 @@
                     }
                 });
 
-                // 背景样式计算
                 const heroBackgroundStyle = computed(() => {
                     if (settings.value.heroBackground) {
                         const opacity = settings.value.heroBackgroundOpacity / 100;
@@ -1271,6 +1723,19 @@
                         const opacity = settings.value.aboutBackgroundOpacity / 100;
                         return {
                             background: `linear-gradient(rgba(255, 255, 255, ${opacity}), rgba(255, 255, 255, ${opacity})), url(${settings.value.aboutBackground})`,
+                            backgroundSize: 'cover',
+                            backgroundPosition: 'center',
+                            backgroundRepeat: 'no-repeat'
+                        };
+                    }
+                    return {};
+                });
+
+                const experienceBackgroundStyle = computed(() => {
+                    if (settings.value.experienceBackground) {
+                        const opacity = settings.value.experienceBackgroundOpacity / 100;
+                        return {
+                            background: `linear-gradient(rgba(255, 255, 255, ${opacity}), rgba(255, 255, 255, ${opacity})), url(${settings.value.experienceBackground})`,
                             backgroundSize: 'cover',
                             backgroundPosition: 'center',
                             backgroundRepeat: 'no-repeat'
@@ -1318,19 +1783,64 @@
                     return {};
                 });
 
-                // 方法
                 const toggleSettingsPanel = () => {
-                    showSettingsPanel.value = !showSettingsPanel.value;
+                    if (isAdmin.value) {
+                        showSettingsPanel.value = !showSettingsPanel.value;
+                    } else {
+                        showLoginModal.value = true;
+                    }
                 };
 
-                const openPortfolioModal = (item) => {
+                const openLoginModal = () => {
+                    showLoginModal.value = true;
+                };
+
+                const closeLoginModal = () => {
+                    showLoginModal.value = false;
+                    loginForm.value = { username: '', password: '' };
+                };
+
+                const handleLogin = () => {
+                    if (loginForm.value.username === 'admin' && loginForm.value.password === 'admin123') {
+                        isAdmin.value = true;
+                        showLoginModal.value = false;
+                        showSettingsPanel.value = true;
+                        loginForm.value = { username: '', password: '' };
+                        alert('登录成功！');
+                    } else {
+                        alert('用户名或密码错误！');
+                    }
+                };
+
+                const logout = () => {
+                    isAdmin.value = false;
+                    showSettingsPanel.value = false;
+                    alert('已退出登录');
+                };
+
+                const openPortfolioViewer = (item) => {
                     selectedPortfolio.value = item;
-                    showPortfolioModal.value = true;
+                    currentImageIndex.value = 0;
+                    viewerMode.value = 'single';
+                    showPortfolioViewer.value = true;
                 };
 
-                const closePortfolioModal = () => {
-                    showPortfolioModal.value = false;
+                const closePortfolioViewer = () => {
+                    showPortfolioViewer.value = false;
                     selectedPortfolio.value = {};
+                    currentImageIndex.value = 0;
+                };
+
+                const prevImage = () => {
+                    if (currentImageIndex.value > 0) {
+                        currentImageIndex.value--;
+                    }
+                };
+
+                const nextImage = () => {
+                    if (currentImageIndex.value < selectedPortfolio.value.images.length - 1) {
+                        currentImageIndex.value++;
+                    }
                 };
 
                 const handleBackgroundUpload = (section) => {
@@ -1355,22 +1865,38 @@
                     }
                 };
 
-                const updateBackgroundStyles = () => {
-                    // 背景样式会通过计算属性自动更新
-                };
+                const updateBackgroundStyles = () => {};
 
                 const handleSubmit = () => {
                     alert('消息已发送！');
                     form.value = { name: '', email: '', message: '' };
                 };
 
+                const deleteTag = (tag) => {
+                    if (confirm(`确定要删除标签"${tag}"吗？`)) {
+                        customTags.value = customTags.value.filter(t => t !== tag);
+                        if (currentFilter.value === tag) {
+                            currentFilter.value = 'all';
+                        }
+                    }
+                };
+
+                const addTag = () => {
+                    if (newTag.value.trim() && !customTags.value.includes(newTag.value.trim())) {
+                        customTags.value.push(newTag.value.trim());
+                        newTag.value = '';
+                    }
+                };
+
+                const deleteCustomTag = (tag) => {
+                    customTags.value = customTags.value.filter(t => t !== tag);
+                };
+
                 const openAddPortfolioModal = () => {
-                    // 这里可以实现添加作品的模态框
                     alert('添加作品功能开发中');
                 };
 
                 const editPortfolio = (id) => {
-                    // 这里可以实现编辑作品的功能
                     alert('编辑作品功能开发中');
                 };
 
@@ -1380,13 +1906,25 @@
                     }
                 };
 
+                const openAddExperienceModal = () => {
+                    alert('添加经历功能开发中');
+                };
+
+                const editExperience = (id) => {
+                    alert('编辑经历功能开发中');
+                };
+
+                const deleteExperience = (id) => {
+                    if (confirm('确定要删除这个经历吗？')) {
+                        experiences.value = experiences.value.filter(item => item.id !== id);
+                    }
+                };
+
                 const openAddSkillModal = () => {
-                    // 这里可以实现添加技能的模态框
                     alert('添加技能功能开发中');
                 };
 
                 const editSkill = (id) => {
-                    // 这里可以实现编辑技能的功能
                     alert('编辑技能功能开发中');
                 };
 
@@ -1396,9 +1934,7 @@
                     }
                 };
 
-                // 生命周期钩子
                 onMounted(() => {
-                    // 监听滚动事件，添加导航栏滚动效果
                     window.addEventListener('scroll', () => {
                         const navbar = document.getElementById('navbar');
                         if (window.scrollY > 50) {
@@ -1408,7 +1944,6 @@
                         }
                     });
 
-                    // 平滑滚动
                     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                         anchor.addEventListener('click', function (e) {
                             e.preventDefault();
@@ -1418,35 +1953,68 @@
                             }
                         });
                     });
+
+                    document.addEventListener('keydown', (e) => {
+                        if (showPortfolioViewer.value && viewerMode.value === 'single') {
+                            if (e.key === 'ArrowLeft') {
+                                prevImage();
+                            } else if (e.key === 'ArrowRight') {
+                                nextImage();
+                            } else if (e.key === 'Escape') {
+                                closePortfolioViewer();
+                            }
+                        }
+                    });
                 });
 
                 return {
                     showSettingsPanel,
-                    showPortfolioModal,
+                    showLoginModal,
+                    showPortfolioViewer,
                     selectedPortfolio,
                     currentFilter,
+                    viewerMode,
+                    currentImageIndex,
+                    isAdmin,
                     form,
+                    loginForm,
+                    newTag,
                     profile,
+                    experiences,
                     personalSkills,
                     portfolios,
+                    customTags,
                     settings,
                     allTags,
                     filteredPortfolios,
                     heroBackgroundStyle,
                     aboutBackgroundStyle,
+                    experienceBackgroundStyle,
                     skillsBackgroundStyle,
                     portfolioBackgroundStyle,
                     contactBackgroundStyle,
                     toggleSettingsPanel,
-                    openPortfolioModal,
-                    closePortfolioModal,
+                    openLoginModal,
+                    closeLoginModal,
+                    handleLogin,
+                    logout,
+                    openPortfolioViewer,
+                    closePortfolioViewer,
+                    prevImage,
+                    nextImage,
                     handleBackgroundUpload,
                     handleProfileImageUpload,
                     updateBackgroundStyles,
                     handleSubmit,
+                    deleteTag,
+                    addTag,
+                    deleteCustomTag,
                     openAddPortfolioModal,
                     editPortfolio,
                     deletePortfolio,
+                    openAddExperienceModal,
+                    editExperience,
+                    deleteExperience,
                     openAddSkillModal,
                     editSkill,
                     deleteSkill
