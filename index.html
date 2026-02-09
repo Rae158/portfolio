@@ -936,11 +936,85 @@
             border-radius: 5px;
         }
 
-        .strip-mode img {
+        .strip-item {
+            flex-shrink: 0;
             height: 80%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .strip-item img,
+        .strip-item video {
+            height: 100%;
             object-fit: contain;
             border-radius: 10px;
             box-shadow: var(--shadow);
+            max-width: 80vw;
+        }
+
+        .video-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .video-container video {
+            max-width: 100%;
+            max-height: 80vh;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+
+        .single-image-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .single-image-container img {
+            max-width: 100%;
+            max-height: 80vh;
+            object-fit: contain;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+
+        .image-description {
+            margin-top: 20px;
+            padding: 15px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            max-width: 80%;
+            text-align: center;
+        }
+
+        .image-description p {
+            color: white;
+            margin: 0;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .strip-item-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .strip-item-container .image-description {
+            margin-top: 10px;
+            padding: 10px 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            max-width: 100%;
         }
 
         .portfolio-viewer-info {
@@ -1356,15 +1430,11 @@
             <div class="portfolio-grid">
                 <div class="portfolio-item" v-for="item in filteredPortfolios" :key="item.id">
                     <div class="portfolio-item-image">
-                        <img :src="item.images[0] || 'https://via.placeholder.com/600x400'" alt="作品图片">
+                        <img :src="typeof item.images[0] === 'string' ? item.images[0] : item.images[0].src" alt="作品图片">
                     </div>
                     <div class="portfolio-item-content">
                         <span class="portfolio-item-category">{{ item.category }}</span>
                         <h3 class="portfolio-item-title">{{ item.title }}</h3>
-                        <p class="portfolio-item-description" v-html="item.description"></p>
-                        <div class="portfolio-item-tags">
-                            <span class="portfolio-item-tag" v-for="tag in item.tags" :key="tag">{{ tag }}</span>
-                        </div>
                         <a href="#" class="portfolio-item-link" @click.prevent="openPortfolioViewer(item)">查看详情</a>
                     </div>
                 </div>
@@ -1460,11 +1530,27 @@
         <div class="portfolio-viewer-content">
             <div class="single-image-mode" v-if="viewerMode === 'single' && selectedPortfolio.images && selectedPortfolio.images.length > 0">
                 <button class="nav-btn prev" @click="prevImage" v-if="currentImageIndex > 0">❮</button>
-                <img :src="selectedPortfolio.images[currentImageIndex]" alt="作品图片">
+                <div class="single-image-container">
+                    <div v-if="isVideo(getCurrentImageSrc())" class="video-container">
+                        <video :src="getCurrentImageSrc()" controls></video>
+                    </div>
+                    <img v-else :src="getCurrentImageSrc()" alt="作品图片">
+                    <div class="image-description" v-if="getCurrentImageDescription()">
+                        <p>{{ getCurrentImageDescription() }}</p>
+                    </div>
+                </div>
                 <button class="nav-btn next" @click="nextImage" v-if="currentImageIndex < selectedPortfolio.images.length - 1">❯</button>
             </div>
             <div class="strip-mode" v-if="viewerMode === 'strip' && selectedPortfolio.images && selectedPortfolio.images.length > 0">
-                <img v-for="(image, index) in selectedPortfolio.images" :key="index" :src="image" alt="作品图片">
+                <div v-for="(media, index) in selectedPortfolio.images" :key="index" class="strip-item">
+                    <div class="strip-item-container">
+                        <video v-if="isVideo(typeof media === 'string' ? media : media.src)" :src="typeof media === 'string' ? media : media.src" controls></video>
+                        <img v-else :src="typeof media === 'string' ? media : media.src" alt="作品图片">
+                        <div class="image-description" v-if="typeof media === 'object' && media.description">
+                            <p>{{ media.description }}</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="portfolio-viewer-info" v-if="selectedPortfolio.title">
@@ -1526,18 +1612,31 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label>作品图片（可多选）</label>
-                        <input type="file" accept="image/*" multiple @change="handlePortfolioImageUpload">
-                        <div v-if="portfolioForm.images.length > 0" style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px;">
-                            <div v-for="(img, idx) in portfolioForm.images" :key="idx" style="position: relative; width: 100px; height: 100px;">
-                                <img :src="img" style="width: 100%; height: 100%; object-fit: cover; border-radius: 5px;">
-                                <button 
-                                    type="button" 
-                                    @click="removePortfolioImage(idx)"
-                                    style="position: absolute; top: 5px; right: 5px; background: rgba(255, 0, 110, 0.9); color: white; border: none; border-radius: 50%; width: 25px; height: 25px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 14px; transition: all 0.3s ease;"
-                                    onmouseover="this.style.background='rgba(255, 0, 110, 1)'"
-                                    onmouseout="this.style.background='rgba(255, 0, 110, 0.9)'"
-                                >×</button>
+                        <label>作品图片/视频（可多选）</label>
+                        <input type="file" accept="image/*,video/*" multiple @change="handlePortfolioImageUpload">
+                        <div v-if="portfolioForm.images.length > 0" style="display: flex; flex-direction: column; gap: 15px; margin-top: 10px;">
+                            <div v-for="(img, idx) in portfolioForm.images" :key="idx" style="position: relative; display: flex; gap: 10px; align-items: flex-start; padding: 10px; background: #f8f9fa; border-radius: 10px;">
+                                <div style="position: relative; width: 100px; height: 100px; flex-shrink: 0;">
+                                    <video v-if="isVideo(typeof img === 'string' ? img : img.src)" :src="typeof img === 'string' ? img : img.src" style="width: 100%; height: 100%; object-fit: cover; border-radius: 5px;" muted></video>
+                                    <img v-else :src="typeof img === 'string' ? img : img.src" style="width: 100%; height: 100%; object-fit: cover; border-radius: 5px;">
+                                    <button 
+                                        type="button" 
+                                        @click="removePortfolioImage(idx)"
+                                        style="position: absolute; top: 5px; right: 5px; background: rgba(255, 0, 110, 0.9); color: white; border: none; border-radius: 50%; width: 25px; height: 25px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 14px; transition: all 0.3s ease;"
+                                        onmouseover="this.style.background='rgba(255, 0, 110, 1)'"
+                                        onmouseout="this.style.background='rgba(255, 0, 110, 0.9)'"
+                                    >×</button>
+                                </div>
+                                <div style="flex: 1;">
+                                    <label style="font-size: 0.9rem; margin-bottom: 5px; display: block;">图片描述（可选）</label>
+                                    <input 
+                                        type="text" 
+                                        :value="typeof img === 'object' ? img.description : ''"
+                                        @input="updateImageDescription(idx, $event.target.value)"
+                                        placeholder="为这张图片添加描述..."
+                                        style="width: 100%; padding: 10px; border: 2px solid var(--light-gray); border-radius: 10px; font-size: 0.9rem;"
+                                    >
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -1857,6 +1956,12 @@
                 <h4>退出登录</h4>
                 <button class="submit-btn" style="background: #ff006e;" @click="logout">退出登录</button>
             </div>
+
+            <div class="settings-section">
+                <h4>保存更改</h4>
+                <p style="color: #6c757d; font-size: 0.9rem; margin-bottom: 15px;">将所有设置保存到本地存储，刷新页面后不会丢失</p>
+                <button class="submit-btn" style="background: linear-gradient(135deg, #3a86ff, #8338ec);" @click="saveAllSettings">保存所有更改</button>
+            </div>
         </div>
     </div>
 
@@ -1977,7 +2082,10 @@
                         category: 'UI 设计',
                         title: '移动应用界面设计',
                         description: '为一款健康追踪应用设计的用户界面，注重简洁性和用户体验。包含登录页、仪表盘、统计页等多个界面。',
-                        images: ['https://via.placeholder.com/600x400', 'https://via.placeholder.com/600x400'],
+                        images: [
+                            { src: 'https://via.placeholder.com/600x400', description: '登录页面设计' },
+                            { src: 'https://via.placeholder.com/600x400', description: '仪表盘界面展示' }
+                        ],
                         tags: ['UI', '移动应用', '健康']
                     },
                     {
@@ -1985,7 +2093,11 @@
                         category: '网站设计',
                         title: '企业官网重设计',
                         description: '为一家科技公司重新设计的官方网站，提升品牌形象和用户体验。采用现代、简洁的设计风格。',
-                        images: ['https://via.placeholder.com/600x400', 'https://via.placeholder.com/600x400', 'https://via.placeholder.com/600x400'],
+                        images: [
+                            { src: 'https://via.placeholder.com/600x400', description: '网站首页设计' },
+                            { src: 'https://via.placeholder.com/600x400', description: '产品展示页面' },
+                            { src: 'https://via.placeholder.com/600x400', description: '关于我们页面' }
+                        ],
                         tags: ['网站设计', '企业官网', '响应式']
                     },
                     {
@@ -1993,7 +2105,10 @@
                         category: 'UX 设计',
                         title: '电商应用用户体验优化',
                         description: '对一款电商应用进行用户体验优化，通过用户研究和数据分析，改进了购物流程和界面设计。',
-                        images: ['https://via.placeholder.com/600x400', 'https://via.placeholder.com/600x400'],
+                        images: [
+                            { src: 'https://via.placeholder.com/600x400', description: '优化前的购物流程' },
+                            { src: 'https://via.placeholder.com/600x400', description: '优化后的购物流程' }
+                        ],
                         tags: ['UX', '电商', '用户研究']
                     }
                 ]);
@@ -2180,6 +2295,16 @@
                     }
                 };
 
+                const getCurrentImageSrc = () => {
+                    const image = selectedPortfolio.value.images[currentImageIndex.value];
+                    return typeof image === 'string' ? image : image.src;
+                };
+
+                const getCurrentImageDescription = () => {
+                    const image = selectedPortfolio.value.images[currentImageIndex.value];
+                    return typeof image === 'object' ? image.description : '';
+                };
+
                 const handleBackgroundUpload = (section) => {
                     const input = event.target;
                     if (input.files && input.files[0]) {
@@ -2207,17 +2332,38 @@
                     if (input.files && input.files.length > 0) {
                         const files = Array.from(input.files);
                         files.forEach(file => {
-                            const reader = new FileReader();
-                            reader.onload = (e) => {
-                                portfolioForm.value.images.push(e.target.result);
-                            };
-                            reader.readAsDataURL(file);
+                            if (file.type.startsWith('image/')) {
+                                const reader = new FileReader();
+                                reader.onload = (e) => {
+                                    portfolioForm.value.images.push(e.target.result);
+                                };
+                                reader.readAsDataURL(file);
+                            } else if (file.type.startsWith('video/')) {
+                                const reader = new FileReader();
+                                reader.onload = (e) => {
+                                    portfolioForm.value.images.push(e.target.result);
+                                };
+                                reader.readAsDataURL(file);
+                            }
                         });
                     }
                 };
 
                 const removePortfolioImage = (index) => {
                     portfolioForm.value.images.splice(index, 1);
+                };
+
+                const updateImageDescription = (index, description) => {
+                    const image = portfolioForm.value.images[index];
+                    if (typeof image === 'string') {
+                        portfolioForm.value.images[index] = { src: image, description };
+                    } else {
+                        image.description = description;
+                    }
+                };
+
+                const isVideo = (src) => {
+                    return src.startsWith('data:video/') || src.endsWith('.mp4') || src.endsWith('.webm') || src.endsWith('.ogg');
                 };
 
                 const updateBackgroundStyles = () => {};
@@ -2304,7 +2450,7 @@
                             title: item.title,
                             category: item.category,
                             description: item.description,
-                            images: [...item.images],
+                            images: item.images.map(img => typeof img === 'string' ? { src: img, description: '' } : { ...img }),
                             tags: [...item.tags],
                             tagsString: item.tags.join(', ')
                         };
@@ -2501,7 +2647,40 @@
                     }
                 };
 
+                const saveAllSettings = () => {
+                    const data = {
+                        profile: profile.value,
+                        experiences: experiences.value,
+                        personalSkills: personalSkills.value,
+                        portfolios: portfolios.value,
+                        customTags: customTags.value,
+                        settings: settings.value,
+                        profileFieldsOrder: profileFieldsOrder.value
+                    };
+                    localStorage.setItem('portfolioSettings', JSON.stringify(data));
+                    alert('所有更改已保存！');
+                };
+
+                const loadSettings = () => {
+                    const saved = localStorage.getItem('portfolioSettings');
+                    if (saved) {
+                        try {
+                            const data = JSON.parse(saved);
+                            if (data.profile) profile.value = data.profile;
+                            if (data.experiences) experiences.value = data.experiences;
+                            if (data.personalSkills) personalSkills.value = data.personalSkills;
+                            if (data.portfolios) portfolios.value = data.portfolios;
+                            if (data.customTags) customTags.value = data.customTags;
+                            if (data.settings) settings.value = data.settings;
+                            if (data.profileFieldsOrder) profileFieldsOrder.value = data.profileFieldsOrder;
+                        } catch (e) {
+                            console.error('加载设置失败：', e);
+                        }
+                    }
+                };
+
                 onMounted(() => {
+                    loadSettings();
                     window.addEventListener('scroll', () => {
                         const navbar = document.getElementById('navbar');
                         if (window.scrollY > 50) {
@@ -2610,7 +2789,9 @@
                     editSkill,
                     saveSkill,
                     closeSkillModal,
-                    deleteSkill
+                    deleteSkill,
+                    saveAllSettings,
+                    loadSettings
                 };
             }
         }).mount('body');
